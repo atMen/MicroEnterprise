@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/item_title" />
+
+    <com.spring.chanba.views.ObservableScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/word_553F"
+                        android:textSize="@dimen/font_size_20" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_3"
+                        android:text="姓名："
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edt_perfect_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:background="@drawable/bg_edittext_background"
+                    android:hint="请输入姓名"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:padding="@dimen/margin_10"
+                    android:textColor="@color/word_9999"
+                    android:textSize="@dimen/font_size_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/word_553F"
+                        android:textSize="@dimen/font_size_20" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_3"
+                        android:text="身份证号："
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edt_perfect_idnumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:background="@drawable/bg_edittext_background"
+                    android:hint="请输入身份证号"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:padding="@dimen/margin_10"
+                    android:textColor="@color/word_9999"
+                    android:textSize="@dimen/font_size_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/word_553F"
+                        android:textSize="@dimen/font_size_20" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_3"
+                        android:text="性别："
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <RadioGroup
+                    android:id="@+id/rgp_perfect_person"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/margin_45"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbt_perfect_man"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/bg_checkbox_selector"
+                        android:checked="true"
+                        android:paddingLeft="@dimen/margin_5"
+                        android:text="男"
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_14" />
+
+                    <RadioButton
+                        android:id="@+id/rbt_perfect_woman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:button="@drawable/bg_checkbox_selector"
+                        android:paddingLeft="@dimen/margin_5"
+                        android:text="女"
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_14" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/word_553F"
+                        android:textSize="@dimen/font_size_20" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_3"
+                        android:text="联系电话："
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edt_perfect_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:background="@drawable/bg_edittext_background"
+                    android:hint="请输入联系电话"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:padding="@dimen/margin_10"
+                    android:textColor="@color/word_9999"
+                    android:textSize="@dimen/font_size_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="住址："
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edt_perfect_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:background="@drawable/bg_edittext_background"
+                    android:hint="请输入住址"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:padding="@dimen/margin_10"
+                    android:textColor="@color/word_9999"
+                    android:textSize="@dimen/font_size_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="毕业学校："
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edt_perfect_school"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:background="@drawable/bg_edittext_background"
+                    android:hint="请输入毕业学校"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:padding="@dimen/margin_10"
+                    android:textColor="@color/word_9999"
+                    android:textSize="@dimen/font_size_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="学历："
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edt_perfect_education"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:background="@drawable/bg_edittext_background"
+                    android:hint="请输入学历"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:padding="@dimen/margin_10"
+                    android:textColor="@color/word_9999"
+                    android:textSize="@dimen/font_size_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="职业："
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edt_perfect_job"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:background="@drawable/bg_edittext_background"
+                    android:hint="请输入职业"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:padding="@dimen/margin_10"
+                    android:textColor="@color/word_9999"
+                    android:textSize="@dimen/font_size_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="工作地点："
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edt_perfect_workaddr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:background="@drawable/bg_edittext_background"
+                    android:hint="请输入工作地点"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:padding="@dimen/margin_10"
+                    android:textColor="@color/word_9999"
+                    android:textSize="@dimen/font_size_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="工作年限："
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edt_perfect_year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:background="@drawable/bg_edittext_background"
+                    android:hint="请输入工作年限"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:padding="@dimen/margin_10"
+                    android:textColor="@color/word_9999"
+                    android:textSize="@dimen/font_size_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="是否缴纳住房公积金："
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <RadioGroup
+                    android:id="@+id/rgp_perfect_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/margin_45"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbt_perfect_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/bg_checkbox_selector"
+                        android:checked="true"
+                        android:paddingLeft="@dimen/margin_5"
+                        android:text="是"
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_14" />
+
+                    <RadioButton
+                        android:id="@+id/rbt_perfect_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:button="@drawable/bg_checkbox_selector"
+                        android:paddingLeft="@dimen/margin_5"
+                        android:text="否"
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_14" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_60"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginRight="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_20"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_perfect_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_45"
+                    android:background="@drawable/bg_button_selector"
+                    android:text="确认提交"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_16" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.spring.chanba.views.ObservableScrollView>
+</LinearLayout>

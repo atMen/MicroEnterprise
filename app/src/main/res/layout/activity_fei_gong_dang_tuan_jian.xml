@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.tcrj.micro.activity.support.FeiGongDangTuanJianActivity">
+
+    <include layout="@layout/title" />
+    <com.newui.scrollview.BounceScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbars="none">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fgdjbg"
+            />
+
+        <!--企业党建-->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="企业党建"
+                    android:textColor="@color/app_title_gary"
+                    android:textSize="16sp" />
+
+                <com.tcrj.micro.view.MyTextViewQH
+                    android:id="@+id/qydj_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:gravity="left"
+                    android:text="更多>>"
+                    android:textColor="@color/app_light_gary"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/app_gray_line" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_qydj1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/common_list_item_background"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingBottom="12dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="12dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/qydj_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main_text"
+                    android:text=""
+                    android:textSize="15sp" />
+
+                <com.tcrj.micro.view.MyTextViewQH
+                    android:id="@+id/qydj_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:textColor="@color/app_light_gary"
+                    android:text=""
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/app_gray_line" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_qydj2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/common_list_item_background"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingBottom="12dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="12dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/qydj_title2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main_text"
+                    android:text=""
+                    android:textSize="15sp" />
+
+                <com.tcrj.micro.view.MyTextViewQH
+                    android:id="@+id/qydj_date2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:textColor="@color/app_light_gary"
+                    android:text=""
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/app_gray_line" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_qydj3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/common_list_item_background"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingBottom="12dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="12dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/qydj_title3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main_text"
+                    android:text=""
+                    android:textSize="15sp" />
+
+                <com.tcrj.micro.view.MyTextViewQH
+                    android:id="@+id/qydj_date3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:textColor="@color/app_light_gary"
+                    android:text=""
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--陕商人物-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="10dip">
+
+            <com.tcrj.micro.view.MyTextViewXH
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="陕商人物"
+                android:textColor="@color/app_title_gary"
+                android:textSize="16sp" />
+
+            <com.tcrj.micro.view.MyTextViewQH
+                android:id="@+id/ssrw_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:gravity="left"
+                android:text="更多>>"
+                android:textColor="@color/app_light_gary"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/app_gray_line" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/ll_ssrw1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/common_list_item_background"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingBottom="12dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                >
+
+                <ImageView
+                    android:id="@+id/ssrw_icon1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+
+                    />
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/ssrw_title1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main_text"
+                    android:text=""
+                    android:textSize="15sp" />
+
+                <com.tcrj.micro.view.MyTextViewQH
+                    android:id="@+id/ssrw_date1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:textColor="@color/app_light_gary"
+                    android:text=""
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ssrw2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/common_list_item_background"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingBottom="12dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                >
+
+                <ImageView
+                    android:id="@+id/ssrw_icon2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/ssrw_title2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main_text"
+                    android:text=""
+                    android:textSize="15sp" />
+
+                <com.tcrj.micro.view.MyTextViewQH
+                    android:id="@+id/ssrw_date2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:textColor="@color/app_light_gary"
+                    android:text=""
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--企业经验-->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="企业经验"
+                    android:textColor="@color/app_title_gary"
+                    android:textSize="16sp" />
+
+                <com.tcrj.micro.view.MyTextViewQH
+                    android:id="@+id/qyjy_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:gravity="left"
+                    android:text="更多>>"
+                    android:textColor="@color/app_light_gary"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/app_gray_line" />
+
+            <LinearLayout
+                android:id="@+id/ll_qyjy1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/common_list_item_background"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingBottom="12dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="12dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/qyjy_title1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main_text"
+                    android:text=""
+                    android:textSize="15sp" />
+
+                <com.tcrj.micro.view.MyTextViewQH
+                    android:id="@+id/qyjy_date1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:textColor="@color/app_light_gary"
+                    android:text=""
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/app_gray_line" />
+
+            <LinearLayout
+                android:id="@+id/ll_qyjy2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/common_list_item_background"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingBottom="12dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="12dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/qyjy_title2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main_text"
+                    android:text=""
+                    android:textSize="15sp" />
+
+                <com.tcrj.micro.view.MyTextViewQH
+                    android:id="@+id/qyjy_date2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:textColor="@color/app_light_gary"
+                    android:text=""
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/app_gray_line" />
+
+            <LinearLayout
+                android:id="@+id/ll_qyjy3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/common_list_item_background"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingBottom="12dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="12dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/qyjy_title3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main_text"
+                    android:text=""
+                    android:textSize="15sp" />
+
+                <com.tcrj.micro.view.MyTextViewQH
+                    android:id="@+id/qyjy_date3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:textColor="@color/app_light_gary"
+                    android:text=""
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--工委经验-->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="工委经验"
+                    android:textColor="@color/app_title_gary"
+                    android:textSize="16sp" />
+
+                <com.tcrj.micro.view.MyTextViewQH
+                    android:id="@+id/gwjy_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:gravity="left"
+                    android:text="更多>>"
+                    android:textColor="@color/app_light_gary"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/app_gray_line" />
+
+            <LinearLayout
+                android:id="@+id/ll_gwjy1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/common_list_item_background"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingBottom="12dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="12dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/gwjy_title1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main_text"
+                    android:text=""
+                    android:textSize="15sp" />
+
+                <com.tcrj.micro.view.MyTextViewQH
+                    android:id="@+id/gwjy_date1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:textColor="@color/app_light_gary"
+                    android:text=""
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/app_gray_line" />
+
+            <LinearLayout
+                android:id="@+id/ll_gwjy2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/common_list_item_background"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingBottom="12dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="12dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/gwjy_title2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main_text"
+                    android:text=""
+                    android:textSize="15sp" />
+
+                <com.tcrj.micro.view.MyTextViewQH
+                    android:id="@+id/gwjy_date2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:textColor="@color/app_light_gary"
+                    android:text=""
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/app_gray_line" />
+
+            <LinearLayout
+                android:id="@+id/ll_gwjy3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/common_list_item_background"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingBottom="12dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="12dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/gwjy_title3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main_text"
+                    android:text=""
+                    android:textSize="15sp" />
+
+                <com.tcrj.micro.view.MyTextViewQH
+                    android:id="@+id/gwjy_date3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:textColor="@color/app_light_gary"
+                    android:text=""
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--企业风采-->
+        <LinearLayout
+            android:id="@+id/ly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="企业风采"
+                    android:textColor="@color/app_title_gary"
+                    android:textSize="16sp" />
+
+                <com.tcrj.micro.view.MyTextViewQH
+                    android:id="@+id/qyfc_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:gravity="left"
+                    android:text="更多>>"
+                    android:textColor="@color/app_light_gary"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/app_gray_line" />
+
+            <com.newui.tagviewpager.TagViewPager
+                android:id="@+id/mTagViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </com.newui.scrollview.BounceScrollView>
+
+</LinearLayout>

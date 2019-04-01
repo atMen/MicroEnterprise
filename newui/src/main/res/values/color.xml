@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#ffffff</color>
+    <color name="blue">#0099ff</color>
+    <color name="sidebar_item_background_activated_dark">#ff4c365d</color>
+    <color name="app_blue">#ff23acde</color>
+    <color name="main_gird_line">#FFd9d9d9</color>
+    <color name="half_black">#CF000000</color>
+    <color name="black">#CF000000</color>
+    <color name="banner_text">#ebebeb</color>
+    <color name="gary_line">#e0e0e0</color>
+</resources>

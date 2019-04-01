@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="quick_menu_sign_in">
+        <item>不限</item>
+        <item>已处理</item>
+        <item>未处理</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ChanBaapp/ChanBaapp.iml" filepath="$PROJECT_DIR$/ChanBaapp/ChanBaapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ChanBalibrary/ChanBalibrary.iml" filepath="$PROJECT_DIR$/ChanBalibrary/ChanBalibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MicroEnterprise.iml" filepath="$PROJECT_DIR$/MicroEnterprise.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/newui/newui.iml" filepath="$PROJECT_DIR$/newui/newui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/volley/volley.iml" filepath="$PROJECT_DIR$/volley/volley.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xutils/xutils.iml" filepath="$PROJECT_DIR$/xutils/xutils.iml" />
+    </modules>
+  </component>
+</project>

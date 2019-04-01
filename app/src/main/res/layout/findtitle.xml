@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dip"
+    android:background="@color/app_blue">
+
+
+    <ImageView
+        android:id="@+id/btnback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:padding="10dip"
+        android:src="@mipmap/back_icon"
+        android:visibility="gone" />
+
+
+
+    <com.newui.clearedittext.ClearEditText
+        android:id="@+id/filter_edit"
+        android:layout_width="250dip"
+        android:layout_height="30dip"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@drawable/server_serch_bg"
+        android:drawableLeft="@mipmap/search_gary_icon"
+        android:drawablePadding="5dip"
+        android:hint="请输入关键字"
+        android:imeOptions="actionSearch"
+        android:singleLine="true"
+        android:textColor="@color/app_sub_text"
+        android:textSize="15.0dip"/>
+
+
+</RelativeLayout>

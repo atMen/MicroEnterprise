@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:id="@+id/frameContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/app_tab_gary" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/tab_news"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:background="@color/white"
+            android:button="@null"
+            android:checked="true"
+            android:drawablePadding="5dip"
+            android:drawableTop="@drawable/news_tab"
+            android:gravity="center"
+            android:paddingBottom="10dip"
+            android:paddingTop="10dip"
+            android:singleLine="true"
+            android:text="资讯"
+            android:textColor="@drawable/text_tab_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/tab_support"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:background="@color/white"
+            android:button="@null"
+            android:drawablePadding="5dip"
+            android:drawableTop="@drawable/support_tab"
+            android:gravity="center"
+            android:paddingBottom="10dip"
+            android:paddingTop="10dip"
+            android:singleLine="true"
+            android:text="申请扶持"
+            android:textColor="@drawable/text_tab_color"
+            android:textSize="14sp" />
+
+
+        <RadioButton
+            android:visibility="gone"
+            android:id="@+id/tab_enterprise"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:background="@color/white"
+            android:button="@null"
+            android:drawablePadding="5dip"
+            android:drawableTop="@drawable/enterprise_tab"
+            android:gravity="center"
+            android:paddingBottom="10dip"
+            android:paddingTop="10dip"
+            android:singleLine="true"
+            android:text="企业库"
+            android:textColor="@drawable/text_tab_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/tab_mine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:background="@color/white"
+            android:button="@null"
+            android:drawablePadding="5dip"
+            android:drawableTop="@drawable/mine_tab"
+            android:gravity="center"
+            android:paddingBottom="10dip"
+            android:paddingTop="10dip"
+            android:singleLine="true"
+            android:text="我的"
+            android:textColor="@drawable/text_tab_color"
+            android:textSize="14sp" />
+
+    </RadioGroup>
+
+</LinearLayout>

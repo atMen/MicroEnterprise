@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relative_tips"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_dialog_selector"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_50"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_tips_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="标题"
+            android:lines="1"
+            android:textColor="@color/word_0000"
+            android:textSize="@dimen/font_size_20" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_tips_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="输入提示信息提示内容"
+            android:lineSpacingExtra="@dimen/margin_3"
+            android:minHeight="@dimen/margin_50"
+            android:textColor="@color/word_6666"
+            android:textSize="@dimen/font_size_14" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_1px"
+        android:background="@color/line_d2d2" />
+
+    <Button
+        android:id="@+id/btn_tips_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_45"
+        android:layout_weight="1"
+        android:background="@drawable/bg_tips_background"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_size_16" />
+</LinearLayout>

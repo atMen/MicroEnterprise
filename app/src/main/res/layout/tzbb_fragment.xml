@@ -1,0 +1,153 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F5F5F5"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/margin_15">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:text="全省台账报表"
+                    android:textColor="#111"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/sj"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_btn_background"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="查看"
+                    android:textColor="@color/white" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:text="全市台账报表"
+                    android:textColor="#111"
+                    android:textSize="18sp" />
+
+                <!--<TextView-->
+                <!--android:id="@+id/qs"-->
+                <!--android:padding="5dp"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="查看"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:background="@drawable/bg_btn_background"-->
+                <!--/>-->
+
+
+            </RelativeLayout>
+
+            <com.tcrj.micro.view.MyGridView
+                android:id="@+id/grid_sign"
+                android:listSelector="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:horizontalSpacing="1dp"
+                android:numColumns="4"
+                android:scrollbars="none"
+                android:verticalSpacing="1dp" />
+
+
+            <!--<View-->
+            <!--android:background="#F5F5F5"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="15dp"/>-->
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:text="区县台账报表"
+                    android:textColor="#111"
+                    android:textSize="18sp" />
+
+                <!--<TextView-->
+                <!--android:id="@+id/more"-->
+                <!--android:padding="5dp"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="查看"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:background="@drawable/bg_btn_background"-->
+                <!--/>-->
+
+            </RelativeLayout>
+
+            <include layout="@layout/item_select" />
+
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:id="@+id/ck_qx"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_btn_background"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="查看"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

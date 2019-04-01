@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <Button
+        android:id="@+id/btn_wechat_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_45"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/margin_10"
+        android:background="@drawable/bg_button_selector"
+        android:text="微信登录"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_size_16"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/img_wechart"
+        android:layout_width="@dimen/margin_80"
+        android:layout_height="@dimen/margin_80"
+        android:layout_below="@id/btn_wechat_login"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY" />
+</RelativeLayout>

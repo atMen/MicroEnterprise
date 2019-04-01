@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <include layout="@layout/title" />
+
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingBottom="10dip"
+            android:paddingTop="10dip">
+
+            <com.tcrj.micro.view.MyTextViewXH
+                android:id="@+id/cqy"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dip"
+                android:drawableTop="@drawable/cqy"
+                android:gravity="center"
+                android:text="查企业"
+                android:textColor="@color/app_main_text"
+                android:textSize="16sp" />
+
+            <com.tcrj.micro.view.MyTextViewXH
+                android:id="@+id/cxyd"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dip"
+                android:drawableTop="@drawable/cxyd"
+                android:gravity="center"
+                android:text="查信用度"
+                android:textColor="@color/app_main_text"
+                android:textSize="16sp" />
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingBottom="10dip"
+            android:paddingTop="30dip">
+
+            <com.tcrj.micro.view.MyTextViewXH
+                android:id="@+id/csb"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dip"
+                android:drawableTop="@drawable/csb"
+                android:gravity="center"
+                android:text="查商标"
+                android:textColor="@color/app_main_text"
+                android:textSize="16sp" />
+
+            <com.tcrj.micro.view.MyTextViewXH
+                android:id="@+id/cfr"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dip"
+                android:drawableTop="@drawable/cfr"
+                android:gravity="center"
+                android:text="查法人"
+                android:textColor="@color/app_main_text"
+                android:textSize="16sp" />
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>

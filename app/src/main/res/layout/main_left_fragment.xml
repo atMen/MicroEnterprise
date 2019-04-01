@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.newui.scrollview.BounceScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dip"
+                android:layout_marginTop="30dip"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <com.tcrj.micro.view.MyTextViewXH
+                        android:id="@+id/gddt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawablePadding="20dip"
+                        android:drawableTop="@mipmap/gddt_icon"
+                        android:gravity="center"
+                        android:text="各地动态 "
+                        android:textColor="@color/app_main_text"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <com.tcrj.micro.view.MyTextViewXH
+                        android:id="@+id/fcxx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawablePadding="20dip"
+                        android:drawableTop="@mipmap/fcxx_icon"
+                        android:gravity="center"
+                        android:text="扶持信息 "
+                        android:textColor="@color/app_main_text"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.tcrj.micro.view.MyTextViewXH
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:text="扶持政策集中公示"
+                android:textColor="@color/app_main_text"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="15dip"
+                android:layout_marginTop="15dip"
+                android:background="@color/app_blue_text" />
+
+            <com.tcrj.micro.view.MyTextViewXH
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:text="中央政府文件"
+                android:textColor="@color/app_sub_text2"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="15dip"
+                android:layout_marginTop="15dip"
+                android:background="@color/app_gray_line" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/flfg"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/blue_bg_soid"
+                    android:gravity="center"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip"
+                    android:text="法律法规" />
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/gwywj"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/blue_bg_soid"
+                    android:gravity="center"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip"
+                    android:text="国务院文件" />
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/bmwj"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/blue_bg_soid"
+                    android:gravity="center"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip"
+                    android:text="部门文件" />
+
+            </LinearLayout>
+
+            <com.tcrj.micro.view.MyTextViewXH
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="15dip"
+                android:text="地方政府文件"
+                android:textColor="@color/app_sub_text2"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="15dip"
+                android:layout_marginTop="15dip"
+                android:background="@color/app_gray_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/fggz"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/blue_bg_soid"
+                    android:gravity="center"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip"
+                    android:text="法规规章" />
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/sjwj"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/blue_bg_soid"
+                    android:gravity="center"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip"
+                    android:text="省级文件" />
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/ygbmwj"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/blue_bg_soid"
+                    android:gravity="center"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip"
+                    android:text="有关部门文件" />
+
+            </LinearLayout>
+
+            <com.tcrj.micro.view.MyTextViewXH
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="15dip"
+                android:text="地市政府文件"
+                android:textColor="@color/app_sub_text2"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="15dip"
+                android:layout_marginTop="15dip"
+                android:background="@color/app_gray_line" />
+
+            <com.newui.mygridview.MyGridView
+                android:id="@+id/c_grid"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:layout_margin="5dip"
+                android:layout_marginTop="10dip"
+                android:background="@color/white"
+                android:gravity="center"
+                android:horizontalSpacing="0dp"
+                android:numColumns="3"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="0dp" />
+
+        </LinearLayout>
+    </com.newui.scrollview.BounceScrollView>
+
+</LinearLayout>

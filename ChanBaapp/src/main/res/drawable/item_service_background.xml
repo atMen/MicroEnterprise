@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 连框颜色值 -->
+    <item>
+        <shape>
+            <solid android:color="@color/white" />
+            <corners android:radius="@dimen/margin_100" />
+
+        </shape>
+    </item>
+    <!-- 主体背景颜色值 -->
+    <item>
+        <shape>
+            <!--可以通过设置 angle 来自定义渐变方向，它是从左向右、逆时针转的0-90-->
+            <gradient
+                android:angle="0"
+                android:centerColor="#FFAF47"
+                android:centerX="0.5"
+                android:centerY="0.5"
+                android:endColor="#FFD358"
+                android:startColor="#FF8A8F"
+                android:type="linear" />
+            <!-- 圆角 -->
+            <corners android:radius="@dimen/margin_100" />
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/white"
+    android:id="@+id/ll_content">
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="  薪资范围（10-20K）"
+        android:textSize="20sp"
+        />
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <EditText
+            android:background="@color/app_gray_line"
+            android:gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="5"
+            android:textSize="20sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" —— "
+            />
+        <EditText
+            android:background="@color/app_gray_line"
+            android:gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="10"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+
+
+    <!--<com.jaygoo.widget.RangeSeekBar-->
+        <!--android:id="@+id/seekbar2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:paddingLeft="10dp"-->
+        <!--android:paddingRight="10dp"-->
+        <!--app:rsb_min="0"-->
+        <!--app:rsb_max="100"-->
+        <!--app:rsb_mode="range"-->
+        <!--app:rsb_progress_height="4dp"-->
+        <!--app:rsb_progress_color="@color/colorAccent"-->
+        <!--app:rsb_progress_default_color="@color/rsbColorSeekBarDefault"-->
+        <!--app:rsb_tick_mark_text_margin="17dp"-->
+        <!--app:rsb_tick_mark_mode="number"-->
+        <!--app:rsb_thumb_size="20dp"-->
+        <!--app:rsb_indicator_padding_bottom="10dp"-->
+        <!--app:rsb_indicator_width="40dp"-->
+        <!--app:rsb_indicator_height="40dp"-->
+        <!--app:rsb_indicator_show_mode="showWhenTouch"-->
+        <!--app:rsb_thumb_scale_ratio="1.2"-->
+        <!--/>-->
+
+    <!--<com.jaygoo.widget.RangeSeekBar-->
+        <!--android:layout_marginTop="50dp"-->
+        <!--android:id="@+id/seekbar2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:rsb_lineColorSelected="@color/colorAccent"-->
+        <!--app:rsb_lineColorEdge="@color/colorSeekBarDefault"-->
+        <!--app:rsb_progressHintMode="alwaysShow"-->
+        <!--app:rsb_cellMode="number"-->
+        <!--app:rsb_seekBarMode="range"-->
+
+        <!--/>-->
+
+
+    <Button
+        android:layout_marginBottom="30dp"
+        android:id="@+id/btn_login"
+        android:layout_width="200dp"
+        android:layout_gravity="center"
+        android:layout_height="45dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/bg_btn_background"
+        android:text="确定"
+        android:textSize="18sp"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <com.tcrj.micro.view.MyTextViewXH
+        android:layout_margin="5dip"
+        android:id="@+id/grid_name"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_weight="1"
+        android:background="@drawable/blue_bg_soid"
+        android:gravity="center"
+        android:paddingTop="5dip"
+        android:paddingBottom="5dip"
+        android:text="汉中" />
+
+</LinearLayout>

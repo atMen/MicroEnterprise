@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/title" />
+
+    <com.newui.scrollview.BounceScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:id="@+id/ly"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <com.newui.tagviewpager.TagViewPager
+                        android:id="@+id/mTagViewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/ly"
+                    android:layout_centerHorizontal="true"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/gzq"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dip"
+                    android:drawableTop="@mipmap/gzq_icon"
+                    android:gravity="center"
+                    android:text="个转企"
+                    android:textColor="@color/app_main_text"
+                    android:textSize="16sp" />
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/dxs"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dip"
+                    android:drawableTop="@mipmap/cyjy_icon"
+                    android:gravity="center"
+                    android:text="大学生创业就业"
+                    android:textColor="@color/app_main_text"
+                    android:textSize="16sp" />
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/fgdj"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dip"
+                    android:drawableTop="@drawable/fgdj"
+                    android:gravity="center"
+                    android:text="非公党建"
+                    android:textColor="@color/app_main_text"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingBottom="10dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/qyk"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dip"
+                    android:drawableTop="@drawable/qyk"
+                    android:gravity="center"
+                    android:text="企业库"
+                    android:textColor="@color/app_main_text"
+                    android:textSize="16sp" />
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/zxpx"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dip"
+                    android:drawableTop="@mipmap/zx"
+                    android:gravity="center"
+                    android:text="在线培训"
+                    android:textColor="@color/app_main_text"
+                    android:textSize="16sp" />
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/jrtz"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dip"
+                    android:drawableTop="@mipmap/jr"
+                    android:gravity="center"
+                    android:text="金融投资"
+                    android:textColor="@color/app_main_text"
+                    android:textSize="16sp" />
+
+                <!--<com.tcrj.micro.view.MyTextViewXH-->
+                    <!--android:visibility="invisible"-->
+                    <!--android:layout_width="0dip"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:drawablePadding="5dip"-->
+                    <!--android:drawableTop="@mipmap/fgdj_icon"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="非公党建"-->
+                    <!--android:textColor="@color/app_main_text"-->
+                    <!--android:textSize="16sp" />-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingBottom="10dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:id="@+id/jzfp"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dip"
+                    android:drawableTop="@drawable/jzfp_icon"
+                    android:gravity="center"
+                    android:text="精准扶贫"
+                    android:textColor="@color/app_main_text"
+                    android:textSize="16sp" />
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:visibility="invisible"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dip"
+                    android:drawableTop="@mipmap/zx"
+                    android:gravity="center"
+                    android:text="在线培训"
+                    android:textColor="@color/app_main_text"
+                    android:textSize="16sp" />
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:visibility="invisible"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dip"
+                    android:drawableTop="@mipmap/jr"
+                    android:gravity="center"
+                    android:text="精准扶贫"
+                    android:textColor="@color/app_main_text"
+                    android:textSize="16sp" />
+
+                <!--<com.tcrj.micro.view.MyTextViewXH-->
+                <!--android:visibility="invisible"-->
+                <!--android:layout_width="0dip"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:drawablePadding="5dip"-->
+                <!--android:drawableTop="@mipmap/fgdj_icon"-->
+                <!--android:gravity="center"-->
+                <!--android:text="非公党建"-->
+                <!--android:textColor="@color/app_main_text"-->
+                <!--android:textSize="16sp" />-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <com.tcrj.micro.view.MyTextViewXH
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="要闻"
+                    android:textColor="@color/app_title_gary"
+                    android:textSize="16sp" />
+
+                <com.tcrj.micro.view.MyTextViewQH
+                    android:id="@+id/news_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:gravity="left"
+                    android:text="更多>>"
+                    android:textColor="@color/app_light_gary"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+
+            <ListView
+                android:visibility="gone"
+                android:id="@+id/list_news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null" />
+
+
+
+        </LinearLayout>
+    </com.newui.scrollview.BounceScrollView>
+
+
+</LinearLayout>

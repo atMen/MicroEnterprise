@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <include
+        android:id="@+id/include_title"
+        layout="@layout/item_title" />
+
+    <LinearLayout
+        android:id="@+id/layout_sku_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/include_title"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:padding="@dimen/margin_10"
+            android:text="选择您的企业信息"
+            android:textColor="@color/word_0000"
+            android:textSize="@dimen/font_size_24"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginRight="@dimen/margin_10"
+            android:gravity="center_vertical"
+            android:text="请认真选择以便为您提供更便捷的工作"
+            android:textColor="@color/word_9999"
+            android:textSize="@dimen/font_size_12" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_sku_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <include layout="@layout/item_skuchoose_submit" />
+    </LinearLayout>
+
+    <com.spring.chanba.views.ObservableScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_sku_title"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_45"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
+                        android:text="行业"
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <com.spring.chanba.views.LabelsView
+                    android:id="@+id/trade_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:minHeight="25dp"
+                    android:padding="5dp"
+                    app:labelBackground="@drawable/dialog_lable"
+                    app:labelTextColor="@drawable/dialog_label_text"
+                    app:labelTextPaddingBottom="5dp"
+                    app:labelTextPaddingLeft="10dp"
+                    app:labelTextPaddingRight="10dp"
+                    app:labelTextPaddingTop="5dp"
+                    app:labelTextSize="14sp"
+                    app:lineMargin="10dp"
+                    app:maxSelect="0"
+                    app:selectType="SINGLE"
+                    app:wordMargin="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_45"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
+                        android:text="规模"
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <com.spring.chanba.views.LabelsView
+                    android:id="@+id/scale_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:minHeight="25dp"
+                    android:padding="5dp"
+                    app:labelBackground="@drawable/dialog_lable"
+                    app:labelTextColor="@drawable/dialog_label_text"
+                    app:labelTextPaddingBottom="5dp"
+                    app:labelTextPaddingLeft="10dp"
+                    app:labelTextPaddingRight="10dp"
+                    app:labelTextPaddingTop="5dp"
+                    app:labelTextSize="14sp"
+                    app:lineMargin="10dp"
+                    app:maxSelect="0"
+                    app:selectType="SINGLE"
+                    app:wordMargin="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_45"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
+                        android:text="企业类型"
+                        android:textColor="@color/word_0000"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <com.spring.chanba.views.LabelsView
+                    android:id="@+id/type_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:minHeight="25dp"
+                    android:padding="5dp"
+                    app:labelBackground="@drawable/dialog_lable"
+                    app:labelTextColor="@drawable/dialog_label_text"
+                    app:labelTextPaddingBottom="5dp"
+                    app:labelTextPaddingLeft="10dp"
+                    app:labelTextPaddingRight="10dp"
+                    app:labelTextPaddingTop="5dp"
+                    app:labelTextSize="14sp"
+                    app:lineMargin="10dp"
+                    app:maxSelect="0"
+                    app:selectType="SINGLE"
+                    app:wordMargin="10dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.spring.chanba.views.ObservableScrollView>
+</RelativeLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="app_blue">#039EDC</color>
+    <color name="app_blue2">#3594ce</color>
+    <color name="app_blue_deep2">#5982c8</color>
+    <color name="app_blue_light">#26bafd</color>
+    <color name="app_background">#f2f2f2</color>
+    <color name="app_banner_text">#cccccc</color>
+    <color name="app_title_text">#333333</color>
+    <color name="app_tab_gary">#707070</color>
+    <color name="app_sub_text">#797979</color>
+    <color name="app_sub_text2">#666666</color>
+    <color name="app_light_gary">#999999</color>
+    <color name="app_title_gary">#333333</color>
+    <color name="app_main_text">#585858</color>
+    <color name="app_blue_text">#86bfe2</color>
+    <color name="app_gray_line">#e0e0e0</color>
+    <color name="app_item_select">#f5f5f5</color>
+    <color name="app_red">#c00707</color>
+    <color name="app_blue_deep">#1e61a5</color>
+    <color name="app_blue_line">#4b81b7</color>
+    <color name="app_red_status">#ce4040</color>
+    <color name="app_green_status">#0bba62</color>
+    <color name="app_gary_status">#c0c0c0</color>
+    <color name="app_gary_background">#f6f6f6</color>
+    <color name="login_textcolor">#999999</color>
+    <color name="word_6616">#FC6616</color>
+    <color name="color_f6">#f6f6f6</color>
+
+</resources>

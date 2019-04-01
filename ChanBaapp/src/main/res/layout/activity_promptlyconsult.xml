@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@+id/include_title"
+        layout="@layout/item_title" />
+
+    <LinearLayout
+        android:id="@+id/layout_promptly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_eeee"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/margin_5"
+        android:paddingTop="@dimen/margin_3">
+
+        <EditText
+            android:id="@+id/edt_promptly_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginRight="@dimen/margin_5"
+            android:layout_weight="1"
+            android:background="@drawable/bg_edittext_background"
+            android:hint="请输入您要咨询的问题~"
+            android:inputType="textMultiLine"
+            android:padding="@dimen/margin_10"
+            android:textColor="@color/word_9999"
+            android:textSize="@dimen/font_size_14" />
+
+        <Button
+            android:id="@+id/btn_promptly_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/margin_35"
+            android:layout_marginLeft="@dimen/margin_5"
+            android:layout_marginRight="@dimen/margin_10"
+            android:background="@drawable/bg_button_selector"
+            android:text="提交咨询"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_14" />
+    </LinearLayout>
+
+    <com.spring.chanba.xrecycler.XRecyclerView
+        android:id="@+id/p_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/layout_promptly"
+        android:layout_below="@id/include_title"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+</RelativeLayout>

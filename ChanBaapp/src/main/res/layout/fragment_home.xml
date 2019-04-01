@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/item_title" />
+
+    <com.spring.chanba.views.ObservableScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_140">
+
+                <com.spring.chanba.views.ArcView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_80"
+                    app:arcHeight="20dp"
+                    app:bgColor="@color/main_bg" />
+
+                <!--<com.spring.chanba.views.ArcView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="@dimen/margin_80"-->
+                    <!--app:bgColor="@color/main_bg" />-->
+
+                <com.spring.chanba.banner.XBanner
+                    android:id="@+id/banner_advert"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_140"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10" />
+            </RelativeLayout>
+
+            <com.spring.chanba.views.MyGridView
+                android:id="@+id/banner_gridview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_10"
+                android:background="@color/white"
+                android:horizontalSpacing="@dimen/margin_5"
+                android:numColumns="4"
+                android:verticalSpacing="@dimen/margin_5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_1px"
+                    android:background="@color/color_eeee" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/img_broadcast" />
+
+                    <ViewFlipper
+                        android:id="@+id/view_flipper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoStart="true"
+                        android:flipInterval="2000"
+                        android:inAnimation="@anim/anim_come_in"
+                        android:outAnimation="@anim/anim_get_out" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_10"
+                    android:background="@color/color_eeee" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_10"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_recommend_title" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_margin="@dimen/margin_10"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_talent_loan"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_120"
+                    android:scaleType="fitXY" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.spring.chanba.views.ObservableScrollView>
+</LinearLayout>

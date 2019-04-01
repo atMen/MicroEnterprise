@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/item_title" />
+
+    <com.spring.chanba.views.ObservableScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.spring.chanba.banner.XBanner
+                android:id="@+id/banner_service"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_140" />
+
+            <com.spring.chanba.views.MyGridView
+                android:id="@+id/buiness_gridview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_eeee"
+                android:horizontalSpacing="@dimen/line_1px"
+                android:numColumns="2"
+                android:verticalSpacing="@dimen/line_1px" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_1px"
+                android:background="@color/color_eeee" />
+
+            <include layout="@layout/item_examine_more" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_lore_view" />
+
+                <com.spring.chanba.views.NListView
+                    android:id="@+id/lore_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cacheColorHint="@color/transparent"
+                    android:divider="@color/transparent"
+                    android:fadingEdge="none"
+                    android:footerDividersEnabled="false"
+                    android:headerDividersEnabled="false"
+                    android:listSelector="@color/transparent"
+                    android:scrollbars="none" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_case_view" />
+
+                <com.spring.chanba.views.NListView
+                    android:id="@+id/case_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cacheColorHint="@color/transparent"
+                    android:divider="@color/transparent"
+                    android:fadingEdge="none"
+                    android:footerDividersEnabled="false"
+                    android:headerDividersEnabled="false"
+                    android:listSelector="@color/transparent"
+                    android:scrollbars="none" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.spring.chanba.views.ObservableScrollView>
+</LinearLayout>

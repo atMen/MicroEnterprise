@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cbcolorPrimary">#35AEE3</color>
+    <color name="cbcolorPrimaryDark">#35AEE3</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="word_948D">#B1948D</color>
+    <color name="main_bg">#35AEE3</color>
+    <color name="color_eeee">#EEEEEE</color>
+    <color name="color_6f6f">#6F6F6F</color>
+    <color name="word_fafa">#FAFAFA</color>
+    <color name="bg_f4f4">#F4F4F4</color>
+    <color name="transparent">#00000000</color>
+    <color name="word_9999">#999999</color>
+    <color name="word_0000">#000000</color>
+    <color name="word_8787">#878787</color>
+    <color name="word_4847">#484847</color>
+    <color name="line_d2d2">#d2d2d2</color>
+    <color name="word_e8e8">#e9e8e8</color>
+    <color name="word_f9ed">#fef9ed</color>
+    <color name="word_a2a2">#a2a2a2</color>
+    <color name="word_f7f0">#FFF7F0</color>
+    <color name="word_6666">#666666</color>
+    <color name="word_7777">#787777</color>
+    <color name="word_f0f0">#F0F0F0</color>
+    <color name="word_d162">#E9D162</color>
+    <color name="word_db64">#ffdb64</color>
+    <color name="word_553F">#FF553F</color>
+</resources>

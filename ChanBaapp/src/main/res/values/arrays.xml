@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="banner_arrays">
+        <item>金融服务</item>
+        <item>财税服务</item>
+        <item>法律服务</item>
+        <item>工商服务</item>
+        <item>办公空间</item>
+        <item>人才引进</item>
+        <item>创业孵化</item>
+        <item>培训服务</item>
+    </string-array>
+    <integer-array name="banner_mipmap">
+        <item>@mipmap/icon_menu_finance</item>
+        <item>@mipmap/icon_menu_taxation</item>
+        <item>@mipmap/icon_menu_codices</item>
+        <item>@mipmap/icon_menu_business</item>
+        <item>@mipmap/icon_menu_office</item>
+        <item>@mipmap/icon_menu_personnel</item>
+        <item>@mipmap/icon_menu_brooding</item>
+        <item>@mipmap/icon_menu_cultivate</item>
+    </integer-array>
+
+    <string-array name="buiness_arrays">
+        <item>公司注册</item>
+        <item>名称变更</item>
+        <item>三证合一</item>
+        <item>资质办理</item>
+    </string-array>
+    <integer-array name="buiness_mipmap">
+        <item>@mipmap/img_buiness_register</item>
+        <item>@mipmap/img_buiness_name</item>
+        <item>@mipmap/img_buiness_certificate</item>
+        <item>@mipmap/img_buiness_aptitude</item>
+    </integer-array>
+    <integer-array name="hatch_mipmap">
+        <item>@mipmap/img_hatch_1</item>
+        <item>@mipmap/img_hatch_2</item>
+        <item>@mipmap/img_hatch_3</item>
+    </integer-array>
+</resources>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:background="@color/app_blue"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_user_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/user_icon" />
+
+        <com.tcrj.micro.view.MyTextViewQH
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_user_head"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="点击登录进入"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/clean_ly"
+        android:background="@drawable/common_list_item_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dip">
+
+        <com.tcrj.micro.view.MyTextViewXH
+            android:id="@+id/cleana"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/clean_icon"
+            android:drawablePadding="10dip"
+            android:gravity="center_vertical"
+            android:text="清理缓存"
+            android:textColor="@color/app_main_text"
+            android:textSize="16sp" />
+
+        <com.tcrj.micro.view.MyTextViewXH
+            android:id="@+id/rubbish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:text="10kb"
+            android:textColor="@color/app_sub_text"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/app_gray_line" />
+
+    <LinearLayout
+        android:id="@+id/about_ly"
+        android:background="@drawable/common_list_item_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dip">
+
+        <com.tcrj.micro.view.MyTextViewXH
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/about_icon"
+            android:drawablePadding="10dip"
+            android:gravity="center_vertical"
+            android:text="关于我们"
+            android:textColor="@color/app_main_text"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/app_gray_line" />
+
+
+    <LinearLayout
+        android:id="@+id/update_ly"
+        android:background="@drawable/common_list_item_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dip">
+
+        <com.tcrj.micro.view.MyTextViewXH
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/update_icon"
+            android:drawablePadding="10dip"
+            android:gravity="center_vertical"
+            android:text="版本号"
+            android:textColor="@color/app_main_text"
+            android:textSize="16sp" />
+
+        <com.tcrj.micro.view.MyTextViewXH
+            android:id="@+id/packagename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:text="版本2.1.0"
+            android:textColor="@color/app_sub_text"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+</LinearLayout>
