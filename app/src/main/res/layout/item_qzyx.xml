@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <TextView
+        android:id="@+id/tv_qwxz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="期望薪资：15K"
+        android:textSize="@dimen/font_size_16"
+        />
+
+    <TextView
+        android:id="@+id/tv_qwzy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="期望职业：IT相关行业"
+        android:textSize="@dimen/font_size_16"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:textSize="@dimen/font_size_16"
+        android:layout_marginTop="5dp"
+        android:id="@+id/tv_qzlx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="求职类型：全职"
+        />
+
+
+    <TextView
+        android:textSize="@dimen/font_size_16"
+        android:layout_marginTop="5dp"
+        android:id="@+id/tv_mqzt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="目前状态：在职"
+        />
+
+    <View
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gary_line"
+        />
+</LinearLayout>

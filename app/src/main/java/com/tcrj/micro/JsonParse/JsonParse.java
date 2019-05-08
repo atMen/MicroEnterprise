@@ -7,6 +7,7 @@ import com.tcrj.micro.entity.EnterpriseEntity;
 import com.tcrj.micro.entity.FuchiEntity;
 import com.tcrj.micro.entity.InfoEntity;
 import com.tcrj.micro.entity.SupportEntity;
+import com.tcrj.micro.entity.leftListInfo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +35,50 @@ public class JsonParse {
                 entity.setThumbUrl(getStringNodeValue(value, "thumbUrl"));
                 entity.setShowTime(getStringNodeValue(value, "showTime"));
                 entity.setTime(getStringNodeValue(value, "time"));
+                list.add(entity);
+            }
+        } catch (Exception e) {
+            Log.d("error", e.getMessage());
+        }
+        return list;
+    }
+
+    //获取信息列表
+    public static ArrayList<InfoEntity> getJushInfoList(JSONObject jsonObject) {
+        ArrayList<InfoEntity> list = new ArrayList<InfoEntity>();
+        try {
+            JSONArray array = jsonObject.getJSONArray("data");
+
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject value = array.getJSONObject(i);
+                InfoEntity entity = new InfoEntity();
+                entity.setId(getStringNodeValue(value, "id"));
+                entity.setTitle(getStringNodeValue(value, "title"));
+                entity.setThumbUrl(getStringNodeValue(value, "thumbUrl"));
+                entity.setShowTime(getStringNodeValue(value, "showTime"));
+                entity.setTime(getStringNodeValue(value, "time"));
+                list.add(entity);
+            }
+        } catch (Exception e) {
+            Log.d("error", e.getMessage());
+        }
+        return list;
+    }
+
+
+    //获取信息列表
+    public static ArrayList<leftListInfo> getLeftInfoList(JSONObject jsonObject) {
+        ArrayList<leftListInfo> list = new ArrayList<leftListInfo>();
+        try {
+            JSONArray array = jsonObject.getJSONArray("Listinfo");
+
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject value = array.getJSONObject(i);
+                leftListInfo entity = new leftListInfo();
+                entity.setId(getStringNodeValue(value, "id"));
+                entity.setTitle(getStringNodeValue(value, "title"));
+                entity.setThumbUrl(getStringNodeValue(value, "thumbUrl"));
+                entity.setShowTime(getStringNodeValue(value, "showTime"));
                 list.add(entity);
             }
         } catch (Exception e) {

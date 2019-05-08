@@ -41,7 +41,7 @@
             android:paddingBottom="10dip"
             android:paddingTop="10dip"
             android:singleLine="true"
-            android:text="资讯"
+            android:text="首页"
             android:textColor="@drawable/text_tab_color"
             android:textSize="14sp" />
 
@@ -58,7 +58,7 @@
             android:paddingBottom="10dip"
             android:paddingTop="10dip"
             android:singleLine="true"
-            android:text="申请扶持"
+            android:text="小微库"
             android:textColor="@drawable/text_tab_color"
             android:textSize="14sp" />
 

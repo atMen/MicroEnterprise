@@ -34,7 +34,7 @@ public class EnterpriseDetailActivity extends BaseActivity {
     private TextView typeName;
     private TextView estDate;
     private TextView regCap;
-    private TextView bizhong;
+    private TextView sfxwqy;
     private TextView regOrgName;
     private TextView menleiName;
     private TextView industryName;
@@ -59,15 +59,17 @@ public class EnterpriseDetailActivity extends BaseActivity {
         backBtn = (ImageView) findViewById(R.id.btnback);
         backBtn.setVisibility(View.VISIBLE);
         tvtitle.setText("企业信息");
+
         entName = (TextView)findViewById(R.id.entname);
         regNo = (TextView)findViewById(R.id.regno);
         typeName = (TextView)findViewById(R.id.typename);
         estDate = (TextView)findViewById(R.id.estdate);
         regCap  = (TextView)findViewById(R.id.regcap);
-        bizhong = (TextView)findViewById(R.id.bizhong);
+        sfxwqy = (TextView)findViewById(R.id.sfxwqy);
         regOrgName = (TextView)findViewById(R.id.regorgname);
         menleiName = (TextView)findViewById(R.id.menleiname);
         industryName = (TextView)findViewById(R.id.industryname);
+
         backBtn.setOnClickListener(new OnClick());
 
 
@@ -93,7 +95,7 @@ public class EnterpriseDetailActivity extends BaseActivity {
                     typeName.setText(entity.getTypeName());
                     estDate.setText(entity.getEstDate());
                     regCap.setText(entity.getRegCap()+"万元");
-                    bizhong.setText(entity.getBizhong());
+                    sfxwqy.setText(entity.getBizhong());
                     regOrgName.setText(entity.getRegOrgName());
                     menleiName.setText(entity.getMenleiName());
                     industryName.setText(entity.getIndustryName());

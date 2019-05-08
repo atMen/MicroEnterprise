@@ -8,7 +8,7 @@
 
     <include layout="@layout/title" />
 
-    <com.newui.scrollview.BounceScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -17,21 +17,125 @@
         android:focusableInTouchMode="true">
 
         <LinearLayout
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/app_background"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
 
-            <com.newui.hzwlistview.xlist.XListView
-                android:id="@+id/listview"
+            <RelativeLayout
+                android:gravity="center_vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:divider="@null" />
+                android:layout_height="40dp"
+                android:background="@color/gary_line">
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="省级工商管理部门资讯	"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+
+                    />
+
+                <TextView
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:id="@+id/tv_more1"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="更多"
+                    />
+
+            </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+            <RelativeLayout
+                android:background="@color/gary_line"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="市级工商管理部门资讯		"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+
+                    />
+
+                <TextView
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:id="@+id/tv_more2"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="更多"
+                    />
+
+            </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <RelativeLayout
+                android:layout_height="40dp"
+                android:background="@color/gary_line"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                >
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="县级工商管理部门资讯	"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+
+                    />
+
+                <TextView
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:id="@+id/tv_more3"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="更多"
+                    />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
-    </com.newui.scrollview.BounceScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 
 </LinearLayout>

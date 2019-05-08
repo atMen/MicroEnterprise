@@ -39,7 +39,6 @@ public class wdfpAdapter extends BaseQuickAdapter<fpDataInfo.ContentBean, BaseVi
     @Override
     protected void convert(final BaseViewHolder helper, final fpDataInfo.ContentBean item) {
 
-        String logintype = ACache.get(mContext).getAsString("logintype");
 
         LinearLayout ll_btn = helper.getView(R.id.ll_btn);
         TextView name = helper.getView(R.id.name);
@@ -48,14 +47,6 @@ public class wdfpAdapter extends BaseQuickAdapter<fpDataInfo.ContentBean, BaseVi
 
         TextView wyfp = helper.getView(R.id.wyfp);
         TextView yqtr = helper.getView(R.id.yqtr);
-
-
-        if("1".equals(logintype)){
-            ll_btn.setVisibility(View.GONE);
-        }else {
-            ll_btn.setVisibility(View.VISIBLE);
-        }
-
 
         name.setText(item.getHomeName());
         address.setText("地址："+item.getCityName()+"-"+item.getCountyName()+"-"+item.getTownName());

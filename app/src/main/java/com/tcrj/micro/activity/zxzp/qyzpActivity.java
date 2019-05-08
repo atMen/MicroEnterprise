@@ -25,23 +25,37 @@ import android.widget.Toast;
 
 import com.airsaid.pickerviewlibrary.OptionsPickerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.tcrj.micro.ApiConstants;
 import com.tcrj.micro.R;
 
+import com.tcrj.micro.activity.LoginActivity;
 import com.tcrj.micro.adpater.MainAdapter;
 import com.tcrj.micro.adpater.MoreAdapter;
 import com.tcrj.micro.adpater.grzpAdapter;
 import com.tcrj.micro.application.BaseActivity;
 import com.tcrj.micro.application.MyApplication;
 import com.tcrj.micro.entity.BumenInfo;
+import com.tcrj.micro.entity.MessageEvent;
+import com.tcrj.micro.entity.fpStringInfo;
+import com.tcrj.micro.entity.grzpListInfo;
 import com.tcrj.micro.entity.jcInfo;
 import com.tcrj.micro.entity.qyzpListInfo;
+import com.tcrj.micro.entity.zcgsInfo;
+import com.tcrj.micro.entity.zwCodeList;
+import com.tcrj.micro.until.ACache;
 import com.tcrj.micro.view.CustomLoadMoreView;
 import com.tcrj.micro.view.MyTextViewZH;
 import com.tsy.sdk.myokhttp.MyOkHttp;
 import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
 import com.yyydjk.library.DropDownMenu;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -63,42 +77,51 @@ public class qyzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
     RelativeLayout rl_loding;
     ImageView btnback;
     LinearLayout content;
-
     TextView tv_empty;
+    TextView cityname;
 
     LinearLayout ll_cs;
     EditText edt_search_result;
     ImageView iv_search;
 
-    TextView tv_xzfw;
+    TextView tv_pp;
+    TextView tv_work_naturejob;
+    TextView tv_more;
 
 
     private MyOkHttp mMyOkhttp;
     private grzpAdapter detailAdapter;
     private boolean canPull = true;
     private int pageNum = 1;
-    private List<qyzpListInfo.ContentBean> beanList;
+    private List<qyzpListInfo.DataBean.ContentBean> beanList;
 
+    private boolean iszw = false;
+
+    LinearLayout layout_work_naturejob;
+    LinearLayout layout_qx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qyzp);
-        dm = new DisplayMetrics();
-        //取得窗口属性
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-
+        EventBus.getDefault().register(this);
         initView();
         getData();
     }
-
 
     @Override
     public void initView() {
         mMyOkhttp = MyApplication.getInstance().getMyOkHttp();
 
+        layout_work_naturejob = findViewById(R.id.layout_work_naturejob);
+        layout_qx = findViewById(R.id.layout_qx);
+        tv_work_naturejob = findViewById(R.id.tv_work_naturejob);
+        tv_pp = findViewById(R.id.tv_pp);
+        tv_more = findViewById(R.id.tv_more);
+        tv_more.setVisibility(View.VISIBLE);
+
+        cityname = findViewById(R.id.cityname);
         content = findViewById(R.id.content);
-        tv_xzfw = findViewById(R.id.tv_xzfw);
         ll_cs = findViewById(R.id.ll_cs);
         edt_search_result = findViewById(R.id.edt_search_result);
         iv_search = findViewById(R.id.iv_search);
@@ -108,21 +131,26 @@ public class qyzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
 
         txtTitle.setText("个人招聘");
 
+        tv_work_naturejob.setText("职业类别");
+        tv_pp.setText("行业类别");
+
+        layout_work_naturejob.setOnClickListener(this);
+        layout_qx.setOnClickListener(this);
         ll_cs.setOnClickListener(this);
         btnback.setOnClickListener(this);
-        tv_xzfw.setOnClickListener(this);
+        tv_more.setOnClickListener(this);
+        iv_search.setOnClickListener(this);
 
         initview();
     }
 
     private void initview() {
-        edt_search_result.setHint("请输入基础分类查询");
+        edt_search_result.setHint("请输入职位查询");
 
         mPtrFrameLayout = findViewById(R.id.mPtrFrameLayout);
         mRecyclerView = findViewById(R.id.recycler_view);
         tv_empty = findViewById(R.id.tv_empty);
         rl_loding = findViewById(R.id.rl_loding);
-
 
         mPtrFrameLayout.disableWhenHorizontalMove(true);
         mPtrFrameLayout.setPtrHandler(new PtrHandler() {
@@ -140,8 +168,8 @@ public class qyzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
                 rl_loding.setVisibility(View.GONE);
                 mPtrFrameLayout.setVisibility(View.VISIBLE);
                 pageNum = 1;
-                String s = edt_search_result.getText().toString();
-                getData(pageNum,s);
+
+                getDataFromNet(pageNum);
 
             }
         });
@@ -163,23 +191,28 @@ public class qyzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
                 rl_loding.setVisibility(View.GONE);
                 mPtrFrameLayout.setVisibility(View.VISIBLE);
                 String s = edt_search_result.getText().toString();
-                getData(pageNum,s);
+                getDataFromNet(pageNum);
             }
         }, mRecyclerView);
 
     }
 
-
-
+    String cityid = "";
+    String countyid = "";
     //获取网络数据
-    private void getData(final int num,String s) {
-
+    private void getDataFromNet(final int num) {
+        String s = edt_search_result.getText().toString();
         JSONObject jsonObject = new JSONObject();
+
         try {
+            jsonObject.put("jobType", zwCode);//职位id
+            jsonObject.put("industryType", hyCode);//行业
+            jsonObject.put("jobName", s);//职位名称
+
+            jsonObject.put("jobCity", cityid);//城市名称
+            jsonObject.put("jobCounty", countyid);//区县名称
             jsonObject.put("p", num+"");
             jsonObject.put("size", 20);
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -188,12 +221,11 @@ public class qyzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
         mMyOkhttp.post()
                 .url(ApiConstants.zp_list_Api)
                 .jsonParams(jsonObject.toString())
-                .enqueue(new GsonResponseHandler<qyzpListInfo>() {
+                .enqueue(new GsonResponseHandler<fpStringInfo>() {
                     @Override
                     public void onFailure(int statusCode, String error_msg) {
-                        Log.e("TAG","error_msg"+error_msg);
 
-//                        rl_loding.setVisibility(View.GONE);
+//                      rl_loding.setVisibility(View.GONE);
                         if(num > 1){
                             loadMoreData(null,true);
                         }else{
@@ -202,34 +234,27 @@ public class qyzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
                     }
 
                     @Override
-                    public void onSuccess(int statusCode, qyzpListInfo response) {
+                    public void onSuccess(int statusCode, fpStringInfo data) {
                         rl_loding.setVisibility(View.GONE);
-                        if(response.getContent() == null){
+
+                        if("9999".equals(data.getErrorcode())) {
+
+                            qyzpListInfo.DataBean response = new Gson().fromJson(data.getData(), qyzpListInfo.DataBean.class);
 
                             if(num > 1){//上拉加载
-                                detailAdapter.loadMoreEnd();
-                            }else{//下拉刷新
-                                EmptyView();
-                            }
-
-                        }else if(response.getContent() != null){
-
-                            if(num > 1){//上拉加载
-                                Log.e("TAG","上拉加载更多数据");
                                 loadMoreData(response,false);
                             }else{//下拉刷新
-                                loadData(response.getContent(),false);
+                                loadData(response,false);
                             }
-//                          loadMoreData(response,false);
-                            Log.e("TAG","加载错误");
                         }
+
                     }
                 });
 
     }
 
     //上拉加载更多数据
-    private void loadMoreData(qyzpListInfo response, boolean isError) {
+    private void loadMoreData(qyzpListInfo.DataBean response, boolean isError) {
         Log.e("TAG","loadMoreData");
 
         if (response.getContent() == null) {
@@ -240,7 +265,7 @@ public class qyzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
             }
 
         } else {
-            List<qyzpListInfo.ContentBean> result = response.getContent();
+            List<qyzpListInfo.DataBean.ContentBean> result = response.getContent();
             if(result == null || result.size() == 0){//没有更多数据
                 detailAdapter.loadMoreEnd();
             }else{
@@ -254,9 +279,9 @@ public class qyzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
     }
 
     //下拉刷新
-    private void loadData(List<qyzpListInfo.ContentBean> response,boolean isError) {
+    private void loadData(qyzpListInfo.DataBean response,boolean isError) {
 
-        if (response == null || response.size() == 0) {
+        if (response == null || response.getContent().size() == 0) {
             if(mPtrFrameLayout != null){
                 mPtrFrameLayout.refreshComplete();
             }
@@ -275,13 +300,13 @@ public class qyzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
             if(mRecyclerView != null){
                 mRecyclerView.scrollToPosition(0);
             }
-            detailAdapter.setNewData(response);
+            detailAdapter.setNewData(response.getContent());
             if(mPtrFrameLayout != null){
                 mPtrFrameLayout.refreshComplete();
             }
 
             Success();
-            disableLoadMoreIfNotFullPage(mRecyclerView,response.size());
+            disableLoadMoreIfNotFullPage(mRecyclerView,response.getContent().size());
         }
     }
 
@@ -318,14 +343,14 @@ public class qyzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
                 }
             }, 1000);
 
-
         }
     }
 
     @Override
     public void getData() {
-        getData(pageNum,"");
+        getDataFromNet(pageNum);
     }
+
 
     @Override
     public void onClick(View v) {
@@ -333,7 +358,8 @@ public class qyzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
 
             case R.id.ll_cs:
                 //显示城市选择dialog
-                downPopwindow();
+
+                toClass(this,cityInfoActivity.class,null);
 
                 break;
 
@@ -342,215 +368,220 @@ public class qyzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
 
                 break;
 
-            case R.id.tv_xzfw:
+            case R.id.layout_work_naturejob:
 
-                //显示薪资选择
-                showxzdialog();
+                iszw = true;
+                getCountList("107");
+                break;
+
+            case R.id.layout_qx:
+                iszw = false;
+                getCountList(zwCode);
+
+                break;
+
+            case R.id.tv_more:
+
+                String type = ACache.get(this).getAsString("logintype");
+
+                if(type == null){
+                    toClass(this,LoginActivity.class,null);
+                }else if(!"1".equals(type)){
+                    Toast.makeText(this, "请登录个人账号查看", Toast.LENGTH_SHORT).show();
+                }else {
+                    toClass(this,TdjlActivity.class,null);
+                }
+
                 break;
 
             case R.id.iv_search:
                 rl_loding.setVisibility(View.VISIBLE);
                 mPtrFrameLayout.setVisibility(View.GONE);
 
-                String s = edt_search_result.getText().toString();
-                getData(1,s);
+                getDataFromNet(1);
                 break;
 
             default:
                 break;
         }
     }
-    OptionsPickerView<String> mOptionsPickerView;
-    private void showxzdialog(){
-
-        if(mOptionsPickerView != null){
-            mOptionsPickerView.show();
-        }else {
-
-            mOptionsPickerView = new OptionsPickerView<>(this);
-            final ArrayList<String> list = new ArrayList<>();
-            list.add("1000");
-            list.add("2000");
-            // 设置数据
-            mOptionsPickerView.setPicker(list);
-            // 设置选项单位
-//        mOptionsPickerView.setLabels("性");
-            mOptionsPickerView.setOnOptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
-                @Override
-                public void onOptionsSelect(int option1, int option2, int option3) {
-                    String sex = list.get(option1);
-                    Toast.makeText(qyzpActivity.this, sex, Toast.LENGTH_SHORT).show();
-                }
-            });
-            mOptionsPickerView.show();
-        }
-
-    }
-
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 
-//        jcInfo.ResultBean.ItemsBean item = (jcInfo.ResultBean.ItemsBean) adapter.getItem(position);
-//        int id = item.getOBJECTID();
-//        Bundle bundle = new Bundle();
-//        bundle.putString("ID",id+"");
-//        bundle.putInt("type",type);
-//        toClass(this,JcInfoActivity.class,bundle);
+        qyzpListInfo.DataBean.ContentBean item = (qyzpListInfo.DataBean.ContentBean) adapter.getItem(position);
+        String id = item.getId();
 
-        Bundle bundle = new Bundle();
-        bundle.putString("ID","");
-        toClass(this,QyzpItemInfoActivity.class,bundle);
-
-    }
-
-
-    /**
-     * 城市选择控件
-     */
-    private Boolean isFirst = true;
-    private DisplayMetrics dm;
-    private PopupWindow popWindow;
-    private MoreAdapter moreAdapter;
-    private ListView morelist;
-    private List<BumenInfo.ComlistBean> mainList = null;
-    private ListView mainlist;
-    private MainAdapter mainAdapter;
-    private TextView tv_all;
-    private Button btn_gps_sure;
-    private LinearLayout ll_btn_sure;
-
-
-
-    //筛选部门id
-    private int BuMenId = 3;
-
-    //筛选公司id
-    private int GongSiId;
-
-    private void downPopwindow() {
-
-
-        if(popWindow != null){
-            popWindow.showAtLocation(content, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
-
-//          popWindow.showAsDropDown(tv_sx);
-        }else {
-        // showAsDropDown(View anchor);相对某个控件的位置（正左下方），无偏移
-        // showAsDropDown(View anchor, int x, int
-        // y);相对某个控件的位置，有偏移;x表示相对x轴的偏移，正表示向左，负表示向右；y表示相对y轴的偏移，正是向下，负是向上；
-        View contentView = LayoutInflater.from(this).inflate(R.layout.pop_down, null);
-        int screenHeight = dm.heightPixels * 4 / 5;
-        // 这里就给具体大小的数字，要不然位置不好计算
-        popWindow = new PopupWindow(contentView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        popWindow.setAnimationStyle(R.style.popwin_anim_style);// 淡入淡出动画
-        // popWindow.setTouchable(false);// 是否响应touch事件
-        popWindow.setFocusable(true);// 是否具有获取焦点的能力
-        // 点击PopupWindow以外的区域，PopupWindow是否会消失。
-        popWindow.setBackgroundDrawable(new BitmapDrawable());
-        popWindow.setOutsideTouchable(true);
-
-        mainlist = (ListView) contentView.findViewById(R.id.classify_mainlist);
-        morelist = (ListView) contentView.findViewById(R.id.classify_morelist);
-        tv_all = (TextView) contentView.findViewById(R.id.moreitem_txt);
-
-        btn_gps_sure = (Button) contentView.findViewById(R.id.btn_gps_sure);
-
-        ll_btn_sure = (LinearLayout) contentView.findViewById(R.id.ll_btn_sure);
-
-
-        ll_btn_sure.setVisibility(View.VISIBLE);
-
-        mainAdapter = new MainAdapter(this, mainList);
-        mainAdapter.setSelectItem(0);
-        mainlist.setAdapter(mainAdapter);
-        mainlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                tv_all.setTextColor(0xFF666666);
-                List<BumenInfo.ComlistBean.DeptlistBean> lists = mainList.get(position).getDeptlist();
-                initAdapter(lists,false);
-                mainAdapter.setSelectItem(position);
-                mainAdapter.notifyDataSetChanged();
-                //设置公司id
-                GongSiId = mainList.get(position).getId();
-
-            }
-        });
-
-
-
-        tv_all.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                tv_all.setTextColor(0xFFFF8C00);
-                moreAdapter.setSelectItem(-1);
-                moreAdapter.setIsFirst(false);
-                moreAdapter.notifyDataSetChanged();
-                BuMenId = GongSiId;
-            }
-        });
-
-        btn_gps_sure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(BuMenId == 0){
-                    Toast.makeText(qyzpActivity.this, "请选择筛选条件", Toast.LENGTH_SHORT).show();
-                }else {
-                    popWindow.dismiss();
-                    //请求数据
-
-                }
-
-            }
-        });
-
-        mainlist.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
-        // 一定要设置这个属性，否则ListView不会刷新
-        initAdapter(mainList.get(0).getDeptlist(),true);
-
-        morelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                tv_all.setTextColor(0xFF666666);
-                BumenInfo.ComlistBean.DeptlistBean s = (BumenInfo.ComlistBean.DeptlistBean) moreAdapter.getItem(position);
-
-//                  Toast.makeText(getApplicationContext(), s.getName(), Toast.LENGTH_LONG).show();
-                moreAdapter.setSelectItem(position);
-                moreAdapter.setIsFirst(false);
-                moreAdapter.notifyDataSetChanged();
-//                  popWindow.dismiss();
-
-                //设置部门id
-                BuMenId = s.getId();
-                //请求数据
-//                    new GpsPresenter(GPSActivity.this,1);
-//                    presenter.start();
-
-
-
-            }
-        });
-
-        popWindow.showAtLocation(content, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
-//            popWindow.showAsDropDown(tv_sx);
+        if(id != null){
+            Bundle bundle = new Bundle();
+            bundle.putString("ID",id);
+            toClass(this,zwItemInfoActivity.class,bundle);
         }
 
     }
 
-    private void initAdapter(List<BumenInfo.ComlistBean.DeptlistBean> lists, boolean first) {
-        moreAdapter = new MoreAdapter(this, lists);
-        moreAdapter.setIsFirst(first);
-        morelist.setAdapter(moreAdapter);
-        moreAdapter.notifyDataSetChanged();
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void Event(MessageEvent messageEvent) {
+        switch (messageEvent.getType()){
+
+            case 100:
+                zcgsInfo cityinfo = messageEvent.getCityinfo();
+                cityname.setText(cityinfo.getName());
+                cityid = cityinfo.getId();
+                countyid = "";
+                getDataFromNet(1);
+                break;
+
+            case 101:
+                zcgsInfo countinfo = messageEvent.getCityinfo();
+                cityname.setText(countinfo.getName());
+                countyid = countinfo.getId();
+                cityid = "";
+                getDataFromNet(1);
+                break;
+
+            default:
+                break;
+        }
+
     }
 
+    private void getCountList(String id){
+        showProgressDialog();
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("code", id.equals("")? "104":id);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        mMyOkhttp.post()
+                .url(ApiConstants.zwcode_Api)
+                .jsonParams(jsonObject.toString())
+                .enqueue(new GsonResponseHandler<fpStringInfo>() {
+                    @Override
+                    public void onFailure(int statusCode, String error_msg) {
+                        dismisProgressDialog();
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, fpStringInfo response) {
+                        dismisProgressDialog();
+
+                        String fpjlListInfos = response.getData();
+                        List<zwCodeList> zcgsinfo = parseNoHeaderJArray(fpjlListInfos);
+
+                        if(iszw){
+                            //弹选择框
+                            showxzdialog(zcgsinfo);
+                        }else {
+                            showhydialog(zcgsinfo);
+                        }
+
+                    }
+                });
+    }
+
+    private String zwCode = "";
+    private String hyCode = "";
+
+    OptionsPickerView<String> zwOptionsPickerView;
+    private void showxzdialog(final List<zwCodeList> zcgsInfo){
+
+        if(zwOptionsPickerView != null){
+            zwOptionsPickerView.show();
+        }else {
+        zwOptionsPickerView = new OptionsPickerView<>(this);
+        final ArrayList<String> list = new ArrayList<>();
+        list.add("不限");
+        for(int i = 0;i < zcgsInfo.size();i++){
+            list.add(zcgsInfo.get(i).getName());
+        }
+
+        // 设置数据
+        zwOptionsPickerView.setPicker(list);
+        // 设置选项单位
+        zwOptionsPickerView.setOnOptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int option1, int option2, int option3) {
+                String sex = list.get(option1);
+                tv_work_naturejob.setText(sex);
+                tv_pp.setText("不限");
+                hyCode = "";
+
+                if(option1 == 0){
+                    zwCode = "";
+                }else {
+                    zwCode = zcgsInfo.get(option1-1).getCode();
+                }
+
+
+                getDataFromNet(1);
+
+//                Toast.makeText(qyzpActivity.this, sex, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        zwOptionsPickerView.show();
+
+        }
+    }
+
+    OptionsPickerView<String> zwOptionsPickerView1;
+    private void showhydialog(final List<zwCodeList> zcgsInfo){
+
+
+            zwOptionsPickerView1 = new OptionsPickerView<>(this);
+            final ArrayList<String> list = new ArrayList<>();
+            list.add("不限");
+            for(int i = 0;i < zcgsInfo.size();i++){
+                list.add(zcgsInfo.get(i).getName());
+            }
+
+            // 设置数据
+            zwOptionsPickerView1.setPicker(list);
+            // 设置选项单位
+            zwOptionsPickerView1.setOnOptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
+                @Override
+                public void onOptionsSelect(int option1, int option2, int option3) {
+                    String sex = list.get(option1);
+                    tv_pp.setText(sex);
+
+                    if(option1 == 0){
+                        hyCode = "";
+                    }else {
+                        hyCode = zcgsInfo.get(option1-1).getCode();
+                    }
+
+                    getDataFromNet(1);
+
+                }
+            });
+            zwOptionsPickerView1.show();
+
+
+    }
+
+    private List<zwCodeList> parseNoHeaderJArray(String strByJson) {
+
+        //Json的解析类对象
+        JsonParser parser = new JsonParser();
+        //将JSON的String 转成一个JsonArray对象
+        JsonArray jsonArray = parser.parse(strByJson).getAsJsonArray();
+
+        Gson gson = new Gson();
+        List<zwCodeList> userBeanList = new ArrayList<>();
+
+        //加强for循环遍历JsonArray
+        for (JsonElement user : jsonArray) {
+            //使用GSON，直接转成Bean对象
+            zwCodeList userBean = gson.fromJson(user, zwCodeList.class);
+            userBeanList.add(userBean);
+        }
+        return userBeanList;
+    }
 
 
 }

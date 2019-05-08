@@ -6,18 +6,21 @@ import java.util.List;
  * Created by leict on 2019/3/29.
  */
 
+
+
+
 public class qyInfo {
 
 
     /**
-     * content : [{"enterpriseId":"1205000143","enterpriseName":"陕西省三信实业有限公司","frIdentity":"610103610714043","gsjId":"5850e3a801f041ea994ef5b517516659","id":"ff80808169c848c80169c873a5ca0005","mobile":"","optime":"2019-03-29 15:56:56","tyshxydm":"1205000143","userId":"ff80808169c848c80169c873a5950004"},{"enterpriseId":"1205000127","enterpriseName":"陕西志华实业有限公司","frIdentity":"610325490910551","gsjId":"5850e3a801f041ea994ef5b517516659","id":"ff8080816998acd50169a45c34760019","mobile":"","optime":"2019-03-22 15:44:59","tyshxydm":"1205000127","userId":"ff8080816998acd50169a45c344f0018"},{"enterpriseId":"1205000131","enterpriseName":"陕西宏飞实业有限公司","frIdentity":"612129520321005","gsjId":"5850e3a801f041ea994ef5b517516659","id":"ff8080816998acd50169a456cff00016","mobile":"","optime":"2019-03-22 15:39:06","tyshxydm":"1205000131","userId":"ff8080816998acd50169a456cf960015"},{"enterpriseId":"1205000117","enterpriseName":"陕西涤玉阁书画社","frIdentity":"610104610410511","gsjId":"5850e3a801f041ea994ef5b517516659","id":"ff8080816998acd501699e0ca0890009","mobile":"","optime":"2019-03-21 10:20:21","tyshxydm":"1205000117","userId":"ff8080816998acd501699e0c9fa20008"},{"enterpriseId":"22054115","enterpriseName":"西安永明装饰材料实业公司","frIdentity":"610121540116285","gsjId":"57134b7a55fb4d0db2b7283abc9733f1","id":"ff808081648e1f420164b5230b180098","mobile":"","optime":"2018-07-20 08:42:09","tyshxydm":"22054115","userId":"ff808081648e1f420164b5230a990097"},{"enterpriseId":"1205000153","enterpriseName":"陕西中华创意信息有限公司","frIdentity":"430302130121251","gsjId":"3abb1c09ea4d4da29e0e431ad2d6f76c","id":"ff808081648e1f420164b0106ca7008d","mobile":"","optime":"2018-07-19 09:03:43","tyshxydm":"1205000153","userId":"ff808081648e1f420164b0106c5c008c"},{"enterpriseId":"1205000130","enterpriseName":"陕西克莱玛实业有限公司","frIdentity":"610103530807003","gsjId":"3abb1c09ea4d4da29e0e431ad2d6f76c","id":"ff8080816488b31c01648c0f7cf20011","mobile":"","optime":"2018-07-12 09:16:22","tyshxydm":"1205000130","userId":"ff8080816488b31c01648c0f7c960010"},{"enterpriseId":"1205000136","enterpriseName":"陕西蓝马广告实业有限公司","frIdentity":"610112391231102","gsjId":"a90e2a364b364c87b41ff8b33e9752f1","id":"ff8080816488a9e1016488ae7a450003","mobile":"","optime":"2018-07-11 17:31:33","tyshxydm":"1205000136","userId":"ff8080816488a9e1016488ae7a1a0002"},{"enterpriseId":"1205000131","enterpriseName":"陕西宏飞实业有限公司","frIdentity":"612129520321005","gsjId":"57134b7a55fb4d0db2b7283abc9733f1","id":"ff80808164889df00164889f8e080001","mobile":"","optime":"2018-07-11 17:15:15","tyshxydm":"1205000131","userId":"ff80808164889df00164889f8da40000"}]
+     * content : [{"address":"","cname":"工商局扶贫办","code":"","deleted":"0","departmentId":"","departmentName":"","email":"","enable":"1","ename":"GSJ_17802902206","id":"32b4c693f1e849538294bc2479823ade","isFirstLogin":"1","mobile":"17802902206","note":"","optime":"2019-05-07 09:19:10","password":"","registrationID":"","registrationType":"","sex":"","sort":0,"type":"4"},{"address":"","cname":"西安市扶贫中心","code":"","deleted":"0","departmentId":"","departmentName":"","email":"","enable":"1","ename":"GSJ_17802902208","id":"6bea52e15bea4478b9cd3f0cd9c01ffe","isFirstLogin":"1","mobile":"17802902208","note":"","optime":"2019-05-07 09:19:10","password":"","registrationID":"","registrationType":"","sex":"","sort":0,"type":"4"},{"address":"","cname":"王锋","code":"","deleted":"0","departmentId":"","departmentName":"","email":"","enable":"1","ename":"GSJ_18092194292","id":"ac0b22b042314230a0d0fbc37dbd94da","isFirstLogin":"1","mobile":"18092194292","note":"","optime":"2019-05-07 09:19:10","password":"","registrationID":"","registrationType":"","sex":"","sort":0,"type":"4"},{"address":"","cname":"渭南市扶贫办","code":"","deleted":"0","departmentId":"","departmentName":"","email":"","enable":"1","ename":"GSJ_17802902207","id":"e2e095fd528940cb990ba3f10e2719f5","isFirstLogin":"1","mobile":"17802902207","note":"","optime":"2019-05-07 09:19:10","password":"","registrationID":"","registrationType":"","sex":"","sort":0,"type":"4"}]
      * first : true
      * last : true
      * number : 0
-     * numberOfElements : 9
-     * size : 20
+     * numberOfElements : 4
+     * size : 10
      * sort : {}
-     * totalElements : 9
+     * totalElements : 4
      * totalPages : 1
      */
 
@@ -108,16 +111,52 @@ public class qyInfo {
 
     public static class ContentBean {
         /**
-         * enterpriseId : 1205000143
-         * enterpriseName : 陕西省三信实业有限公司
-         * frIdentity : 610103610714043
-         * gsjId : 5850e3a801f041ea994ef5b517516659
-         * id : ff80808169c848c80169c873a5ca0005
-         * mobile :
-         * optime : 2019-03-29 15:56:56
-         * tyshxydm : 1205000143
-         * userId : ff80808169c848c80169c873a5950004
+         * address :
+         * cname : 工商局扶贫办
+         * code :
+         * deleted : 0
+         * departmentId :
+         * departmentName :
+         * email :
+         * enable : 1
+         * ename : GSJ_17802902206
+         * id : 32b4c693f1e849538294bc2479823ade
+         * isFirstLogin : 1
+         * mobile : 17802902206
+         * note :
+         * optime : 2019-05-07 09:19:10
+         * password :
+         * registrationID :
+         * registrationType :
+         * sex :
+         * sort : 0
+         * type : 4
          */
+
+        private String address;
+        private String cname;
+        private String code;
+        private String deleted;
+        private String departmentId;
+        private String departmentName;
+        private String email;
+        private String enable;
+        private String ename;
+        private String id;
+        private String isFirstLogin;
+        private String mobile;
+        private String note;
+        private String optime;
+        private String password;
+        private String registrationID;
+        private String registrationType;
+        private String sex;
+        private int sort;
+        private String type;
+
+        private boolean isselect;
+
+
         public boolean isselect() {
             return isselect;
         }
@@ -126,47 +165,78 @@ public class qyInfo {
             this.isselect = isselect;
         }
 
-        private boolean isselect;
-        private String enterpriseId;
-        private String enterpriseName;
-        private String frIdentity;
-        private String gsjId;
-        private String id;
-        private String mobile;
-        private String optime;
-        private String tyshxydm;
-        private String userId;
 
-        public String getEnterpriseId() {
-            return enterpriseId;
+
+        public String getAddress() {
+            return address;
         }
 
-        public void setEnterpriseId(String enterpriseId) {
-            this.enterpriseId = enterpriseId;
+        public void setAddress(String address) {
+            this.address = address;
         }
 
-        public String getEnterpriseName() {
-            return enterpriseName;
+        public String getCname() {
+            return cname;
         }
 
-        public void setEnterpriseName(String enterpriseName) {
-            this.enterpriseName = enterpriseName;
+        public void setCname(String cname) {
+            this.cname = cname;
         }
 
-        public String getFrIdentity() {
-            return frIdentity;
+        public String getCode() {
+            return code;
         }
 
-        public void setFrIdentity(String frIdentity) {
-            this.frIdentity = frIdentity;
+        public void setCode(String code) {
+            this.code = code;
         }
 
-        public String getGsjId() {
-            return gsjId;
+        public String getDeleted() {
+            return deleted;
         }
 
-        public void setGsjId(String gsjId) {
-            this.gsjId = gsjId;
+        public void setDeleted(String deleted) {
+            this.deleted = deleted;
+        }
+
+        public String getDepartmentId() {
+            return departmentId;
+        }
+
+        public void setDepartmentId(String departmentId) {
+            this.departmentId = departmentId;
+        }
+
+        public String getDepartmentName() {
+            return departmentName;
+        }
+
+        public void setDepartmentName(String departmentName) {
+            this.departmentName = departmentName;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getEnable() {
+            return enable;
+        }
+
+        public void setEnable(String enable) {
+            this.enable = enable;
+        }
+
+        public String getEname() {
+            return ename;
+        }
+
+        public void setEname(String ename) {
+            this.ename = ename;
         }
 
         public String getId() {
@@ -177,12 +247,28 @@ public class qyInfo {
             this.id = id;
         }
 
+        public String getIsFirstLogin() {
+            return isFirstLogin;
+        }
+
+        public void setIsFirstLogin(String isFirstLogin) {
+            this.isFirstLogin = isFirstLogin;
+        }
+
         public String getMobile() {
             return mobile;
         }
 
         public void setMobile(String mobile) {
             this.mobile = mobile;
+        }
+
+        public String getNote() {
+            return note;
+        }
+
+        public void setNote(String note) {
+            this.note = note;
         }
 
         public String getOptime() {
@@ -193,20 +279,52 @@ public class qyInfo {
             this.optime = optime;
         }
 
-        public String getTyshxydm() {
-            return tyshxydm;
+        public String getPassword() {
+            return password;
         }
 
-        public void setTyshxydm(String tyshxydm) {
-            this.tyshxydm = tyshxydm;
+        public void setPassword(String password) {
+            this.password = password;
         }
 
-        public String getUserId() {
-            return userId;
+        public String getRegistrationID() {
+            return registrationID;
         }
 
-        public void setUserId(String userId) {
-            this.userId = userId;
+        public void setRegistrationID(String registrationID) {
+            this.registrationID = registrationID;
+        }
+
+        public String getRegistrationType() {
+            return registrationType;
+        }
+
+        public void setRegistrationType(String registrationType) {
+            this.registrationType = registrationType;
+        }
+
+        public String getSex() {
+            return sex;
+        }
+
+        public void setSex(String sex) {
+            this.sex = sex;
+        }
+
+        public int getSort() {
+            return sort;
+        }
+
+        public void setSort(int sort) {
+            this.sort = sort;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
         }
     }
 }

@@ -2,20 +2,34 @@ package com.tcrj.micro.activity.news;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.VolleyUtil;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.newui.hzwlistview.xlist.XListView;
 import com.tcrj.micro.JsonParse.JsonParse;
 import com.tcrj.micro.R;
+import com.tcrj.micro.activity.left.LeftDetailActivity;
+import com.tcrj.micro.activity.left.NewLeftListActivity;
+import com.tcrj.micro.adpater.Fgdj2Adapter;
+import com.tcrj.micro.adpater.Fgdj3Adapter;
+import com.tcrj.micro.adpater.FgdjAdapter;
+import com.tcrj.micro.adpater.JybjAdapter;
 import com.tcrj.micro.adpater.NewsListAdapter;
+import com.tcrj.micro.adpater.gzjlAdapter;
+import com.tcrj.micro.adpater.qzyxAdapter;
 import com.tcrj.micro.application.BaseActivity;
 import com.tcrj.micro.constant.Constant;
 import com.tcrj.micro.entity.InfoEntity;
+import com.tcrj.micro.entity.qyzpListInfo;
 import com.tcrj.micro.until.DateUtil;
 import com.tcrj.micro.view.MyTextViewQH;
 
@@ -31,11 +45,20 @@ public class FgdjActivity extends BaseActivity {
 
     private TextView tvtitle;
     private ImageView backBtn;
-    private XListView list_news;
+    private RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView2;
+    private RecyclerView mRecyclerView3;
+    private TextView tv_more1;
+    private TextView tv_more2;
+    private TextView tv_more3;
+
     private static ArrayList<InfoEntity> list;
     private NewsListAdapter adapter;
     private int pageIndex = 1;
 
+    private FgdjAdapter detailAdapter;
+    private Fgdj2Adapter detailAdapter2;
+    private Fgdj3Adapter detailAdapter3;
     private String siteId;
     private String id;
 
@@ -55,50 +78,173 @@ public class FgdjActivity extends BaseActivity {
 
     @Override
     public void initView() {
+
+
+        tv_more1 = (TextView) findViewById(R.id.tv_more1);
+        tv_more2 = (TextView) findViewById(R.id.tv_more2);
+        tv_more3 = (TextView) findViewById(R.id.tv_more3);
+
         tvtitle = (TextView) findViewById(R.id.txtTitle);
         backBtn = (ImageView) findViewById(R.id.btnback);
         backBtn.setVisibility(View.VISIBLE);
         tvtitle.setText("非公党建");
-        list_news = (XListView) findViewById(R.id.listview);
+        mRecyclerView = (RecyclerView) findViewById(R.id.list1);
+        mRecyclerView2 = (RecyclerView) findViewById(R.id.list2);
+        mRecyclerView3 = (RecyclerView) findViewById(R.id.list3);
 
 
-        list_news.setPullLoadEnable(true);
-        list_news.setXListViewListener(new XListView.IXListViewListener() {
+        list = new ArrayList<InfoEntity>();
+//        adapter = new NewsListAdapter(this, list);
 
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setNestedScrollingEnabled(false);
+        mRecyclerView.setAdapter(detailAdapter = new FgdjAdapter(list));
+
+        mRecyclerView2.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView2.setNestedScrollingEnabled(false);
+        mRecyclerView2.setAdapter(detailAdapter2 = new Fgdj2Adapter(list));
+
+        mRecyclerView3.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView3.setNestedScrollingEnabled(false);
+        mRecyclerView3.setAdapter(detailAdapter3 = new Fgdj3Adapter(list));
+
+        detailAdapter.setEnableLoadMore(false);
+        detailAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
+
+        detailAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
-            public void onRefresh() {
-                list_news.setRefreshTime(DateUtil.getCurrentDateTime("yyyy-MM-dd HH:mm:ss"));
-                pageIndex = 1;
-                getFreshVolley(pageIndex);
-            }
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                InfoEntity item = (InfoEntity) adapter.getItem(position);
 
-            @Override
-            public void onLoadMore() {
-                pageIndex++;
-                getLoadVolley(pageIndex);
+                Intent intent = new Intent(FgdjActivity.this,LeftDetailActivity.class);
+                intent.putExtra("id",item.getId());
+                startActivity(intent);
             }
         });
 
-        list = new ArrayList<InfoEntity>();
-        adapter = new NewsListAdapter(this, list);
-        list_news.setAdapter(adapter);
-        list_news.setOnItemClickListener(new OnItemClick());
-        backBtn.setOnClickListener(new OnClick());
+        detailAdapter2.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                InfoEntity item = (InfoEntity) adapter.getItem(position);
 
+                Intent intent = new Intent(FgdjActivity.this,LeftDetailActivity.class);
+                intent.putExtra("id",item.getId());
+                startActivity(intent);
+            }
+        });
+
+        detailAdapter3.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                InfoEntity item = (InfoEntity) adapter.getItem(position);
+
+                Intent intent = new Intent(FgdjActivity.this,LeftDetailActivity.class);
+                intent.putExtra("id",item.getId());
+                startActivity(intent);
+            }
+        });
+
+
+
+        backBtn.setOnClickListener(new OnClick());
+        tv_more1.setOnClickListener(new OnClick());
+        tv_more2.setOnClickListener(new OnClick());
+        tv_more3.setOnClickListener(new OnClick());
     }
 
     @Override
     public void getData() {
         showProgressDialog();
+        getListInfo1();
+
+    }
+
+    private void getListInfo1(){
+
         VolleyUtil volleyUtil = new VolleyUtil(this, handler);
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("pagesize", 10);
+        params.put("pagesize", 5);
         params.put("pageindex", pageIndex);
+        params.put("id", "2uMfEf");
 
-        params.put("siteId", siteId);
-        params.put("id", id);
+        VolleyUtil.VolleyJsonCallback callback2 = new VolleyUtil.VolleyJsonCallback() {
 
+            @Override
+            public void onSuccess(JSONObject jsonObject) {
 
+                Log.d("aaa", jsonObject.toString());
+                if(JsonParse.getMsgByKey(jsonObject, "state").equals("1")){
+                    list.clear();
+                    ArrayList<InfoEntity> arraylist = JsonParse.getInfoList(jsonObject);
+                    list.addAll(arraylist);
+                    detailAdapter.setNewData(arraylist);
+                }else{
+                    list.clear();
+
+                }
+
+                getListInfo2();
+
+            }
+
+            @Override
+            public void onFailed(String result) {
+
+                handler.sendEmptyMessage(11);
+            }
+        };
+        volleyUtil.getJsonDataFromServer(Constant.findInfoList, params, callback2);
+
+    }
+
+    private void getListInfo2(){
+
+        VolleyUtil volleyUtil = new VolleyUtil(this, handler);
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("pagesize", 5);
+        params.put("pageindex", pageIndex);
+        params.put("id", "I7vq6z");
+
+        VolleyUtil.VolleyJsonCallback callback2 = new VolleyUtil.VolleyJsonCallback() {
+
+            @Override
+            public void onSuccess(JSONObject jsonObject) {
+
+                Log.d("aaa", jsonObject.toString());
+                if(JsonParse.getMsgByKey(jsonObject, "state").equals("1")){
+                    list.clear();
+                    ArrayList<InfoEntity> arraylist = JsonParse.getInfoList(jsonObject);
+                    list.addAll(arraylist);
+                    detailAdapter2.setNewData(arraylist);
+                }else{
+                    list.clear();
+
+                }
+                getListInfo3();
+
+//                detailAdapter.setNewData(list);
+//                adapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onFailed(String result) {
+
+                handler.sendEmptyMessage(11);
+            }
+        };
+        volleyUtil.getJsonDataFromServer(Constant.findInfoList, params, callback2);
+
+    }
+
+    private void getListInfo3(){
+
+        VolleyUtil volleyUtil = new VolleyUtil(this, handler);
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("pagesize", 5);
+        params.put("pageindex", pageIndex);
+        params.put("id", "rQ3M7j");
 
         VolleyUtil.VolleyJsonCallback callback2 = new VolleyUtil.VolleyJsonCallback() {
 
@@ -110,16 +256,14 @@ public class FgdjActivity extends BaseActivity {
                     list.clear();
                     ArrayList<InfoEntity> arraylist = JsonParse.getInfoList(jsonObject);
                     list.addAll(arraylist);
-                    if(arraylist.size()<10){
-                        list_news.setPullLoadEnable(false);
-                    }else{
-                        list_news.setPullLoadEnable(true);
-                    }
+                    detailAdapter3.setNewData(arraylist);
                 }else{
                     list.clear();
-                    list_news.setPullLoadEnable(false);
+
                 }
-                adapter.notifyDataSetChanged();
+//                detailAdapter.setNewData(list);
+
+//                adapter.notifyDataSetChanged();
 
             }
 
@@ -133,100 +277,43 @@ public class FgdjActivity extends BaseActivity {
 
     }
 
-    // 刷新
-    public void getFreshVolley(int pageNo) {
-        showProgressDialog();
-        VolleyUtil volleyUtil = new VolleyUtil(this, handler);
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("pagesize", 10);
-        params.put("pageindex", pageIndex );
-        params.put("siteId", siteId);
-        params.put("id", id);
 
-        VolleyUtil.VolleyJsonCallback callback2 = new VolleyUtil.VolleyJsonCallback() {
 
-            @Override
-            public void onSuccess(JSONObject jsonObject) {
-                dismisProgressDialog();
-                if(JsonParse.getMsgByKey(jsonObject, "state").equals("1")){
-                    ArrayList<InfoEntity> arraylist = JsonParse.getInfoList(jsonObject);
-                    list.clear();
-                    list.addAll(arraylist);
-                    if(arraylist.size()<10){
-                        list_news.setPullLoadEnable(false);
-                    }else{
-                        list_news.setPullLoadEnable(true);
-                    }
-                }else{
-                    list_news.setPullLoadEnable(false);
-                    list.clear();
-
-                }
-                list_news.stopRefresh();
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailed(String result) {
-                list_news.stopRefresh();
-                dismisProgressDialog();
-                handler.sendEmptyMessage(11);
-            }
-        };
-        volleyUtil.getJsonDataFromServer(Constant.findInfoList, params, callback2);
-
-    }
-
-    // 加载
-    public void getLoadVolley(int pageNo) {
-        showProgressDialog();
-        VolleyUtil volleyUtil = new VolleyUtil(this, handler);
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("pagesize", 10);
-        params.put("pageindex", pageIndex);
-        params.put("siteId", siteId);
-        params.put("id", id);
-
-        VolleyUtil.VolleyJsonCallback callback2 = new VolleyUtil.VolleyJsonCallback() {
-
-            @Override
-            public void onSuccess(JSONObject jsonObject) {
-                dismisProgressDialog();
-                if(JsonParse.getMsgByKey(jsonObject, "state").equals("1")){
-                    ArrayList<InfoEntity> arraylist = JsonParse.getInfoList(jsonObject);
-                    list.addAll(arraylist);
-                    if(arraylist.size()<10){
-                        list_news.setPullLoadEnable(false);
-                    }else{
-                        list_news.setPullLoadEnable(true);
-                    }
-                }else{
-                    list_news.setPullLoadEnable(false);
-                }
-                list_news.setSelection(list.size() - 1);
-                list_news.stopLoadMore();
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailed(String result) {
-                list_news.stopLoadMore();
-                dismisProgressDialog();
-                handler.sendEmptyMessage(11);
-            }
-        };
-        volleyUtil.getJsonDataFromServer(Constant.findInfoList, params, callback2);
-
-    }
 
     class OnClick implements OnClickListener {
 
         @Override
         public void onClick(View v) {
             Intent intent = new Intent();
+            intent.setClass(FgdjActivity.this, NewLeftListActivity.class);
+
             switch (v.getId()) {
                 case R.id.btnback:
                     finish();
+                    break;
+
+                case R.id.tv_more1:
+
+                    intent.putExtra("id", "2uMfEf");
+                    intent.putExtra("title", "省级工商管理部门资讯");
+                    startActivity(intent);
+
+                    break;
+
+                case R.id.tv_more2:
+
+                    intent.putExtra("id", "I7vq6z");
+                    intent.putExtra("title", "市级工商管理部门资讯");
+                    startActivity(intent);
+                    break;
+
+                case R.id.tv_more3:
+                    intent.putExtra("id", "rQ3M7j");
+                    intent.putExtra("title", "县级工商管理部门资讯");
+                    startActivity(intent);
+                    break;
+
+                default:
                     break;
             }
         }

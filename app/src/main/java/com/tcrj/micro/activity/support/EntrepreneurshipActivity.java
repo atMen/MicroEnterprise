@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.tcrj.micro.R;
+import com.tcrj.micro.activity.zxzp.qyzpActivity;
 import com.tcrj.micro.application.BaseActivity;
 import com.tcrj.micro.view.MyTextViewXH;
 
@@ -33,7 +34,8 @@ public class EntrepreneurshipActivity extends BaseActivity {
         findViewById(R.id.jy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(EntrepreneurshipActivity.this, "敬请期待", Toast.LENGTH_SHORT).show();
+                Intent grzpintent = new Intent(EntrepreneurshipActivity.this, qyzpActivity.class);
+                startActivity(grzpintent);
             }
         });
 

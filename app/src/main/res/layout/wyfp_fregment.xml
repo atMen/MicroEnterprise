@@ -34,6 +34,16 @@
             android:padding="10dp"
             />
 
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tv_fpdt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="扶贫动态"
+            android:textSize="@dimen/font_size_16"
+            android:padding="10dp"
+            />
+
 
     </LinearLayout>
 

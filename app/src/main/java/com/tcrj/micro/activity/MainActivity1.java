@@ -3,12 +3,17 @@ package com.tcrj.micro.activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -59,13 +64,68 @@ public class MainActivity1 extends BaseSlidingFragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         instance = this;
-
-//        getPermissions();
-
+        setting();
+        getPermissions();
         initView();
         getDate();
         initSlidingMenu();
+
     }
+
+    private void setting() {
+        NotificationManagerCompat notification = NotificationManagerCompat.from(this);
+        boolean isEnabled = notification.areNotificationsEnabled();
+
+        if(!isEnabled){
+
+            //未打开通知
+            AlertDialog alertDialog = new AlertDialog.Builder(this)
+                    .setTitle("提示")
+                    .setMessage("请在“通知”中打开通知权限")
+                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    })
+                    .setPositiveButton("去设置", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+
+                            Intent intent = new Intent();
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
+                                intent.putExtra("android.provider.extra.APP_PACKAGE", MainActivity1.this.getPackageName());
+                            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {  //5.0
+                                intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
+                                intent.putExtra("app_package", MainActivity1.this.getPackageName());
+                                intent.putExtra("app_uid", MainActivity1.this.getApplicationInfo().uid);
+                            } else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {  //4.4
+                                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                intent.addCategory(Intent.CATEGORY_DEFAULT);
+                                intent.setData(Uri.parse("package:" + MainActivity1.this.getPackageName()));
+                            } else if (Build.VERSION.SDK_INT >= 15) {
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+                                intent.setData(Uri.fromParts("package", MainActivity1.this.getPackageName(), null));
+                            }
+                            startActivity(intent);
+                        }
+
+                    })
+                    .create();
+            alertDialog.show();
+            alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+
+        }
+
+
+
+    }
+
+
     private static String[] PERMISSIONS_STORAGE = {
             "android.permission.READ_EXTERNAL_STORAGE",
             "android.permission.WRITE_EXTERNAL_STORAGE",
@@ -111,7 +171,6 @@ public class MainActivity1 extends BaseSlidingFragmentActivity {
         }
     }
 
-
     // 网络加载进度条
     public void showProgressDialog() {
 
@@ -132,41 +191,44 @@ public class MainActivity1 extends BaseSlidingFragmentActivity {
 
     private void init() {
 
-        showProgressDialog();
-        PgyUpdateManager.register(this,
-                new UpdateManagerListener() {
-
-                    @Override
-                    public void onUpdateAvailable(final String result) {
-
-                        dismisProgressDialog();
-
-                        // 将新版本信息封装到AppBean中
-                        final AppBean appBean = getAppBeanFromString(result);
-                        new AlertDialog.Builder(MainActivity1.this)
-                                .setTitle("更新")
-                                .setMessage(appBean.getReleaseNote())
-                                .setNegativeButton(
-                                        "确定",
-                                        new DialogInterface.OnClickListener() {
-
-                                            @Override
-                                            public void onClick(
-
-                                                    DialogInterface dialog,
-                                                    int which) {
-                                                startDownloadTask(
-                                                        MainActivity1.this,
-                                                        appBean.getDownloadURL());
-                                            }
-                                        }).show();
-                    }
-
-                    @Override
-                    public void onNoUpdateAvailable() {
-                        dismisProgressDialog();
-                    }
-                });
+//        showProgressDialog();
+//        PgyUpdateManager.setIsForced(true); //设置是否强制更新。true为强制更新；false为不强制更新（默认值）。
+        PgyUpdateManager.register(this);
+//        PgyUpdateManager.register(this,
+//                new UpdateManagerListener() {
+//
+//                    @Override
+//                    public void onUpdateAvailable(final String result) {
+//
+//                        dismisProgressDialog();
+//
+//                        // 将新版本信息封装到AppBean中
+//                        final AppBean appBean = getAppBeanFromString(result);
+//                        new AlertDialog.Builder(MainActivity1.this)
+//                                .setTitle("更新")
+//                                .setMessage(appBean.getReleaseNote())
+//                                .setNegativeButton(
+//                                        "确定",
+//                                        new DialogInterface.OnClickListener() {
+//
+//                                            @Override
+//                                            public void onClick(
+//
+//                                                    DialogInterface dialog,
+//                                                    int which) {
+//                                                startDownloadTask(
+//                                                        MainActivity1.this,
+//                                                        appBean.getDownloadURL());
+//                                            }
+//                                        }).show();
+//                    }
+//
+//                    @Override
+//                    public void onNoUpdateAvailable() {
+//
+//                        dismisProgressDialog();
+//                    }
+//                });
     }
 
     private void initView() {
@@ -230,14 +292,14 @@ public class MainActivity1 extends BaseSlidingFragmentActivity {
                 } else {
                     ft.show(newFragment);
                 }
-            } else if (R.id.tab_support == checkedId) {
+            } else if (R.id.tab_enterprise == checkedId) {
                 if (supportFragment == null) {
                     supportFragment = new SupportFragment();
                     ft.add(R.id.frameContent, supportFragment);
                 } else {
                     ft.show(supportFragment);
                 }
-            } else if (R.id.tab_enterprise == checkedId) {
+            } else if (R.id.tab_support == checkedId) {
                 if (enterpriseFragment == null) {
                     enterpriseFragment = new EnterpriseFragment();
                     ft.add(R.id.frameContent, enterpriseFragment);
@@ -255,6 +317,7 @@ public class MainActivity1 extends BaseSlidingFragmentActivity {
             ft.commit();
         }
     }
+
 
     private void hideFragments() {
         if (newFragment != null) {
@@ -286,7 +349,7 @@ public class MainActivity1 extends BaseSlidingFragmentActivity {
                 exitTime = System.currentTimeMillis();
             } else {
                 finish();
-                System.exit(0);
+
             }
             return true;
         }

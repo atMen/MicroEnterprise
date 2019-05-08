@@ -149,6 +149,11 @@
                                  android:layout_width="wrap_content"
                                  android:layout_height="wrap_content"
                                  android:text="企业" />
+                                <RadioButton
+                                    android:id="@+id/gsj_id"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="工商局内部" />
                 </RadioGroup>
 
 
@@ -177,37 +182,55 @@
 
 
 
-        <LinearLayout
-            android:layout_marginTop="35dp"
-            android:gravity="center"
-            android:orientation="horizontal"
+        <RelativeLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:padding="10dp"
-
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="还没有账号？"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-
-                />
-
-            <TextView
-                android:id="@+id/tv_zc"
+                android:id="@+id/tv_cz"
                 android:padding="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="去注册"
+                android:text="找回密码"
                 android:textColor="@color/app_red"
-                android:textSize="16sp"
-
+                android:textSize="14sp"
                 />
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="还没有账号？"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_zc"
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="去注册"
+                    android:textColor="@color/app_red"
+                    android:textSize="14sp"
+
+                    />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
 
 
 

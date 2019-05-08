@@ -388,12 +388,12 @@ public class FeiGongDangTuanJianActivity extends BaseActivity implements View.On
 
                     qydjinfoList = JsonParse.getInfoList(jsonObject);
                     qydj_title.setText(qydjinfoList.get(0).getTitle());
-                    qydj_title2.setText(qydjinfoList.get(1).getTitle());
-                    qydj_title3.setText(qydjinfoList.get(2).getTitle());
+//                    qydj_title2.setText(qydjinfoList.get(1).getTitle());
+//                    qydj_title3.setText(qydjinfoList.get(2).getTitle());
 
                     qydj_date.setText(DateUtil.formatToDateString(qydjinfoList.get(0).getShowTime()));
-                    qydj_date2.setText(DateUtil.formatToDateString(qydjinfoList.get(1).getShowTime()));
-                    qydj_date3.setText(DateUtil.formatToDateString(qydjinfoList.get(2).getShowTime()));
+//                    qydj_date2.setText(DateUtil.formatToDateString(qydjinfoList.get(1).getShowTime()));
+//                    qydj_date3.setText(DateUtil.formatToDateString(qydjinfoList.get(2).getShowTime()));
                 } else {
 
                 }

@@ -58,7 +58,186 @@
 
             </RelativeLayout>
 
+
             <LinearLayout
+
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/dxs"
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:background="@mipmap/cyjy"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+
+                        />
+
+                    <LinearLayout
+                        android:layout_marginLeft="7dp"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="大学生创业就业"
+                            />
+
+                        <TextView
+
+                            android:textSize="12sp"
+                            android:layout_marginTop="3dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="提供创业就业信息"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fgdj"
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:background="@mipmap/fgdj"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+
+                        />
+
+                    <LinearLayout
+                        android:layout_marginLeft="7dp"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="非公党建"
+                            />
+
+                        <TextView
+                            android:textSize="12sp"
+                            android:layout_marginTop="3dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="党建信息共享"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/jrtz"
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:background="@mipmap/jrtz"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+
+                        />
+
+                    <LinearLayout
+                        android:layout_marginLeft="7dp"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="金融投资"
+                            />
+
+                        <TextView
+                            android:textSize="12sp"
+                            android:layout_marginTop="3dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="金融投资类信息"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/jzfp"
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:background="@mipmap/jzfp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+
+                        />
+
+                    <LinearLayout
+                        android:layout_marginLeft="7dp"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="精准扶贫"
+                            />
+
+                        <TextView
+                            android:textSize="12sp"
+                            android:layout_marginTop="3dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="扶持企业创新发展"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -79,7 +258,6 @@
                     android:textSize="16sp" />
 
                 <com.tcrj.micro.view.MyTextViewXH
-                    android:id="@+id/dxs"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -91,7 +269,6 @@
                     android:textSize="16sp" />
 
                 <com.tcrj.micro.view.MyTextViewXH
-                    android:id="@+id/fgdj"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -105,6 +282,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -136,7 +314,6 @@
                     android:textSize="16sp" />
 
                 <com.tcrj.micro.view.MyTextViewXH
-                    android:id="@+id/jrtz"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -162,6 +339,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -169,7 +347,6 @@
                 android:paddingBottom="10dip">
 
                 <com.tcrj.micro.view.MyTextViewXH
-                    android:id="@+id/jzfp"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -249,8 +426,78 @@
             </LinearLayout>
 
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/gary_line"
+                />
+
+            <LinearLayout
+
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_hyrd"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_hyrd"
+                        android:textColor="@color/app_blue"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="49dp"
+                        android:text="行业热点"
+                        />
+                    <View
+                        android:id="@+id/hyrd"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/app_blue"
+                        />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_zcjd"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_zcjd"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="49dp"
+                        android:text="政策推荐"
+                        />
+
+                    <View
+                        android:visibility="gone"
+                        android:id="@+id/zcjd"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/app_blue"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
             <ListView
-                android:visibility="gone"
                 android:id="@+id/list_news"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

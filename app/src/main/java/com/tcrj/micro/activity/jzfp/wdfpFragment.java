@@ -16,6 +16,7 @@ import com.tcrj.micro.activity.LoginActivity;
 import com.tcrj.micro.activity.base.BaseFragment;
 import com.tcrj.micro.adpater.wdfpAdapter;
 import com.tcrj.micro.application.MyApplication;
+import com.tcrj.micro.entity.CheckInfo;
 import com.tcrj.micro.entity.MessageEvent;
 import com.tcrj.micro.entity.fpDataInfo;
 import com.tcrj.micro.entity.fpStringInfo;
@@ -55,6 +56,7 @@ public class wdfpFragment extends BaseFragment implements  wdfpAdapter.OnPlayCli
 
     private int pageNum = 1;
     private boolean canPull = true;
+    private String jpushId;
 
     @Override
     protected int setLayout() {
@@ -64,6 +66,8 @@ public class wdfpFragment extends BaseFragment implements  wdfpAdapter.OnPlayCli
     @Override
     protected void setView() {
         EventBus.getDefault().register(this);
+
+        jpushId = ACache.get(getContext()).getAsString("jpushId");
 
         mMyOkhttp = MyApplication.getInstance().getMyOkHttp();
 
@@ -115,13 +119,14 @@ public class wdfpFragment extends BaseFragment implements  wdfpAdapter.OnPlayCli
 
     //获取网络数据
     private void getData(final int num) {
+        showProgressDialog("正在加载...");
 
         JSONObject jsonObject = new JSONObject();
 
         try {
 
             jsonObject.put("p", num+"");
-            jsonObject.put("size", "1");
+            jsonObject.put("size", "20");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -139,7 +144,7 @@ public class wdfpFragment extends BaseFragment implements  wdfpAdapter.OnPlayCli
 
                         if(num > 1){
                             loadMoreData(null,true);
-                        }else{
+                        } else {
                             loadData(null,true);
                         }
                     }
@@ -250,27 +255,83 @@ public class wdfpFragment extends BaseFragment implements  wdfpAdapter.OnPlayCli
         Intent intent = new Intent();
         //检测是否登录
         String token = ACache.get(mContext).getAsString("token");
-        if(token != null){
+        String logintype = ACache.get(mContext).getAsString("logintype");
 
-            if(position == 0){
-                //我要扶贫
-                intent.putExtra("token",token);
-                intent.putExtra("id",id);
-                intent.setClass(mContext, WyfpActivity.class);
-                mContext.startActivity(intent);
-            }else {
-                //邀请他人
-                intent.setClass(mContext, YqfpActivity.class);
-                mContext.startActivity(intent);
-            }
 
-        }else {
+        //判断登录人员类型
+        if(!"4".equals(logintype)){
+
             intent.putExtra("openid",-2);
             intent.setClass(mContext, LoginActivity.class);
             mContext.startActivity(intent);
+        }else {
+
+
+            if(token != null){
+
+                checkToken(token,position,id);
+
+            }else {
+                intent.putExtra("openid",-2);
+                intent.setClass(mContext, LoginActivity.class);
+                mContext.startActivity(intent);
+            }
+
         }
     }
 
+    private void checkToken(final String token, final int position, final String id) {
+
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+
+            jsonObject.put("token", token);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        mMyOkhttp.post()
+                .url(ApiConstants.checktoken_Api)
+                .jsonParams(jsonObject.toString())
+                .enqueue(new GsonResponseHandler<CheckInfo>() {
+                    @Override
+                    public void onFailure(int statusCode, String error_msg) {
+                        Toast.makeText(mContext, error_msg, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, CheckInfo response) {
+//                      Toast.makeText(mContext, response.getMessage(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent();
+                        String errorCode = response.getErrorcode();
+                        if("9999".equals(errorCode)){
+
+                            if(position == 0){
+                                //我要扶贫
+                                intent.putExtra("token",token);
+                                intent.putExtra("id", id);
+                                intent.setClass(mContext, WyfpActivity.class);
+                                mContext.startActivity(intent);
+                            }else {
+                                //邀请他人
+                                intent.putExtra("id", id);
+                                intent.setClass(mContext, YqfpActivity.class);
+                                mContext.startActivity(intent);
+                            }
+
+                        }else {
+                            ACache.get(getContext()).clear();
+
+                            intent.putExtra("openid",-2);
+                            intent.setClass(mContext, LoginActivity.class);
+                            mContext.startActivity(intent);
+                        }
+
+                    }
+                });
+    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Event(MessageEvent messageEvent) {

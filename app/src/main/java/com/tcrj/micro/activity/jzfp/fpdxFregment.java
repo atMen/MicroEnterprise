@@ -65,7 +65,7 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
 
     private MyOkHttp mMyOkhttp;
     private fpdxAdapter detailAdapter;
-    private List<fpjlListInfo.DataBean> beanList;
+    private List<fpjlListInfo.ContentBean> beanList;
 
     private int pageNum = 1;
     private boolean canPull = true;
@@ -102,18 +102,16 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
                 getData(pageNum);
             }
         });
+
         beanList = new ArrayList<>();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.setAdapter(detailAdapter = new fpdxAdapter(beanList, mContext));
-
 
         detailAdapter.setEnableLoadMore(false);
 
         detailAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
 
         detailAdapter.setOnPlayClickListener(this);
-
-
 
     }
 
@@ -126,7 +124,7 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
 
     //获取网络数据
     private void getData(final int num) {
-
+        showProgressDialog("正在加载...");
         JSONObject jsonObject = new JSONObject();
 
         try {
@@ -150,7 +148,6 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
                         dismisProgressDialog();
                         loadData(null,true);
 
-
                     }
 
                     @Override
@@ -158,13 +155,11 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
 
                         dismisProgressDialog();
 
-
                         String fpjlListInfos = response.getData();
 
-                        List<fpjlListInfo.DataBean> zcgsInfos = parseNoHeaderJArray(fpjlListInfos);
+                        List<fpjlListInfo.ContentBean> zcgsInfos = parseNoHeaderJArray(fpjlListInfos);
 
                         loadData(zcgsInfos,false);
-
                     }
                 });
 
@@ -173,7 +168,7 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
 
 
     //下拉刷新
-    private void loadData(List<fpjlListInfo.DataBean> response,boolean isError) {
+    private void loadData(List<fpjlListInfo.ContentBean> response,boolean isError) {
 
         if (response == null  || response.size() <= 0) {
             if(mPtrFrameLayout != null){
@@ -228,7 +223,7 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
 
 
     @Override
-    public void onPlayItemClick(fpjlListInfo.DataBean item, int position) {
+    public void onPlayItemClick(fpjlListInfo.ContentBean item, int position) {
 
         //检测是否登录
         String token = ACache.get(mContext).getAsString("token");
@@ -246,14 +241,9 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
             }
 
         }else {
-//            intent.putExtra("openid",-1);
-//            intent.setClass(mContext, LoginActivity.class);
-//            mContext.startActivity(intent);
+//
         }
     }
-
-
-
 
 
 
@@ -309,6 +299,7 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
 
                         dismisProgressDialog();
                         String errorCode = null;
+
                         try {
                              errorCode = response.getString("errorcode");
                         } catch (JSONException e) {
@@ -318,7 +309,6 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
                         if("9999".equals(errorCode)){
                             getData(1);
                         }
-
 
                     }
                 });
@@ -342,7 +332,7 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
     }
 
 
-    private List<fpjlListInfo.DataBean> parseNoHeaderJArray(String strByJson) {
+    private List<fpjlListInfo.ContentBean> parseNoHeaderJArray(String strByJson) {
 
         //Json的解析类对象
         JsonParser parser = new JsonParser();
@@ -350,12 +340,12 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
         JsonArray jsonArray = parser.parse(strByJson).getAsJsonArray();
 
         Gson gson = new Gson();
-        List<fpjlListInfo.DataBean> userBeanList = new ArrayList<>();
+        List<fpjlListInfo.ContentBean> userBeanList = new ArrayList<>();
 
         //加强for循环遍历JsonArray
         for (JsonElement user : jsonArray) {
             //使用GSON，直接转成Bean对象
-            fpjlListInfo.DataBean userBean = gson.fromJson(user, fpjlListInfo.DataBean.class);
+            fpjlListInfo.ContentBean userBean = gson.fromJson(user, fpjlListInfo.ContentBean.class);
             userBeanList.add(userBean);
         }
         return userBeanList;

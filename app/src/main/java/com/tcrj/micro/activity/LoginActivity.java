@@ -38,11 +38,14 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.jpush.android.api.JPushInterface;
+
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
     Button btnlogin;
     TextView tv_zc;
+    TextView tv_cz;
     private EditText edt_Password;
     private EditText edt_username;
     private boolean isfinish;
@@ -58,7 +61,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         openid = getIntent().getIntExtra("openid", -1);
         initView();
         getData();
@@ -69,27 +71,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void initView() {
 
-
-
         ll_rg = findViewById(R.id.ll_rg);
         tv_dl = findViewById(R.id.tv_dl);
         edt_Password = findViewById(R.id.edt_Password);
         edt_username = findViewById(R.id.edt_username);
         radioGroup_sex_id = findViewById(R.id.radioGroup_sex_id);
         tv_zc = findViewById(R.id.tv_zc);
+        tv_cz = findViewById(R.id.tv_cz);
+
         btnlogin = findViewById(R.id.btn_login);
 
         //我要扶贫进入之后，限制进行企业登录
         if(openid == -2){
-            type = 2;
-            tv_dl.setText("企业登录");
+            type = 4;
+            tv_dl.setText("工商局内部登录");
             ll_rg.setVisibility(View.GONE);
         }
 
 
         tv_zc.setOnClickListener(this);
         btnlogin.setOnClickListener(this);
-
+        tv_cz.setOnClickListener(this);
         radioGroup_sex_id.setOnCheckedChangeListener(this);
     }
 
@@ -126,7 +128,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Intent intent1 = new Intent(this, RegisteActivity.class);
                 startActivity(intent1);
                 break;
-
+            case R.id.tv_cz:
+                Intent intent = new Intent(this, CzPwdActivity.class);
+                startActivity(intent);
+                break;
             default:
                 break;
         }
@@ -154,7 +159,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     };
 
+    private String registrationID;
     private void toLogin(String username, String Password) {
+
+        registrationID = ACache.get(this).getAsString("RegistrationID");
+
+        if(registrationID == null){
+            registrationID = JPushInterface.getRegistrationID(this);
+        }
+
+        Log.e("TAG","登录-registrationID:"+registrationID);
 
         showProgressDialog();
         VolleyUtil volleyUtil = new VolleyUtil(this, handler);
@@ -164,7 +178,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         params.put("password", Password);
         params.put("registrationType", "android");
         params.put("type", type);
-        params.put("registrationID", "android26a0cf005b495b62039c87d7cdcbd92d6332fe3678a23e5b30f157a8a35786b7");
+        params.put("registrationID", registrationID);
 
         VolleyUtil.VolleyJsonCallback callback2 = new VolleyUtil.VolleyJsonCallback() {
 
@@ -211,12 +225,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final int EVENTYPE = 001;
 
     private void open(String token, String username) {
-        EventBus.getDefault().post(new MessageEvent(username,EVENTYPE));
+
         //保存token
         ACache.get(this).put("token",token);
         ACache.get(this).put("username",username);
         ACache.get(this).put("logintype",type+"");
 
+        EventBus.getDefault().post(new MessageEvent(username,EVENTYPE));
 
         //根据进入点位置，跳转到对应模块
         switch (openid){
@@ -280,6 +295,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.qy_id:
                 type = 2;
                 break;
+
+            case R.id.gsj_id:
+                type = 4;
+                break;
+
+
 
             default:
                 break;

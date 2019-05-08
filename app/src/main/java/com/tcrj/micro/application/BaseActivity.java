@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.tcrj.micro.R;
 
+import org.greenrobot.eventbus.EventBus;
+
 
 public abstract class BaseActivity extends AppCompatActivity {
     private Dialog progressDialog;
@@ -91,5 +93,11 @@ public abstract class BaseActivity extends AppCompatActivity {
             intent.putExtras(bundle);
         }
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

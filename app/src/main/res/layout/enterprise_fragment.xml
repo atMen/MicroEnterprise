@@ -7,8 +7,14 @@
 
    <include layout="@layout/title"/>
 
+   <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
     <com.newui.hzwlistview.xlist.XListView
+        android:visibility="gone"
         android:background="@color/white"
         android:id="@+id/listview"
         android:layout_width="match_parent"

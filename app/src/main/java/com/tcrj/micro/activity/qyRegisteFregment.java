@@ -24,6 +24,7 @@ import com.tcrj.micro.application.BaseActivity;
 import com.tcrj.micro.application.MyApplication;
 import com.tcrj.micro.constant.Constant;
 import com.tcrj.micro.entity.InfoEntity;
+import com.tcrj.micro.until.ACache;
 import com.tcrj.micro.view.CountDownButton;
 
 import org.json.JSONObject;
@@ -31,6 +32,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import cn.jpush.android.api.JPushInterface;
 
 
 /**
@@ -50,6 +53,7 @@ public class qyRegisteFregment extends Fragment implements View.OnClickListener 
     private EditText edt_Password2;
     private CountDownButton countDownButton;
     private Button btn_true;
+    private String registrationID;
 
     public Handler handler = new Handler() {
 
@@ -85,6 +89,13 @@ public class qyRegisteFregment extends Fragment implements View.OnClickListener 
     }
 
     public void initView() {
+
+        registrationID = ACache.get(getContext()).getAsString("RegistrationID");
+
+        if(registrationID == null){
+            registrationID = JPushInterface.getRegistrationID(getContext());
+        }
+
 
         edt_name = fragmetView.findViewById(R.id.edt_name);
         edt_xydm = fragmetView.findViewById(R.id.edt_xydm);
@@ -126,7 +137,7 @@ public class qyRegisteFregment extends Fragment implements View.OnClickListener 
         params.put("password", password);//密码
 
         params.put("registrationType", "android");//APP设备类型(android，ios)，推送消息使用
-        params.put("registrationID", "android"+token);//APP设备ID，推送消息使用
+        params.put("registrationID", registrationID);//APP设备ID，推送消息使用
 
         params.put("type", 2);//注册类型 1.个人,2.个私企业,3.商务秘书公司
         params.put("tyshxydm", xydm);//企业：个私企统一信用代码

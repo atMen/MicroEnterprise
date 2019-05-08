@@ -14,12 +14,10 @@ import com.tcrj.micro.activity.jzfp.wyfpFregment;
  */
 
 public class jzfpFragmentPagerAdapter extends FragmentPagerAdapter {
-//    private String[] mTitles = new String[]{"我要扶贫", "台账报表", "陕西龙头企业认定公示", "农资信息", "商标信息",
-//            "特色农产品推荐"};
 
     private String[] mTitles = new String[]{"我要扶贫","台账报表"};
 
-    public jzfpFragmentPagerAdapter(FragmentManager fm) {
+    public jzfpFragmentPagerAdapter(FragmentManager fm ) {
         super(fm);
     }
 

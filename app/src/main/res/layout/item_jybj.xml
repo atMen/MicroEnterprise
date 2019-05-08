@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+
+    <TextView
+        android:textSize="@dimen/font_size_16"
+        android:id="@+id/tv_sname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="学校名称："
+        />
+
+    <TextView
+        android:textSize="@dimen/font_size_16"
+        android:layout_marginTop="5dp"
+        android:id="@+id/tv_xl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="学历："
+        />
+
+    <TextView
+        android:textSize="@dimen/font_size_16"
+        android:layout_marginTop="5dp"
+        android:id="@+id/tv_zy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="专业："
+        />
+
+    <TextView
+        android:textSize="@dimen/font_size_16"
+        android:layout_marginTop="5dp"
+    android:id="@+id/tv_starttime"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="入学时间："
+    />
+
+    <TextView
+        android:textSize="@dimen/font_size_16"
+        android:layout_marginTop="5dp"
+        android:id="@+id/tv_endtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="毕业时间："
+        />
+
+    <View
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gary_line"
+        />
+
+</LinearLayout>

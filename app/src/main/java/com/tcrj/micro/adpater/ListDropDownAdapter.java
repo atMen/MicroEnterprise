@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.tcrj.micro.R;
 import com.tcrj.micro.entity.projectInfo;
+import com.tcrj.micro.entity.zwCodeList;
 import com.tcrj.micro.entity.zwInfo;
 
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
 public class ListDropDownAdapter extends BaseAdapter {
 
     private Context context;
-    private List<zwInfo> list;
+    private List<zwCodeList> list;
     private int checkItemPosition = 0;
 
     public void setCheckItem(int position) {
@@ -27,7 +28,7 @@ public class ListDropDownAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public ListDropDownAdapter(Context context, List<zwInfo> list) {
+    public ListDropDownAdapter(Context context, List<zwCodeList> list) {
         this.context = context;
         this.list = list;
     }

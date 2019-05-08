@@ -21,17 +21,18 @@ import java.util.List;
  * author: Will .
  * date: 2017/9/27 .
  */
-public class fpdxAdapter extends BaseQuickAdapter<fpjlListInfo.DataBean, BaseViewHolder> {
+public class fpdxAdapter extends BaseQuickAdapter<fpjlListInfo.ContentBean, BaseViewHolder> {
+
     private Context mContext;
 
-    public fpdxAdapter(@Nullable List<fpjlListInfo.DataBean> data, Context context) {
+    public fpdxAdapter(@Nullable List<fpjlListInfo.ContentBean> data, Context context) {
         super(R.layout.item_fpjl, data);
         this.mContext = context;
     }
 
 
     @Override
-    protected void convert(final BaseViewHolder helper, final fpjlListInfo.DataBean item) {
+    protected void convert(final BaseViewHolder helper, final fpjlListInfo.ContentBean item) {
 
         TextView name = helper.getView(R.id.name);
         TextView address = helper.getView(R.id.address);
@@ -39,6 +40,13 @@ public class fpdxAdapter extends BaseQuickAdapter<fpjlListInfo.DataBean, BaseVie
 
         TextView wyfp = helper.getView(R.id.wyfp);
         TextView yqtr = helper.getView(R.id.yqtr);
+
+        helper.setText(R.id.jzfp, "捐助扶贫："+item.getAidPoorMoney());
+        helper.setText(R.id.zlbf, "智力帮扶："+item.getAidPoorIntelligence());
+        helper.setText(R.id.jyfp, "就业扶贫："+item.getAidPoorJob());
+        helper.setText(R.id.cybf, "产业帮扶："+item.getAidPoorIndustry());
+        helper.setText(R.id.smfp, "商贸扶贫："+item.getAidPoorBussiness());
+        helper.setText(R.id.qtfs, "其他方式："+item.getAidPoorOtherType());
 
 
         name.setText(item.getHomeName());
@@ -64,23 +72,20 @@ public class fpdxAdapter extends BaseQuickAdapter<fpjlListInfo.DataBean, BaseVie
                 if(onItemPlayClick != null) {
                     onItemPlayClick.onPlayItemClick(item,1);
                 }
+
             }
         });
-
     }
 
-    public static interface OnPlayClickListener {
-        // true add; false cancel
-        public void onPlayItemClick(fpjlListInfo.DataBean id,int position);
+
+    public interface OnPlayClickListener {
+         void onPlayItemClick(fpjlListInfo.ContentBean id,int position);
     }
 
-    // add click callback
     OnPlayClickListener onItemPlayClick;
-
     public void setOnPlayClickListener(OnPlayClickListener onItemPlayClick) {
         this.onItemPlayClick = onItemPlayClick;
     }
-
 
 
 }

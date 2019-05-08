@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
 import com.tcrj.micro.activity.grRegisteFregment;
+import com.tcrj.micro.activity.gsjRegisteFregment;
 import com.tcrj.micro.activity.qyRegisteFregment;
 
 
@@ -15,7 +16,7 @@ import com.tcrj.micro.activity.qyRegisteFregment;
 
 public class registeFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private String[] mTitles = new String[]{"个人", "企业"};
+    private String[] mTitles = new String[]{"个人","企业","工商局内部"};
 
     public registeFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -27,6 +28,8 @@ public class registeFragmentPagerAdapter extends FragmentPagerAdapter {
 
         if(position == 0){
             return new grRegisteFregment();
+        }else if(position == 2){
+            return  new gsjRegisteFregment();
         }
         return new qyRegisteFregment();
     }

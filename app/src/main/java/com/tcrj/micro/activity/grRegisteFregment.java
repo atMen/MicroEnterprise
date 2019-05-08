@@ -23,12 +23,15 @@ import com.tcrj.micro.JsonParse.JsonParse;
 import com.tcrj.micro.R;
 import com.tcrj.micro.application.MyApplication;
 import com.tcrj.micro.constant.Constant;
+import com.tcrj.micro.until.ACache;
 import com.tcrj.micro.view.CountDownButton;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by leict on 2018/7/2.
@@ -45,7 +48,7 @@ public class grRegisteFregment extends Fragment implements View.OnClickListener 
     private EditText edt_Password2;
     private CountDownButton countDownButton;
     private Button btn_true;
-
+    private String registrationID;
 
     private Dialog progressDialog;
 
@@ -71,6 +74,7 @@ public class grRegisteFregment extends Fragment implements View.OnClickListener 
         }
 
     };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,6 +86,11 @@ public class grRegisteFregment extends Fragment implements View.OnClickListener 
     }
 
      public void initView() {
+         registrationID = ACache.get(getContext()).getAsString("RegistrationID");
+
+         if(registrationID == null){
+             registrationID = JPushInterface.getRegistrationID(getContext());
+         }
 
          edt_name = fragmetView.findViewById(R.id.edt_name);
          edt_sfz = fragmetView.findViewById(R.id.edt_sfz);
@@ -213,7 +222,7 @@ public class grRegisteFregment extends Fragment implements View.OnClickListener 
             public void onSuccess(JSONObject jsonObject) {
                 dismisProgressDialog();
                 if(!isfinish){
-                    if (JsonParse.getMsgByKey(jsonObject, "errorCode").equals("SUCCESS")) {
+                    if (JsonParse.getMsgByKey(jsonObject, "errorcode").equals("9999")) {
 
                         Toast.makeText(MyApplication.getInstance(), "注册成功", Toast.LENGTH_SHORT).show();
                         //根据注册进入点，跳转到对应模块
@@ -252,7 +261,7 @@ public class grRegisteFregment extends Fragment implements View.OnClickListener 
             @Override
             public void onSuccess(JSONObject jsonObject) {
 
-                if (JsonParse.getMsgByKey(jsonObject, "errorCode").equals("SUCCESS")) {
+                if (JsonParse.getMsgByKey(jsonObject, "errorcode").equals("9999")) {
                     Toast.makeText(MyApplication.getInstance(), "验证码已发送，请注意查收", Toast.LENGTH_SHORT).show();
 
                     token = JsonParse.getMsgByKey(jsonObject, "data");

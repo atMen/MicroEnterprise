@@ -100,6 +100,7 @@ public class MineFragment extends Fragment {
             if(name == null){
                 username.setText("点击登录");
                 finish_ly.setVisibility(View.GONE);
+                qyzp_ll.setVisibility(View.GONE);
             }else {
 
                 checkToken(name,token);
@@ -134,16 +135,24 @@ public class MineFragment extends Fragment {
                     public void onSuccess(int statusCode, CheckInfo response) {
 //                      Toast.makeText(mContext, response.getMessage(), Toast.LENGTH_SHORT).show();
 
+                        String logintype = ACache.get(getContext()).getAsString("logintype");
                         String errorCode = response.getErrorcode();
                         if("9999".equals(errorCode)){
 
+                            if("2".equals(logintype)){
+                                qyzp_ll.setVisibility(View.VISIBLE);
+                            }
                             username.setText(name);
                             finish_ly.setVisibility(View.VISIBLE);
 
                         }else {
+
+                            qyzp_ll.setVisibility(View.GONE);
+
                             ACache.get(getContext()).clear();
                             username.setText("点击登录");
                             finish_ly.setVisibility(View.GONE);
+
                         }
 
                     }
@@ -173,6 +182,7 @@ public class MineFragment extends Fragment {
         if(name == null){
             username.setText("点击登录");
             finish_ly.setVisibility(View.GONE);
+            qyzp_ll.setVisibility(View.GONE);
         }else {
 
             checkToken(name,token);
@@ -261,12 +271,23 @@ public class MineFragment extends Fragment {
                     break;
 
                 case R.id.grzp_ll:
+
+
+
                     Intent grzpintent = new Intent(getContext(), qyzpActivity.class);
                     startActivity(grzpintent);
 
                     break;
 
                 case R.id.qyzp_ll:
+
+                    if(ACache.get(getContext()).getAsString("token") == null){
+                        Intent intent1 = new Intent(getContext(), LoginActivity.class);
+                        startActivity(intent1);
+
+                        return;
+                    }
+
                     Intent qyzpintent = new Intent(getContext(), grzpActivity.class);
                     startActivity(qyzpintent);
 
@@ -359,10 +380,15 @@ public class MineFragment extends Fragment {
         switch (messageEvent.getType()){
 
             case 001:
+                String logintype = ACache.get(getContext()).getAsString("logintype");
+                if("2".equals(logintype)){
+                    qyzp_ll.setVisibility(View.VISIBLE);
+                }
 
                 Log.e("TAG","messageEvent.getMessage():"+messageEvent.getMessage());
                 username.setText(messageEvent.getMessage());
                 finish_ly.setVisibility(View.VISIBLE);
+
                 break;
 
 
@@ -387,6 +413,7 @@ public class MineFragment extends Fragment {
                         ACache.get(getContext()).clear();
                         username.setText("点击登录");
                         finish_ly.setVisibility(View.GONE);
+                        qyzp_ll.setVisibility(View.GONE);
                     }
                 });
         normalDialog.setNegativeButton("关闭",

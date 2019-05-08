@@ -1,9 +1,9 @@
 package com.tcrj.micro.activity.jzfp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.tcrj.micro.R;
 import com.tcrj.micro.adpater.jzfpFragmentPagerAdapter;
 import com.tcrj.micro.application.BaseActivity;
-import com.tcrj.micro.until.ACache;
 
 
 public class jzfpActivity extends BaseActivity implements View.OnClickListener {
@@ -20,6 +19,7 @@ public class jzfpActivity extends BaseActivity implements View.OnClickListener {
     ViewPager mViewPager;
     TextView txtTitle;
     ImageView btnback;
+    private String id;
 
     private jzfpFragmentPagerAdapter myFragmentPagerAdapter;
 
@@ -41,8 +41,12 @@ public class jzfpActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xwdt_info);
 
+        Intent intent = getIntent();
+        id = intent.getStringExtra("id");
+
         initView();
         getData();
+
     }
 
 
@@ -67,4 +71,5 @@ public class jzfpActivity extends BaseActivity implements View.OnClickListener {
     public void getData() {
 
     }
+
 }

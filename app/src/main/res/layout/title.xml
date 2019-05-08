@@ -36,6 +36,18 @@
         android:textSize="22sp" />
 
 
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="10dip"
+        android:text="投递记录"
+        android:textColor="@color/white"
+         />
+
     <ImageView
         android:id="@+id/btnsearch"
         android:layout_width="wrap_content"

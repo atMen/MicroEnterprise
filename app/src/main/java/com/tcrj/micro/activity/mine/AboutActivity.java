@@ -46,37 +46,43 @@ public class AboutActivity extends BaseActivity {
         tvtitle.setText("关于我们");
         mWebView = (WebView) findViewById(R.id.webView);
         backBtn.setOnClickListener(new OnClick());
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+
+
+
+
+        mWebView.loadUrl("https://www.pgyer.com/iY1X");
+
+//        mWebView.getSettings().setJavaScriptEnabled(true);
+//        mWebView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
     }
 
     @Override
     public void getData() {
-        showProgressDialog();
-        VolleyUtil volleyUtil = new VolleyUtil(this, handler);
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("id", "vEbUnq");
-
-        VolleyUtil.VolleyJsonCallback callback2 = new VolleyUtil.VolleyJsonCallback() {
-
-            @Override
-            public void onSuccess(JSONObject jsonObject) {
-                dismisProgressDialog();
-                Log.d("aa", jsonObject.toString());
-                if (JsonParse.getMsgByKey(jsonObject, "state").equals("1")) {
-                    InfoEntity entity = JsonParse.getInfoDetail(jsonObject);
-                    mWebView.loadDataWithBaseURL(null, entity.getInfoContent(), "text/html", "UTF-8", null);
-                }
-
-            }
-
-            @Override
-            public void onFailed(String result) {
-                dismisProgressDialog();
-                handler.sendEmptyMessage(11);
-            }
-        };
-        volleyUtil.getJsonDataFromServer(Constant.findInfoDetails, params, callback2);
+//        showProgressDialog();
+//        VolleyUtil volleyUtil = new VolleyUtil(this, handler);
+//        Map<String, Object> params = new HashMap<String, Object>();
+//        params.put("id", "vEbUnq");
+//
+//        VolleyUtil.VolleyJsonCallback callback2 = new VolleyUtil.VolleyJsonCallback() {
+//
+//            @Override
+//            public void onSuccess(JSONObject jsonObject) {
+//                dismisProgressDialog();
+//                Log.d("aa", jsonObject.toString());
+//                if (JsonParse.getMsgByKey(jsonObject, "state").equals("1")) {
+//                    InfoEntity entity = JsonParse.getInfoDetail(jsonObject);
+//                    mWebView.loadDataWithBaseURL(null, entity.getInfoContent(), "text/html", "UTF-8", null);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailed(String result) {
+//                dismisProgressDialog();
+//                handler.sendEmptyMessage(11);
+//            }
+//        };
+//        volleyUtil.getJsonDataFromServer(Constant.findInfoDetails, params, callback2);
 
     }
 

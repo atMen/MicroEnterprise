@@ -168,6 +168,7 @@ public class TagViewPager extends RelativeLayout implements
 		p.setMargins(30, 0, 0, 0);
 		textView.setGravity(Gravity.CENTER_VERTICAL);
 		textView.setText("");
+		textView.setMaxLines(1);
 		textView.setTextSize(11);
 		textView.setTextColor(getResources().getColor(R.color.banner_text));
 

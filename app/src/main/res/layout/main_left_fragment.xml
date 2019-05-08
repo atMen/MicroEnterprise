@@ -42,7 +42,7 @@
                         android:drawablePadding="20dip"
                         android:drawableTop="@mipmap/gddt_icon"
                         android:gravity="center"
-                        android:text="各地动态 "
+                        android:text="要闻动态 "
                         android:textColor="@color/app_main_text"
                         android:textSize="16sp" />
 
@@ -62,7 +62,7 @@
                         android:drawablePadding="20dip"
                         android:drawableTop="@mipmap/fcxx_icon"
                         android:gravity="center"
-                        android:text="扶持信息 "
+                        android:text="通知公告 "
                         android:textColor="@color/app_main_text"
                         android:textSize="16sp" />
 
@@ -76,32 +76,35 @@
                 android:layout_marginLeft="10dip"
                 android:text="扶持政策集中公示"
                 android:textColor="@color/app_main_text"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:layout_marginBottom="15dip"
                 android:layout_marginTop="15dip"
                 android:background="@color/app_blue_text" />
 
             <com.tcrj.micro.view.MyTextViewXH
-                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/mtv_zyzf"
+                android:gravity="center_horizontal"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/blue_bg_soid"
+                android:padding="5dp"
                 android:layout_marginLeft="10dip"
-                android:text="中央政府文件"
-                android:textColor="@color/app_sub_text2"
-                android:textSize="15sp" />
+                android:text="国家法律法规"
+                 />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:layout_marginBottom="15dip"
-                android:layout_marginTop="15dip"
                 android:background="@color/app_gray_line" />
 
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -147,22 +150,26 @@
             </LinearLayout>
 
             <com.tcrj.micro.view.MyTextViewXH
-                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/mtv_dfzf"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/blue_bg_soid"
+                android:padding="5dp"
                 android:layout_marginLeft="10dip"
-                android:layout_marginTop="15dip"
                 android:text="地方政府文件"
-                android:textColor="@color/app_sub_text2"
-                android:textSize="15sp" />
+                />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginBottom="15dip"
-                android:layout_marginTop="15dip"
                 android:background="@color/app_gray_line" />
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -211,10 +218,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
-                android:layout_marginTop="15dip"
                 android:text="地市政府文件"
                 android:textColor="@color/app_sub_text2"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="match_parent"

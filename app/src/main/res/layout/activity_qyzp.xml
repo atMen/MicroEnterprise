@@ -8,38 +8,12 @@
     >
 
     <include layout="@layout/title"/>
+
     <include layout="@layout/title_search"/>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-        <TextView
-            android:layout_margin="5dp"
-            android:background="@color/app_gray_line"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="职位所属行业"
-            />
-
-        <TextView
-            android:id="@+id/tv_xzfw"
-            android:layout_margin="5dp"
-            android:background="@color/app_gray_line"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="薪资范围"
-            />
+    <include layout="@layout/item_select" />
 
 
-    </LinearLayout>
 
     <in.srain.cube.views.ptr.PtrClassicFrameLayout
         android:visibility="gone"

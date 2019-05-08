@@ -20,6 +20,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.VolleyUtil;
+import com.github.barteksc.pdfviewer.PDFView;
+import com.github.barteksc.pdfviewer.listener.OnErrorListener;
+import com.github.barteksc.pdfviewer.listener.OnRenderListener;
+import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
+import com.github.barteksc.pdfviewer.util.FitPolicy;
 import com.newui.hzwlistview.xlist.XListView;
 import com.tcrj.micro.JsonParse.JsonParse;
 import com.tcrj.micro.R;
@@ -42,6 +47,8 @@ import java.util.Map;
 
 
 public class EnterpriseFragment extends Fragment {
+
+    private PDFView pdfView;
     private View fragmetView;
     private TextView tvtitle;
     private ImageView btnsearch;
@@ -56,12 +63,14 @@ public class EnterpriseFragment extends Fragment {
                              Bundle savedInstanceState) {
         fragmetView = inflater.inflate(R.layout.enterprise_fragment, container, false);
         initView();
-        getData();
+//        getData();
         return fragmetView;
 
     }
 
     public void initView() {
+
+        pdfView = (PDFView) fragmetView.findViewById(R.id.pdfView);
         tvtitle = (TextView) fragmetView.findViewById(R.id.txtTitle);
         btnsearch = (ImageView) fragmetView.findViewById(R.id.btnsearch);
 
@@ -88,6 +97,31 @@ public class EnterpriseFragment extends Fragment {
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new OnItemClick());
         btnsearch.setOnClickListener(new OnClick());
+
+
+
+        showProgressDialog();
+        pdfView.fromAsset("xwqyk.pdf")
+                .enableAnnotationRendering(true)
+                .scrollHandle(new DefaultScrollHandle(getContext()))
+                .spacing(10) // in dp
+                .pageFitPolicy(FitPolicy.BOTH)
+                .onError(new OnErrorListener() {
+                    @Override
+                    public void onError(Throwable t) {
+                        dismisProgressDialog();
+                        Log.e("TAG","加载错误");
+                    }
+                })
+
+                .onRender(new OnRenderListener() {
+                    @Override
+                    public void onInitiallyRendered(int nbPages) {
+                        dismisProgressDialog();
+                    }
+                })
+                .load();
+
     }
 
     public void getData() {

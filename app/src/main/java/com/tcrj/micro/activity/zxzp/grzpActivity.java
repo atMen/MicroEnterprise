@@ -1,6 +1,7 @@
 package com.tcrj.micro.activity.zxzp;
 
 
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -31,17 +32,22 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.tcrj.micro.ApiConstants;
 import com.tcrj.micro.R;
+import com.tcrj.micro.activity.LoginActivity;
 import com.tcrj.micro.adpater.ListDropDownAdapter;
 
 import com.tcrj.micro.adpater.grzpAdapter;
 import com.tcrj.micro.adpater.qyzpAdapter;
 import com.tcrj.micro.application.BaseActivity;
 import com.tcrj.micro.application.MyApplication;
+import com.tcrj.micro.entity.MessageEvent;
+import com.tcrj.micro.entity.fpDataInfo;
+import com.tcrj.micro.entity.fpStringInfo;
 import com.tcrj.micro.entity.grzpListInfo;
 import com.tcrj.micro.entity.jcInfo;
 import com.tcrj.micro.entity.projectInfo;
 import com.tcrj.micro.entity.qyzpListInfo;
 import com.tcrj.micro.entity.zcgsInfo;
+import com.tcrj.micro.entity.zwCodeList;
 import com.tcrj.micro.entity.zwInfo;
 import com.tcrj.micro.until.ACache;
 import com.tcrj.micro.view.CustomLoadMoreView;
@@ -53,6 +59,9 @@ import com.tsy.sdk.myokhttp.response.JsonResponseHandler;
 import com.yyydjk.library.DropDownMenu;
 
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -88,7 +97,7 @@ public class grzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
     private int pageNum = 1;
     private List<grzpListInfo.DataBean.ContentBean> beanList;
 
-    private String headers[] = {"职位", "处理状态"};
+    private String headers[] = {"职位"};
     private List<View> popupViews = new ArrayList<>();
 
     String token;
@@ -97,6 +106,7 @@ public class grzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grzp);
+        EventBus.getDefault().register(this);
         token = ACache.get(this).getAsString("token");
         initView();
         getData();
@@ -119,7 +129,7 @@ public class grzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
         getProjectData();
 
     }
-    List<zwInfo> resultProject;
+    List<zwCodeList> resultProject;
     /**
      * 获取项目
      */
@@ -128,7 +138,7 @@ public class grzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
         resultProject = new ArrayList<>();
         CharSequence[] result = this.getResources().getStringArray(R.array.quick_menu_sign_in);
         for (int i = 0; i < result.length; i++) {
-            zwInfo quick = new zwInfo();
+            zwCodeList quick = new zwCodeList();
             quick.setName(result[i].toString());
 
             resultProject.add(quick);
@@ -159,7 +169,7 @@ public class grzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
         mMyOkhttp.post()
                 .url(ApiConstants.zw_Api)
                 .jsonParams(jsonObject.toString())
-                .enqueue(new JsonResponseHandler() {
+                .enqueue(new GsonResponseHandler<fpStringInfo>() {
                     @Override
                     public void onFailure(int statusCode, String error_msg) {
 
@@ -169,15 +179,15 @@ public class grzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
                     }
 
                     @Override
-                    public void onSuccess(int statusCode, JSONArray response) {
+                    public void onSuccess(int statusCode, fpStringInfo response) {
                         Log.e("TAG","JSONArray"+response.toString());
                         dismisProgressDialog();
 
 
-                        zwInfoList = parseNoHeaderJArray(response.toString());
+                        zwInfoList = parseNoHeaderJArray(response.getData());
 
 
-                        zwInfo resultBean = new zwInfo();
+                        zwCodeList resultBean = new zwCodeList();
                         resultBean.setName("不限");
                         resultBean.setId("-1");
                         zwInfoList.add(0,resultBean);
@@ -193,7 +203,7 @@ public class grzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
 
     }
 
-    List<zwInfo> zwInfoList;
+    List<zwCodeList> zwInfoList;
     View inflate;
     ListView cityView;
     ListView ageView;
@@ -209,7 +219,7 @@ public class grzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
 
         //init popupViews
         popupViews.add(cityView);
-        popupViews.add(ageView);
+//        popupViews.add(ageView);
 
         //add item click event
         cityView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -313,7 +323,7 @@ public class grzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
         mMyOkhttp.post()
                 .url(ApiConstants.yp_list_Api)
                 .jsonParams(jsonObject.toString())
-                .enqueue(new GsonResponseHandler<grzpListInfo>() {
+                .enqueue(new GsonResponseHandler<fpStringInfo>() {
                     @Override
                     public void onFailure(int statusCode, String error_msg) {
 
@@ -325,38 +335,36 @@ public class grzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
                     }
 
                     @Override
-                    public void onSuccess(int statusCode, grzpListInfo response) {
+                    public void onSuccess(int statusCode, fpStringInfo data) {
                         rl_loding.setVisibility(View.GONE);
+                        grzpListInfo.DataBean response = null;
 
-                        if("SUCCESS".equals(response.getErrorCode())){
+                        if("9999".equals(data.getErrorcode())) {
+
+                            response = new Gson().fromJson(data.getData(), grzpListInfo.DataBean.class);
 
                             if(num > 1){//上拉加载
-                                Log.e("TAG","上拉加载更多数据");
                                 loadMoreData(response,false);
                             }else{//下拉刷新
-                                loadData(response.getData(),false);
+                                loadData(response,false);
                             }
-//                          loadMoreData(response,false);
-                            Log.e("TAG","加载错误");
-                        }else {
-
-                                if(num > 1){//上拉加载
-                                    Log.e("TAG","上拉加载更多数据");
-                                    loadMoreData(response,false);
-                                }else{//下拉刷新
-                                    loadData(response.getData(),false);
-                                }
+                        }else if("204".equals(data.getErrorcode())) {
+                            Intent intent = new Intent();
+                            intent.putExtra("openid",-2);
+                            intent.setClass(grzpActivity.this, LoginActivity.class);
                         }
+
+
                     }
                 });
 
     }
 
     //上拉加载更多数据
-    private void loadMoreData(grzpListInfo response, boolean isError) {
+    private void loadMoreData(grzpListInfo.DataBean response, boolean isError) {
         Log.e("TAG","loadMoreData");
 
-        if (response.getData() == null) {
+        if (response == null) {
             if(isError){
                 detailAdapter.loadMoreFail();
             }else{
@@ -364,7 +372,7 @@ public class grzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
             }
 
         } else {
-            List<grzpListInfo.DataBean.ContentBean> result = response.getData().getContent();
+            List<grzpListInfo.DataBean.ContentBean> result = response.getContent();
             if(result == null || result.size() == 0){//没有更多数据
                 detailAdapter.loadMoreEnd();
             }else{
@@ -455,8 +463,6 @@ public class grzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
     public void onClick(View v) {
         switch (v.getId()){
 
-
-
             case R.id.btnback:
                 finish();
                 break;
@@ -469,12 +475,18 @@ public class grzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 
-//        jcInfo.ResultBean.ItemsBean item = (jcInfo.ResultBean.ItemsBean) adapter.getItem(position);
-//        int id = item.getOBJECTID();
-        Bundle bundle = new Bundle();
-        bundle.putString("ID","");
-        toClass(this,QyzpItemInfoActivity.class,bundle);
+        grzpListInfo.DataBean.ContentBean item = (grzpListInfo.DataBean.ContentBean) adapter.getItem(position);
+        String id = item.getResumeId();
 
+        if(id != null){
+            Bundle bundle = new Bundle();
+            bundle.putString("ResumeId",item.getResumeId());
+            bundle.putString("ID",item.getId());
+            bundle.putString("enterpriseId",item.getEnterpriseId());
+            bundle.putString("jobId",item.getJobId());
+            bundle.putString("userId",item.getUserId());
+            toClass(this,QyzpItemInfoActivity.class,bundle);
+        }
     }
 
 
@@ -488,7 +500,7 @@ public class grzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
         }
     }
 
-    private List<zwInfo> parseNoHeaderJArray(String strByJson) {
+    private List<zwCodeList> parseNoHeaderJArray(String strByJson) {
 
         //Json的解析类对象
         JsonParser parser = new JsonParser();
@@ -496,14 +508,31 @@ public class grzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
         JsonArray jsonArray = parser.parse(strByJson).getAsJsonArray();
 
         Gson gson = new Gson();
-        List<zwInfo> userBeanList = new ArrayList<>();
+        List<zwCodeList> userBeanList = new ArrayList<>();
 
         //加强for循环遍历JsonArray
         for (JsonElement user : jsonArray) {
             //使用GSON，直接转成Bean对象
-            zwInfo userBean = gson.fromJson(user, zwInfo.class);
+            zwCodeList userBean = gson.fromJson(user, zwCodeList.class);
             userBeanList.add(userBean);
         }
         return userBeanList;
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void Event(MessageEvent messageEvent) {
+
+        switch (messageEvent.getType()){
+
+            case 102:
+                Log.e("TAG","获取新数据");
+                getData(1);
+                break;
+
+            default:
+                break;
+        }
+
     }
 }

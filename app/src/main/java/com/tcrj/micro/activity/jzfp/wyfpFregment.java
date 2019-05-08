@@ -32,16 +32,19 @@ public class wyfpFregment extends BaseFragment implements View.OnClickListener {
 
     TextView  tv_sclc;
     TextView  tv_xslc;
+    TextView tv_fpdt;
 
     private FragmentManager fragmentManager;
     private wdfpFragment newsFragment;
     private fpdxFregment settingFragment;
+    private fpdtFragment fpdtfragment;
 
     private String logintype;
     private LinearLayout ll_tab;
     String token;
     private MyOkHttp mMyOkhttp;
     private int checktoken = -2;
+
 
     @Override
     protected int setLayout() {
@@ -52,26 +55,24 @@ public class wyfpFregment extends BaseFragment implements View.OnClickListener {
     protected void setView() {
         mMyOkhttp = MyApplication.getInstance().getMyOkHttp();
 
-        logintype = ACache.get(mContext).getAsString("logintype");
+
 
         ll_tab = mRootView.findViewById(R.id.ll_tab);
         tv_sclc = mRootView.findViewById(R.id.tv_sclc);
         tv_xslc = mRootView.findViewById(R.id.tv_xslc);
+        tv_fpdt = mRootView.findViewById(R.id.tv_fpdt);
 
-        if("1".equals(logintype)){
-            ll_tab.setVisibility(View.GONE);
-        }else {
-            ll_tab.setVisibility(View.VISIBLE);
-        }
 
         tv_xslc.setOnClickListener(this);
         tv_sclc.setOnClickListener(this);
+        tv_fpdt.setOnClickListener(this);
 
         fragmentManager = getActivity().getSupportFragmentManager();
         setTabSelection(0);
     }
 
-    private void checkToken(String token) {
+    private void checkToken(String token, final String type) {
+
         JSONObject jsonObject = new JSONObject();
 
         try {
@@ -98,9 +99,20 @@ public class wyfpFregment extends BaseFragment implements View.OnClickListener {
                         String errorCode = response.getErrorcode();
                         if("9999".equals(errorCode)){
 
-                            tv_xslc.setTextColor(getResources().getColor(R.color.blue));
-                            tv_sclc.setTextColor(getResources().getColor(R.color.login_textcolor));
-                            setTabSelection(1);
+
+                            //判断点击的位置
+
+                            if("0".equals(type)){
+                                tv_xslc.setTextColor(getResources().getColor(R.color.blue));
+                                tv_sclc.setTextColor(getResources().getColor(R.color.login_textcolor));
+                                tv_fpdt.setTextColor(getResources().getColor(R.color.login_textcolor));
+                                setTabSelection(1);
+                            }else {
+                                tv_fpdt.setTextColor(getResources().getColor(R.color.blue));
+                                tv_sclc.setTextColor(getResources().getColor(R.color.login_textcolor));
+                                tv_xslc.setTextColor(getResources().getColor(R.color.login_textcolor));
+                                setTabSelection(2);
+                            }
 
 
                         }else {
@@ -124,6 +136,7 @@ public class wyfpFregment extends BaseFragment implements View.OnClickListener {
             case R.id.tv_sclc:
                 tv_sclc.setTextColor(getResources().getColor(R.color.blue));
                 tv_xslc.setTextColor(getResources().getColor(R.color.login_textcolor));
+                tv_fpdt.setTextColor(getResources().getColor(R.color.login_textcolor));
                 setTabSelection(0);
                 break;
 
@@ -131,7 +144,40 @@ public class wyfpFregment extends BaseFragment implements View.OnClickListener {
 
                 //判断是否登录，token是否失效
                 token = ACache.get(mContext).getAsString("token");
-                checkToken(token);
+                logintype = ACache.get(mContext).getAsString("logintype");
+                //判断登录人员类型
+                if(!"4".equals(logintype)){
+                    Intent intent = new Intent();
+                    intent.putExtra("openid",-2);
+                    intent.setClass(mContext, LoginActivity.class);
+                    mContext.startActivity(intent);
+                }else {
+                    checkToken(token,"0");
+                }
+
+
+                break;
+
+            case R.id.tv_fpdt:
+
+
+                tv_fpdt.setTextColor(getResources().getColor(R.color.blue));
+                tv_sclc.setTextColor(getResources().getColor(R.color.login_textcolor));
+                tv_xslc.setTextColor(getResources().getColor(R.color.login_textcolor));
+                setTabSelection(2);
+
+//                //判断是否登录，token是否失效
+//                token = ACache.get(mContext).getAsString("token");
+//                logintype = ACache.get(mContext).getAsString("logintype");
+//                //判断登录人员类型
+//                if(!"4".equals(logintype)){
+//                    Intent intent = new Intent();
+//                    intent.putExtra("openid",-2);
+//                    intent.setClass(mContext, LoginActivity.class);
+//                    mContext.startActivity(intent);
+//                }else {
+//                    checkToken(token,"1");
+//                }
 
                 break;
 
@@ -162,6 +208,15 @@ public class wyfpFregment extends BaseFragment implements View.OnClickListener {
                 }
                 break;
 
+            case 2:
+                if (fpdtfragment == null) {
+                    fpdtfragment = new fpdtFragment();
+                    transaction.add(R.id.contentContainer, fpdtfragment);
+                } else {
+                    transaction.show(fpdtfragment);
+                }
+                break;
+
             default:
                 break;
 
@@ -176,6 +231,10 @@ public class wyfpFregment extends BaseFragment implements View.OnClickListener {
         }
         if (settingFragment != null) {
             transaction.hide(settingFragment);
+        }
+
+        if (fpdtfragment != null) {
+            transaction.hide(fpdtfragment);
         }
 
 

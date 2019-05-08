@@ -18,24 +18,24 @@ import java.util.List;
  * author: Will .
  * date: 2017/9/27 .
  */
-public class grzpAdapter extends BaseQuickAdapter<qyzpListInfo.ContentBean, BaseViewHolder> {
+public class grzpAdapter extends BaseQuickAdapter<qyzpListInfo.DataBean.ContentBean, BaseViewHolder> {
 
     private Context mContext;
 
-    public grzpAdapter(@Nullable List<qyzpListInfo.ContentBean> data, Context context) {
+    public grzpAdapter(@Nullable List<qyzpListInfo.DataBean.ContentBean> data, Context context) {
         super(R.layout.item_grzp, data);
         this.mContext = context;
     }
 
     @Override
-    protected void convert(final BaseViewHolder helper, qyzpListInfo.ContentBean item) {
+    protected void convert(final BaseViewHolder helper, qyzpListInfo.DataBean.ContentBean item) {
 
         helper.setText(R.id.tv_zw, item.getJobName());
         helper.setText(R.id.xz, item.getSalarRange());
         helper.setText(R.id.xl, item.getEducationBackgroundRequire());
         helper.setText(R.id.gznx, item.getAgeRequire());
-        helper.setText(R.id.shi, item.getJobCityName());
-        helper.setText(R.id.qu, item.getJobCountyName());
+        helper.setText(R.id.shi, item.getEnterpriseName());
+//        helper.setText(R.id.qu, item.getJobCountyName());
 
     }
 

@@ -1,11 +1,13 @@
 package com.tcrj.micro.activity.jzfp;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +16,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.tcrj.micro.ApiConstants;
 import com.tcrj.micro.R;
+import com.tcrj.micro.activity.LoginActivity;
 import com.tcrj.micro.adpater.DkAdapter;
 import com.tcrj.micro.application.BaseActivity;
 import com.tcrj.micro.application.MyApplication;
@@ -21,6 +24,7 @@ import com.tcrj.micro.entity.fpDataInfo;
 import com.tcrj.micro.entity.fpStringInfo;
 import com.tcrj.micro.entity.qyInfo;
 import com.tcrj.micro.entity.yqfpInfo;
+import com.tcrj.micro.until.ACache;
 import com.tcrj.micro.view.CustomLoadMoreView;
 import com.tsy.sdk.myokhttp.MyOkHttp;
 import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
@@ -43,6 +47,8 @@ public class YqfpActivity extends BaseActivity implements  View.OnClickListener,
     PtrFrameLayout mPtrFrameLayout;
     TextView txtTitle;
     ImageView btnback;
+    Button btn_yq;
+    String token;
 
     private MyOkHttp mMyOkhttp;
     private DkAdapter detailAdapter;
@@ -50,20 +56,24 @@ public class YqfpActivity extends BaseActivity implements  View.OnClickListener,
 
     private int pageNum = 1;
     private boolean canPull = true;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dkgl);
+
+        id = getIntent().getStringExtra("id");
         initView();
         getData();
     }
 
     @Override
     public void initView() {
-
+         token = ACache.get(this).getAsString("token");
         mMyOkhttp = MyApplication.getInstance().getMyOkHttp();
 
+        btn_yq = findViewById(R.id.btn_yq);
         mRecyclerView = findViewById(R.id.recycler_view);
         mPtrFrameLayout = findViewById(R.id.mPtrFrameLayout);
         txtTitle = findViewById(R.id.txtTitle);
@@ -72,6 +82,7 @@ public class YqfpActivity extends BaseActivity implements  View.OnClickListener,
         mPtrFrameLayout.disableWhenHorizontalMove(true);
         txtTitle.setText("邀请他人");
         btnback.setOnClickListener(this);
+        btn_yq.setOnClickListener(this);
         mPtrFrameLayout.setPtrHandler(new PtrHandler() {
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
@@ -157,11 +168,8 @@ public class YqfpActivity extends BaseActivity implements  View.OnClickListener,
                     loadData(contentBean.getContent(),false);
                 }
             }
-
-
         }
     });
-
 }
 
     //上拉加载更多数据
@@ -173,11 +181,11 @@ public class YqfpActivity extends BaseActivity implements  View.OnClickListener,
                 detailAdapter.loadMoreFail();
 
             }else{
-                detailAdapter.loadMoreFail();
+                detailAdapter.loadMoreEnd();
             }
         } else {
             if(pageNum > response.getTotalPages()){//没有更多数据
-                detailAdapter.loadMoreFail();
+                detailAdapter.loadMoreEnd();
             }else{
                 List<qyInfo.ContentBean> content = response.getContent();
                 pageNum++;
@@ -252,8 +260,96 @@ public class YqfpActivity extends BaseActivity implements  View.OnClickListener,
 
     @Override
     public void onClick(View v) {
+
         finish();
+
+        switch (v.getId()){
+
+
+            case R.id.btnback:
+                finish();
+                break;
+
+            case R.id.btn_yq:
+
+                String str = "";
+                if(selectDatas.size() > 0){
+
+                    for(int i = 0;i < selectDatas.size();i++){
+
+                        str += selectDatas.get(i).getId()+",";
+                    }
+
+                    Log.e("TAG","邀请："+str);
+                    sendMsg(str);
+                }else {
+                    Toast.makeText(this, "请选择邀请人员", Toast.LENGTH_SHORT).show();
+                }
+
+                break;
+
+
+            default:
+            break;
+
+
+
+        }
     }
+
+    //获取网络数据
+    public void sendMsg(String str) {
+
+        showProgressDialog();
+        JSONObject jsonObject = new JSONObject();
+        try {
+
+            jsonObject.put("token", token);
+            jsonObject.put("userIds", str);
+            jsonObject.put("aidpoorObjectId", id);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        mMyOkhttp.post()
+                .url(ApiConstants.sendyqtrApi)
+                .jsonParams(jsonObject.toString())
+                .enqueue(new GsonResponseHandler<fpStringInfo>() {
+                    @Override
+                    public void onFailure(int statusCode, String error_msg) {
+
+                        dismisProgressDialog();
+                        Toast.makeText(YqfpActivity.this, error_msg, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, fpStringInfo response) {
+                        dismisProgressDialog();
+                        Toast.makeText(YqfpActivity.this, response.getMessage(), Toast.LENGTH_SHORT).show();
+                        String errorCode = response.getErrorcode();
+                        if("9999".equals(errorCode)){
+                            finish();
+                        }else if("204".equals(errorCode)){
+                            toLogin();
+                        }
+
+
+                    }
+                });
+
+    }
+
+
+    private void toLogin(){
+        ACache.get(this).clear();
+        Intent intent = new Intent();
+        intent.putExtra("openid",-2);
+        intent.setClass(this, LoginActivity.class);
+        startActivity(intent);
+
+    }
+
 
     @Override
     public void onDestroy() {

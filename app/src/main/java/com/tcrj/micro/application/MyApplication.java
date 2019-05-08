@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.WindowManager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -15,6 +16,7 @@ import org.xutils.x;
 
 import java.util.concurrent.TimeUnit;
 
+import cn.jpush.android.api.JPushInterface;
 import okhttp3.OkHttpClient;
 
 public class MyApplication extends Application {
@@ -38,10 +40,19 @@ public class MyApplication extends Application {
         initDate();
         initOkhttp();
 
+        initJPush();
+
         ARouter.openLog();//开启日志
         ARouter.openDebug();//开启debug模式
         ARouter.init(mInstance);//初始化
 
+    }
+
+    //初始化极光
+    private void initJPush() {
+        Log.e("TAG","jg");
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 
     //初始化okhttp

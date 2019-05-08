@@ -100,7 +100,7 @@ public class VolleyUtil {
 						handler.sendEmptyMessage(9);
 					}
 				});
-		objRequest.setRetryPolicy(new DefaultRetryPolicy(10 * 1000, 0, 1.0f));
+		objRequest.setRetryPolicy(new DefaultRetryPolicy(500000, 0, 1.0f));
 		requestQueue.add(objRequest);
 	}
 

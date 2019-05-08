@@ -18,6 +18,7 @@ import com.tcrj.micro.R;
 import com.tcrj.micro.activity.left.LeftFindActivity;
 import com.tcrj.micro.activity.left.LeftListActivity;
 import com.tcrj.micro.activity.left.LeftListActivity2;
+import com.tcrj.micro.activity.left.NewLeftListActivity;
 import com.tcrj.micro.adpater.GridViewAdapter;
 import com.tcrj.micro.entity.CityEntity;
 import com.tcrj.micro.view.MyTextViewXH;
@@ -41,6 +42,8 @@ public class LeftFragment extends Fragment {
     private MyTextViewXH fggz;
     private MyTextViewXH sjwj;
     private MyTextViewXH ygbmwj;
+    private MyTextViewXH mtv_dfzf;
+    private MyTextViewXH mtv_zyzf;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +56,9 @@ public class LeftFragment extends Fragment {
     }
 
     public void initView() {
+        mtv_dfzf = fragmetView.findViewById(R.id.mtv_dfzf);
+        mtv_zyzf = fragmetView.findViewById(R.id.mtv_zyzf);
+
         gridView = (MyGridView) fragmetView.findViewById(R.id.c_grid);
         gddt = (MyTextViewXH) fragmetView.findViewById(R.id.gddt);
         fcxx = (MyTextViewXH) fragmetView.findViewById(R.id.fcxx);
@@ -75,6 +81,10 @@ public class LeftFragment extends Fragment {
        fggz.setOnClickListener(new OnClick());
        sjwj.setOnClickListener(new OnClick());
        ygbmwj.setOnClickListener(new OnClick());
+        mtv_dfzf.setOnClickListener(new OnClick());
+        mtv_zyzf.setOnClickListener(new OnClick());
+
+
     }
 
     public void getDate() {
@@ -86,9 +96,9 @@ public class LeftFragment extends Fragment {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent intent = new Intent(getActivity(), LeftListActivity.class);
+            Intent intent = new Intent(getActivity(), NewLeftListActivity.class);
             CityEntity entity = list.get(position);
-            intent.putExtra("id", entity.getId());
+            intent.putExtra("cityId", entity.getId());
             intent.putExtra("title", entity.getName());
             startActivity(intent);
         }
@@ -99,19 +109,34 @@ public class LeftFragment extends Fragment {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent();
-            intent.setClass(getActivity(), LeftListActivity.class);
+            intent.setClass(getActivity(), NewLeftListActivity.class);
             switch (v.getId()){
                 case R.id.gddt:
-                    intent.putExtra("id", "MBZfeq");
+                    intent.putExtra("id", "qQZbUf");
                     intent.putExtra("title", "各地动态");
                     startActivity(intent);
-                break;
-                case R.id.fcxx:
-                    Intent intent2 = new Intent();
-                    intent2.setClass(getActivity(), LeftListActivity2.class);
-                    intent2.putExtra("title", "扶持信息");
-                    startActivity(intent2);
                     break;
+                case R.id.fcxx:
+                    intent.putExtra("id", "NzqQNn");
+                    intent.putExtra("title", "扶持信息");
+                    startActivity(intent);
+                    break;
+
+                //中央政府
+                case R.id.mtv_zyzf:
+                    intent.putExtra("id", "eqQN32");
+                    intent.putExtra("title", "国家法律法规");
+                    startActivity(intent);
+                    break;
+
+                //地方政府
+                case R.id.mtv_dfzf:
+                    intent.putExtra("id", "3ymYJr");
+                    intent.putExtra("title", "地方政府");
+                    startActivity(intent);
+                    break;
+
+
                 case R.id.flfg:
                     intent.putExtra("id", "aeyqae");
                     intent.putExtra("title", "法律法规");
@@ -141,6 +166,9 @@ public class LeftFragment extends Fragment {
                     intent.putExtra("id", "zANRj2");
                     intent.putExtra("title", "有关部门文件");
                     startActivity(intent);
+                    break;
+
+                default:
                     break;
             }
 
