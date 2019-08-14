@@ -451,7 +451,7 @@ public class qyzpActivity extends BaseActivity implements BaseQuickAdapter.OnIte
         JSONObject jsonObject = new JSONObject();
 
         try {
-            jsonObject.put("code", id.equals("")? "104":id);
+            jsonObject.put("code", "104");
 
         } catch (JSONException e) {
             e.printStackTrace();

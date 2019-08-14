@@ -159,7 +159,7 @@ public class qyRegisteFregment extends Fragment implements View.OnClickListener 
 
 
                     } else {
-                        Toast.makeText(MyApplication.getInstance(), JsonParse.getMsgByKey(jsonObject, "data"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyApplication.getInstance(), JsonParse.getMsgByKey(jsonObject, "message"), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -268,13 +268,13 @@ public class qyRegisteFregment extends Fragment implements View.OnClickListener 
                     return;
                 }
 
-                if("".equals(xydm) || xydm.length() != 10){
+                if("".equals(xydm) || xydm.length() != 18){
 
-                    Toast.makeText(getContext(), "社会统一信用代码格式不正确", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "统一社会信用代码格式不正确", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if("".equals(sfz) || sfz.length() != 15){
+                if("".equals(sfz) || sfz.length() != 18){
 
                     Toast.makeText(getContext(), "法人身份证号格式不正确", Toast.LENGTH_SHORT).show();
                     return;

@@ -19,6 +19,10 @@ import com.tcrj.micro.entity.InfoEntity;
 import com.tcrj.micro.until.DateUtil;
 
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -86,7 +90,10 @@ public class LeftDetailActivity extends BaseActivity {
                     title.setText(entity.getTitle());
                     source.setText("来源:"+entity.getSource());
                     date.setText("发表时间:"+ DateUtil.formatToDateString(entity.getShowTime()));
-                    mWebView.loadDataWithBaseURL(null, entity.getInfoContent(), "text/html", "UTF-8", null);
+
+
+                    String newContent = getNewContent(entity.getInfoContent());
+                    mWebView.loadDataWithBaseURL(null, newContent, "text/html", "UTF-8", null);
                 }
 
             }
@@ -98,6 +105,21 @@ public class LeftDetailActivity extends BaseActivity {
             }
         };
         volleyUtil.getJsonDataFromServer(Constant.findInfoDetails, params, callback2);
+    }
+
+    public static String getNewContent(String htmltext){
+
+        try {
+            Document doc= Jsoup.parse(htmltext);
+            Elements element =doc.getElementsByTag("img");
+            for (Element elementimg : element) {
+                elementimg.attr("style","border: 0px; display: block; margin: auto; width:100%; height:222px;");
+            }
+
+            return doc.toString();
+        } catch (Exception e) {
+            return htmltext;
+        }
     }
 
     class OnClick implements OnClickListener {

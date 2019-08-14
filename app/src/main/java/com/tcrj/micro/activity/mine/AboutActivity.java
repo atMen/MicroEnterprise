@@ -15,6 +15,7 @@ import com.tcrj.micro.R;
 import com.tcrj.micro.application.BaseActivity;
 import com.tcrj.micro.constant.Constant;
 import com.tcrj.micro.entity.InfoEntity;
+import com.tcrj.micro.until.WxShareUtils;
 
 import org.json.JSONObject;
 
@@ -28,6 +29,8 @@ public class AboutActivity extends BaseActivity {
     private TextView tvtitle;
     private ImageView backBtn;
     private WebView mWebView = null;
+    private TextView tv_more;
+    private String pgyUrl = "https://www.pgyer.com/iY1X";
 
 
     @Override
@@ -42,15 +45,19 @@ public class AboutActivity extends BaseActivity {
     public void initView() {
         tvtitle = (TextView) findViewById(R.id.txtTitle);
         backBtn = (ImageView) findViewById(R.id.btnback);
+        tv_more = (TextView) findViewById(R.id.tv_more);
+        tv_more.setText("分享");
+        tv_more.setVisibility(View.VISIBLE);
+
         backBtn.setVisibility(View.VISIBLE);
         tvtitle.setText("关于我们");
         mWebView = (WebView) findViewById(R.id.webView);
         backBtn.setOnClickListener(new OnClick());
+        tv_more.setOnClickListener(new OnClick());
 
 
 
-
-        mWebView.loadUrl("https://www.pgyer.com/iY1X");
+        mWebView.loadUrl(pgyUrl);
 
 //        mWebView.getSettings().setJavaScriptEnabled(true);
 //        mWebView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
@@ -93,8 +100,15 @@ public class AboutActivity extends BaseActivity {
         public void onClick(View v) {
             Intent intent = new Intent();
             switch (v.getId()) {
+
                 case R.id.btnback:
                     finish();
+//                    WxShareUtils.share2Wx(AboutActivity.this,true,Constant.appID);
+                    break;
+
+                case R.id.tv_more:
+                    WxShareUtils.shareWeb(AboutActivity.this,Constant.appID,pgyUrl,"小微库","点击进入小微库app下载页面",R.mipmap.lunch_icon);
+//                  WxShareUtils.share2Wx(AboutActivity.this,true,Constant.appID);
                     break;
             }
         }

@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.newui.hzwlistview.xlist.XListView;
 import com.newui.hzwlistview.xlist.XListView.IXListViewListener;
 import com.tcrj.micro.JsonParse.JsonParse;
 import com.tcrj.micro.R;
+import com.tcrj.micro.activity.enterprise.EnterpriseFindActivity;
 import com.tcrj.micro.activity.news.NewsDetailActivity;
 import com.tcrj.micro.adpater.LeftListAdapter;
 import com.tcrj.micro.adpater.NewsListAdapter;
@@ -43,6 +45,9 @@ public class LeftFindActivity extends BaseActivity {
     public static SearchListAdapter adapter;
     private ClearEditText filter_edit;
     private int pageIndex = 1;
+    private String id;
+
+    private TextView ssbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +59,18 @@ public class LeftFindActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        Intent intent = getIntent();
+        id = intent.getStringExtra("id");
+
+        ssbtn = findViewById(R.id.ssbtn);
         backBtn = (ImageView) findViewById(R.id.btnback);
         search_logo = (TextView) findViewById(R.id.search_logo);
         filter_edit = (ClearEditText) findViewById(R.id.filter_edit);
         backBtn.setVisibility(View.VISIBLE);
         listview = (XListView) findViewById(R.id.listview);
         listview.setPullLoadEnable(true);
+        ssbtn.setOnClickListener(new OnClick());
+
         listview.setXListViewListener(new IXListViewListener() {
 
             @Override
@@ -79,25 +90,34 @@ public class LeftFindActivity extends BaseActivity {
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new OnItemClick());
         backBtn.setOnClickListener(new OnClick());
-        filter_edit.setOnEditorActionListener(new OnEditor());
+//        filter_edit.setOnEditorActionListener(new OnEditor());
     }
-
-
 
     @Override
     public void getData() {
+
+    }
+
+
+    public void searchData() {
+
+        if(progressDialog != null && progressDialog.isShowing()){
+
+            return;
+        }
         showProgressDialog();
         VolleyUtil volleyUtil = new VolleyUtil(this, handler);
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("pagesize", 10);
         params.put("pageindex", pageIndex);
-        params.put("siteId", "JfAJJr");
-        params.put("key", filter_edit.getText().toString());
+        params.put("pathId", id);
+        params.put("title", filter_edit.getText().toString());
 
         VolleyUtil.VolleyJsonCallback callback2 = new VolleyUtil.VolleyJsonCallback() {
 
             @Override
             public void onSuccess(JSONObject jsonObject) {
+
                 dismisProgressDialog();
                 Log.d("aaa", jsonObject.toString());
                 if(JsonParse.getMsgByKey(jsonObject, "state").equals("1")){
@@ -123,7 +143,7 @@ public class LeftFindActivity extends BaseActivity {
                 handler.sendEmptyMessage(11);
             }
         };
-        volleyUtil.getJsonDataFromServer(Constant.searchAll, params, callback2);
+        volleyUtil.getJsonDataFromServer(Constant.findInfoList, params, callback2);
 
     }
 
@@ -134,14 +154,14 @@ public class LeftFindActivity extends BaseActivity {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("pagesize", 10);
         params.put("pageindex", pageIndex);
-        params.put("siteId", "JfAJJr");
-        params.put("key", filter_edit.getText().toString());
+        params.put("pathId", id);
+        params.put("title", filter_edit.getText().toString());
 
         VolleyUtil.VolleyJsonCallback callback2 = new VolleyUtil.VolleyJsonCallback() {
 
             @Override
             public void onSuccess(JSONObject jsonObject) {
-                dismisProgressDialog();
+
                 if(JsonParse.getMsgByKey(jsonObject, "state").equals("1")){
                     ArrayList<InfoEntity> arraylist = JsonParse.getInfoList(jsonObject);
                     list.clear();
@@ -158,6 +178,7 @@ public class LeftFindActivity extends BaseActivity {
                 }
                 listview.stopRefresh();
                 adapter.notifyDataSetChanged();
+                dismisProgressDialog();
             }
 
             @Override
@@ -167,7 +188,7 @@ public class LeftFindActivity extends BaseActivity {
                 handler.sendEmptyMessage(11);
             }
         };
-        volleyUtil.getJsonDataFromServer(Constant.searchAll, params, callback2);
+        volleyUtil.getJsonDataFromServer(Constant.findInfoList, params, callback2);
 
     }
 
@@ -178,8 +199,8 @@ public class LeftFindActivity extends BaseActivity {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("pagesize", 10);
         params.put("pageindex", pageIndex);
-        params.put("siteId", "JfAJJr");
-        params.put("key", filter_edit.getText().toString());
+        params.put("pathId", id);
+        params.put("title", filter_edit.getText().toString());
 
         VolleyUtil.VolleyJsonCallback callback2 = new VolleyUtil.VolleyJsonCallback() {
 
@@ -209,7 +230,7 @@ public class LeftFindActivity extends BaseActivity {
                 handler.sendEmptyMessage(11);
             }
         };
-        volleyUtil.getJsonDataFromServer(Constant.searchAll, params, callback2);
+        volleyUtil.getJsonDataFromServer(Constant.findInfoList, params, callback2);
 
     }
 
@@ -232,7 +253,8 @@ public class LeftFindActivity extends BaseActivity {
                 filter_edit.requestFocus();
                 search_logo.setVisibility(View.GONE);
                 listview.setVisibility(View.VISIBLE);
-                getData();
+
+                searchData();
                 return true;
             } else {
                 return false;
@@ -247,6 +269,13 @@ public class LeftFindActivity extends BaseActivity {
             switch (v.getId()){
                 case R.id.btnback:
                     finish();
+                    break;
+
+                case R.id.ssbtn:
+                    filter_edit.requestFocus();
+                    search_logo.setVisibility(View.GONE);
+                    listview.setVisibility(View.VISIBLE);
+                    searchData();
                     break;
 
             }

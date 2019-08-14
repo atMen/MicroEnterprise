@@ -18,13 +18,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/white"
             android:orientation="vertical">
 
             <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:id="@+id/title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
                 android:layout_marginRight="10dip"
@@ -53,6 +55,7 @@
                 android:layout_marginTop="15dip">
 
                 <com.tcrj.micro.view.MyTextViewXH
+                    android:visibility="gone"
                     android:id="@+id/source"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -74,10 +77,11 @@
                     android:visibility="gone" />
 
                 <com.tcrj.micro.view.MyTextViewQH
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
                     android:layout_marginLeft="3dip"
                     android:text="发表时间:"
                     android:textColor="@color/app_sub_text"

@@ -6,6 +6,8 @@
     android:background="@drawable/dxs_bg"
     >
 
+    <include layout="@layout/title" />
+
 
     <LinearLayout
         android:layout_centerInParent="true"

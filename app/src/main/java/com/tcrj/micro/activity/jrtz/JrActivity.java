@@ -18,6 +18,7 @@ import com.google.gson.reflect.TypeToken;
 import com.tcrj.micro.ApiConstants;
 import com.tcrj.micro.JsonParse.JsonParse;
 import com.tcrj.micro.R;
+import com.tcrj.micro.activity.NetJSCallJavaActivity;
 import com.tcrj.micro.activity.left.LeftDetailActivity;
 import com.tcrj.micro.activity.left.NewLeftListActivity;
 import com.tcrj.micro.activity.news.FgdjDetailActivity;
@@ -54,6 +55,7 @@ public class JrActivity extends BaseActivity {
     private ImageView backBtn;
     private RecyclerView mRecyclerView;
     private RecyclerView mRecyclerView2;
+    private ImageView iv_jr;
 
 
     private static ArrayList<bankInfo> list;
@@ -77,6 +79,7 @@ public class JrActivity extends BaseActivity {
     @Override
     public void initView() {
 
+        iv_jr = findViewById(R.id.iv_jr);
         tvtitle = (TextView) findViewById(R.id.txtTitle);
         backBtn = (ImageView) findViewById(R.id.btnback);
         backBtn.setVisibility(View.VISIBLE);
@@ -122,6 +125,7 @@ public class JrActivity extends BaseActivity {
         });
 
 
+        iv_jr.setOnClickListener(new OnClick());
         backBtn.setOnClickListener(new OnClick());
 
     }
@@ -165,12 +169,12 @@ public class JrActivity extends BaseActivity {
                         String errorCode = dataBean.getErrorcode();
                         if("9999".equals(errorCode)){
 
-
                             List<bankInfo> response = new Gson().fromJson(dataBean.getData(), new TypeToken<List<bankInfo>>() {}.getType());
 
                             detailAdapter.setNewData(response);
 
                             getListInfo2();
+
                         }
                     }
                 });
@@ -234,6 +238,10 @@ public class JrActivity extends BaseActivity {
             switch (v.getId()) {
                 case R.id.btnback:
                     finish();
+                    break;
+
+                case R.id.iv_jr:
+                    toClass(JrActivity.this,NetJSCallJavaActivity.class,null);
                     break;
 
                 default:

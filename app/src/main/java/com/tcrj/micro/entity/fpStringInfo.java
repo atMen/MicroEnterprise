@@ -15,6 +15,11 @@ public class fpStringInfo {
     private String errorcode;
     private String message;
     private String data;
+    /**
+     * state : 0
+     */
+
+    private int state;
 
     public String getErrorcode() {
         return errorcode;
@@ -38,5 +43,13 @@ public class fpStringInfo {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }

@@ -47,7 +47,7 @@ public class JsonParse {
     public static ArrayList<InfoEntity> getJushInfoList(JSONObject jsonObject) {
         ArrayList<InfoEntity> list = new ArrayList<InfoEntity>();
         try {
-            JSONArray array = jsonObject.getJSONArray("data");
+            JSONArray array = jsonObject.getJSONArray("Listinfo");
 
             for (int i = 0; i < array.length(); i++) {
                 JSONObject value = array.getJSONObject(i);
@@ -238,6 +238,8 @@ public class JsonParse {
             entity.setRegOrgName(getStringNodeValue(object, "regOrgName"));
             entity.setMenleiName(getStringNodeValue(object, "menleiName"));
             entity.setIndustryName(getStringNodeValue(object, "industryName"));
+            entity.setXwstate_cn(getStringNodeValue(object, "xwstate_cn"));
+            entity.setEmreason_cn(getStringNodeValue(object, "emreason_cn"));
         } catch (Exception e) {
             Log.d("error", e.getMessage());
         }

@@ -15,7 +15,7 @@ import com.tcrj.micro.activity.jzfp.wyfpFregment;
 
 public class jzfpFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private String[] mTitles = new String[]{"我要扶贫","台账报表"};
+    private String[] mTitles = new String[]{"我要扶贫"};
 
     public jzfpFragmentPagerAdapter(FragmentManager fm ) {
         super(fm);
@@ -23,9 +23,7 @@ public class jzfpFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 0) {
             return new wyfpFregment();
-        }
 // else if (position == 1) {
 //            return new wyfpFregment();
 //        }else if (position == 2){
@@ -37,7 +35,7 @@ public class jzfpFragmentPagerAdapter extends FragmentPagerAdapter {
 //        }else if (position == 5){
 //            return new wyfpFregment();
 //        }
-        return new tzbbFregment();
+//        return new tzbbFregment();
     }
 
     @Override

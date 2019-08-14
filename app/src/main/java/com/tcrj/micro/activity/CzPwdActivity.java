@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -39,6 +40,9 @@ public class CzPwdActivity extends BaseActivity implements View.OnClickListener,
     private CountDownButton countDownButton;
     private Button btn_true;
     private RadioGroup radioGroup_sex_id;
+    private RadioButton gr_id;
+    private RadioButton qy_id;
+    private RadioButton gsj_id;
     private MyTextViewZH txtTitle;
     private ImageView btnback;
 
@@ -79,18 +83,30 @@ public class CzPwdActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void initView() {
 
+        type  = getIntent().getIntExtra("logintype",-1);
+
         btnback = findViewById(R.id.btnback);
         txtTitle = findViewById(R.id.txtTitle);
         ll_one = findViewById( R.id.ll_one);
         ll_two = findViewById( R.id.ll_two);
         ll_three = findViewById( R.id.ll_three);
         radioGroup_sex_id = findViewById(R.id.radioGroup_sex_id);
+        gr_id = findViewById(R.id.gr_id);
+        qy_id = findViewById(R.id.qy_id);
+        gsj_id = findViewById(R.id.gsj_id);
         edt_phone = findViewById(R.id.edt_phone);
         edt_dxyzm = findViewById(R.id.edt_dxyzm);
         edt_Password = findViewById(R.id.edt_Password);
         edt_Password2 = findViewById(R.id.edt_Password2);
         btn_true = findViewById(R.id.btn_true);
 
+        if(type == 1){
+            gr_id.setChecked(true);
+        }else if(type == 2){
+            qy_id.setChecked(true);
+        }else {
+            gsj_id.setChecked(true);
+        }
         txtTitle.setText("手机验证");
         countDownButton = findViewById(R.id.timeButton);
         //设置Button点击事件触发倒计时
@@ -218,7 +234,7 @@ public class CzPwdActivity extends BaseActivity implements View.OnClickListener,
                     state++;
                     //显示第三阶段
                     txtTitle.setText("重置完成");
-                    btn_true.setText("去登陆");
+                    btn_true.setText("去登录");
                     ll_one.setVisibility(View.GONE);
                     ll_two.setVisibility(View.GONE);
                     ll_three.setVisibility(View.VISIBLE);

@@ -50,6 +50,16 @@ public class QyDataInfo {
         private String enterpriseDescribe;
         private String enterpriseId;
         private String enterpriseIndustry;
+
+        public String getEnterpriseIndustryName() {
+            return enterpriseIndustryName;
+        }
+
+        public void setEnterpriseIndustryName(String enterpriseIndustryName) {
+            this.enterpriseIndustryName = enterpriseIndustryName;
+        }
+
+        private String enterpriseIndustryName;
         private String enterpriseName;
         private String enterpriseScale;
         private String enterpriseSite;

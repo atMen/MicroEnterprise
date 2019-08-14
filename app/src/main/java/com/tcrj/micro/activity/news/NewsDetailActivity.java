@@ -62,7 +62,7 @@ public class NewsDetailActivity extends BaseActivity {
         tvtitle = (TextView) findViewById(R.id.txtTitle);
         backBtn = (ImageView) findViewById(R.id.btnback);
         backBtn.setVisibility(View.VISIBLE);
-        tvtitle.setText("要闻内容");
+        tvtitle.setText("图片新闻");
         mWebView = (WebView) findViewById(R.id.webView);
         backBtn.setOnClickListener(new OnClick());
 

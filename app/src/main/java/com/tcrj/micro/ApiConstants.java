@@ -28,10 +28,14 @@ public class ApiConstants {
 
   // http://192.168.20.240:8080/  内
   // http://123.139.46.180:8021/ 外
+  //192.168.20.151 测试环境
 
-  public static final String URLBASE8080 = "http://192.168.20.240:8080/";
-  public static final String URLBASE = "http://192.168.20.240:8181/";
-  public static final String BASEIMAGE = "http://192.168.20.240:8080/web.files";
+  public static String URLBASE8080 = "http://123.139.46.180:8021/";
+
+//public static final String URLBASE8080 = "http://192.168.20.240:8080/";
+  public static final String URLBASE = "http://123.139.46.180:8021/";
+  public static final String BASEIMAGE = URLBASE8080+"web.files";
+  public static final String JR = "http://xwqy.gsxt.gov.cn/etps/productInfoList";
 
 
     /**
@@ -101,8 +105,7 @@ public class ApiConstants {
     /**
      * （新）邀请他人
      */
-    public static final String yqtr_listApi = URLBASE8080+"sxipept/aidpoor/findAidUsers";
-
+  public static final String yqtr_listApi = URLBASE8080+"sxipept/aidpoor/findAidUsers";
 
   //扶贫人员列表
   public static final String fpry_listApi = URLBASE8080+"sxipept/aidpoor/getAidPoorObjectList";
@@ -140,10 +143,8 @@ public class ApiConstants {
   //获取简历列表
   public static final String jl_Api = URLBASE8080+"sxipept/job/resumeList";
 
-
   //公司审批简历
   public static final String sp_Api = URLBASE8080+"sxipept/job/auditResume";
-
 
   //个人投递记录
   public static final String tdjllist_Api = URLBASE8080+"sxipept/job/sendResumeList";
@@ -153,7 +154,6 @@ public class ApiConstants {
 
   //个人投递简历
   public static final String sendjllist_Api = URLBASE8080+"sxipept/job/send";
-
 
   //图片上传
   public static final String sendpic_Api = URLBASE8080+"sxipept/aidpoor/uploadImg";
@@ -172,7 +172,23 @@ public class ApiConstants {
 
   //获取金融产品
   public static final String jrztbankcplist_Api = URLBASE8080+"sxipept/serviceCentre/getProductList";
+  //获取金融产品所属企业信息
+  public static final String jrztbankqylist_Api = URLBASE8080+"sxipept/serviceCentre/getBankList";
+
+  //获取金融产品所属企业信息详情
+  public static final String jrztbankqyinfo_Api = URLBASE8080+"sxipept/serviceCentre/getBankInfo";
+
 
   //获取金融产品
   public static final String jrztbankcpinfo_Api = URLBASE8080+"sxipept/serviceCentre/getProduct";
+
+
+
+
+  private static final String CB = "https://api.madeinchanba.com/baseRest/";
+
+  //提交用户信息到浐灞app
+  public static final String cb_login = CB+"applyProduct";
+
+
 }

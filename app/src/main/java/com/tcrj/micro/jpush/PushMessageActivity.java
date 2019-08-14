@@ -1,6 +1,7 @@
 package com.tcrj.micro.jpush;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,6 +20,11 @@ import com.tcrj.micro.R;
  */
 public class PushMessageActivity extends Activity {
 
+
+    private TextView tvtitle;
+    private ImageView backBtn;
+    private TextView messagecontent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +35,22 @@ public class PushMessageActivity extends Activity {
 
 
     public void initView() {
+        Intent intent = getIntent();
+        String messageContent = intent.getStringExtra("messageContent");
 
+        messagecontent = findViewById(R.id.messagecontent);
+        tvtitle = (TextView) findViewById(R.id.txtTitle);
+        backBtn = (ImageView) findViewById(R.id.btnback);
+
+
+        messagecontent.setText(messageContent);
+        tvtitle.setText("推送消息");
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 

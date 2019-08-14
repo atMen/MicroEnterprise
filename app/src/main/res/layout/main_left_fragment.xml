@@ -88,7 +88,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:id="@+id/mtv_zyzf"
-                android:gravity="center_horizontal"
+                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/blue_bg_soid"
@@ -159,7 +159,7 @@
                 android:background="@drawable/blue_bg_soid"
                 android:padding="5dp"
                 android:layout_marginLeft="10dip"
-                android:text="地方政府文件"
+                android:text="地方政策法规"
                 />
 
             <View
@@ -218,7 +218,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
-                android:text="地市政府文件"
+                android:text="地市政策法规"
                 android:textColor="@color/app_sub_text2"
                 android:textSize="18sp" />
 

@@ -77,13 +77,12 @@ public class jrcpFragment extends BaseFragment implements BaseQuickAdapter.OnIte
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
                 pageNum = 1;
-              getData(pageNum);
-
+                getData(pageNum);
             }
         });
         beanList = new ArrayList<>();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        mRecyclerView.setAdapter(detailAdapter = new jrcpAdapter(beanList, 1));
+        mRecyclerView.setAdapter(detailAdapter = new jrcpAdapter(beanList, 1,mContext));
         detailAdapter.setPreLoadNumber(1);
         detailAdapter.setLoadMoreView(new CustomLoadMoreView());
         detailAdapter.setEnableLoadMore(true);
@@ -223,13 +222,10 @@ public class jrcpFragment extends BaseFragment implements BaseQuickAdapter.OnIte
                 recyclerView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
                         //要等到列表显示出来才可以去获取：findLastCompletelyVisibleItemPosition
                         if ((linearLayoutManager.findLastCompletelyVisibleItemPosition() + 1) != size) {
                             detailAdapter.setEnableLoadMore(true);
                         }
-
-                        Log.e("TAG","测试："+(linearLayoutManager.findLastCompletelyVisibleItemPosition() + 1));
                     }
                 }, 1000);
 

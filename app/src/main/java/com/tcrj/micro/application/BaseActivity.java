@@ -21,7 +21,7 @@ import org.greenrobot.eventbus.EventBus;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
-    private Dialog progressDialog;
+    public Dialog progressDialog;
 
     public abstract void initView();
 

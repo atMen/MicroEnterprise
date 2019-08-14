@@ -229,7 +229,7 @@ public class gsjRegisteFregment extends Fragment implements View.OnClickListener
 
 
                     } else {
-                        Toast.makeText(MyApplication.getInstance(), JsonParse.getMsgByKey(jsonObject, "data"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyApplication.getInstance(), JsonParse.getMsgByKey(jsonObject, "message"), Toast.LENGTH_SHORT).show();
                     }
                 }
 

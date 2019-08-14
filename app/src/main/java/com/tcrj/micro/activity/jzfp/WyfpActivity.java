@@ -45,8 +45,12 @@ import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import io.reactivex.Observer;
@@ -126,6 +130,8 @@ public class WyfpActivity extends BaseActivity implements View.OnClickListener {
         }
 
         btn_true.setOnClickListener(this);
+        btnback.setOnClickListener(this);
+
 
 
     }
@@ -141,7 +147,9 @@ public class WyfpActivity extends BaseActivity implements View.OnClickListener {
 
             case R.id.btn_true:
 
+                showProgressDialog();
                 if(selectList != null && selectList.size() > 0){
+
 
                     sendPicToNet(selectList.get(num));
 
@@ -154,6 +162,54 @@ public class WyfpActivity extends BaseActivity implements View.OnClickListener {
                     String cy = edt_cy.getText().toString().trim();
                     String sm = edt_sm.getText().toString().trim();
                     String qt = edt_qt.getText().toString().trim();
+                    if("".equals(jl)){
+                        dismisProgressDialog();
+                        Toast.makeText(this, "请输入扶贫记录", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if("".equals(jz)){
+                        dismisProgressDialog();
+                        Toast.makeText(this, "请输入捐助扶贫", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if("".equals(zl)){
+                        dismisProgressDialog();
+                        Toast.makeText(this, "请输入智力扶贫", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if("".equals(jy)){
+                        dismisProgressDialog();
+                        Toast.makeText(this, "请输入就业扶贫", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if("".equals(cy)){
+                        dismisProgressDialog();
+                        Toast.makeText(this, "请输入产业扶贫", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if("".equals(sm)){dismisProgressDialog();
+
+                        Toast.makeText(this, "请输入商贸扶贫", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if("".equals(qt)){
+                        dismisProgressDialog();
+                        Toast.makeText(this, "请输入其他方式扶贫", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    String time = fp_time.getText().toString();
+                    if("选择".equals(time)){
+                        dismisProgressDialog();
+                        Toast.makeText(this, "请选择扶贫时间", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     getDataFromNet(jz,zl,jy,cy,sm,qt,jl,"");
 
                 }
@@ -163,6 +219,11 @@ public class WyfpActivity extends BaseActivity implements View.OnClickListener {
             case R.id.time_pop:
                 showDatePickerDialog(this,fp_time);
                 break;
+
+            case R.id.btnback:
+                finish();
+                break;
+
 
             default:
                 break;
@@ -181,12 +242,11 @@ public class WyfpActivity extends BaseActivity implements View.OnClickListener {
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
 
-                        aidtime = year + "-" + monthOfYear
-                                + "-" + dayOfMonth;
+                        int month = monthOfYear + 1;
+                        aidtime = (year > 9?  year : "0"+year) + "-" + (month > 9?  month : "0"+month)
+                                + "-" + (dayOfMonth > 9?  dayOfMonth : "0"+dayOfMonth);
                         // 此处得到选择的时间，可以进行你想要的操作
-                        fp_time.setText(year + " - " + monthOfYear
-                                + " - " + dayOfMonth);
-
+                        fp_time.setText(aidtime);
 
                     }
                 }
@@ -214,7 +274,7 @@ public class WyfpActivity extends BaseActivity implements View.OnClickListener {
      * 上传图片
      */
     private void SendPic(final String token, final String basedata) {
-        showProgressDialog();
+
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -232,13 +292,13 @@ public class WyfpActivity extends BaseActivity implements View.OnClickListener {
                     @Override
                     public void onFailure(int statusCode, String error_msg) {
 
-                        dismisProgressDialog();
+
                         Log.e("TAG","msg"+statusCode);
                     }
 
                     @Override
                     public void onSuccess(int statusCode, sendPicInfo response) {
-                        dismisProgressDialog();
+
                         if("9999".equals(response.getErrorcode())){
                             num++;
                             String att_path = response.getData();
@@ -247,7 +307,6 @@ public class WyfpActivity extends BaseActivity implements View.OnClickListener {
 
                             if(num >= selectList.size()){
 
-                                Log.e("TAG","上传图文信息: "+picpath.substring(0,picpath.length()-1));
                                 String jl = edt_fpjl.getText().toString().trim();
                                 String jz = edt_jz.getText().toString().trim();
                                 String zl = edt_zl.getText().toString().trim();
@@ -255,18 +314,76 @@ public class WyfpActivity extends BaseActivity implements View.OnClickListener {
                                 String cy = edt_cy.getText().toString().trim();
                                 String sm = edt_sm.getText().toString().trim();
                                 String qt = edt_qt.getText().toString().trim();
+                                if("".equals(jl)){
+                                    dismisProgressDialog();
+                                    Toast.makeText(WyfpActivity.this, "请输入扶贫记录", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
+                                if("".equals(jz)){
+                                    dismisProgressDialog();
+                                    Toast.makeText(WyfpActivity.this, "请输入捐助扶贫", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
+                                if("".equals(zl)){
+                                    dismisProgressDialog();
+                                    Toast.makeText(WyfpActivity.this, "请输入智力扶贫", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
+                                if("".equals(jy)){
+                                    dismisProgressDialog();
+                                    Toast.makeText(WyfpActivity.this, "请输入就业扶贫", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
+                                if("".equals(cy)){
+                                    dismisProgressDialog();
+                                    Toast.makeText(WyfpActivity.this, "请输入产业扶贫", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
+                                if("".equals(sm)){
+                                    dismisProgressDialog();
+                                    Toast.makeText(WyfpActivity.this, "请输入商贸扶贫", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
+                                if("".equals(qt)){
+                                    dismisProgressDialog();
+                                    Toast.makeText(WyfpActivity.this, "请输入其他方式扶贫", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
+                                String time = fp_time.getText().toString();
+                                if("选择".equals(time)){
+                                    dismisProgressDialog();
+                                    Toast.makeText(WyfpActivity.this, "请选择扶贫时间", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
                                 getDataFromNet(jz,zl,jy,cy,sm,qt,jl,picpath.substring(0,picpath.length()-1));
 
                             }else {
-
                                 sendPicToNet(selectList.get(num));
                             }
 
-
+                        }else if("204".equals(response.getErrorcode())){
+                            toLogin();
                         }
                     }
                 });
     }
+
+
+
+    private void editextIsok(String jl, String jz, String zl, String jy, String cy, String sm, String qt){
+
+
+
+
+    }
+
 
 
     //获取网络数据
@@ -439,7 +556,7 @@ public class WyfpActivity extends BaseActivity implements View.OnClickListener {
                     .isGif(false)// 是否显示gif图片
                     .freeStyleCropEnabled(true)// 裁剪框是否可拖拽
                     .openClickSound(false)// 是否开启点击声音
-                    .selectionMedia(null)// 是否传入已选图片
+                    .selectionMedia(selectList)// 是否传入已选图片
                     //.isDragFrame(false)// 是否可拖动裁剪框(固定)
 //              .videoMaxSecond(15)
 //              .videoMinSecond(10)
@@ -491,5 +608,7 @@ public class WyfpActivity extends BaseActivity implements View.OnClickListener {
         }
         return base64File;
     }
+
+
 
 }

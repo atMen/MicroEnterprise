@@ -15,6 +15,7 @@ import com.tcrj.micro.constant.Constant;
 import com.tcrj.micro.entity.EnterpriseEntity;
 import com.tcrj.micro.entity.InfoEntity;
 import com.tcrj.micro.until.DateUtil;
+import com.tcrj.micro.until.Utils;
 
 import org.json.JSONObject;
 
@@ -35,13 +36,11 @@ public class EnterpriseDetailActivity extends BaseActivity {
     private TextView estDate;
     private TextView regCap;
     private TextView sfxwqy;
+    private TextView tcyy;
     private TextView regOrgName;
     private TextView menleiName;
     private TextView industryName;
-
-
-
-
+    private TextView time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +57,7 @@ public class EnterpriseDetailActivity extends BaseActivity {
         tvtitle = (TextView) findViewById(R.id.txtTitle);
         backBtn = (ImageView) findViewById(R.id.btnback);
         backBtn.setVisibility(View.VISIBLE);
-        tvtitle.setText("企业信息");
+        tvtitle.setText("小微企业认定");
 
         entName = (TextView)findViewById(R.id.entname);
         regNo = (TextView)findViewById(R.id.regno);
@@ -66,10 +65,13 @@ public class EnterpriseDetailActivity extends BaseActivity {
         estDate = (TextView)findViewById(R.id.estdate);
         regCap  = (TextView)findViewById(R.id.regcap);
         sfxwqy = (TextView)findViewById(R.id.sfxwqy);
+        tcyy = (TextView)findViewById(R.id.tcyy);
         regOrgName = (TextView)findViewById(R.id.regorgname);
         menleiName = (TextView)findViewById(R.id.menleiname);
         industryName = (TextView)findViewById(R.id.industryname);
+        time = findViewById(R.id.time);
 
+        time.setText(DateUtil.getCurrentDate());
         backBtn.setOnClickListener(new OnClick());
 
 
@@ -90,15 +92,22 @@ public class EnterpriseDetailActivity extends BaseActivity {
                 Log.d("aa", jsonObject.toString());
                 if (JsonParse.getMsgByKey(jsonObject, "state").equals("1")) {
                     EnterpriseEntity entity = JsonParse.getEnterpriseDetail(jsonObject);
+
+
                     entName.setText(entity.getEntName());
                     regNo.setText(entity.getRegNo());
                     typeName.setText(entity.getTypeName());
                     estDate.setText(entity.getEstDate());
                     regCap.setText(entity.getRegCap()+"万元");
-                    sfxwqy.setText(entity.getBizhong());
+
                     regOrgName.setText(entity.getRegOrgName());
                     menleiName.setText(entity.getMenleiName());
                     industryName.setText(entity.getIndustryName());
+
+                    sfxwqy.setText(entity.getXwstate_cn());
+                    tcyy.setText(entity.getEmreason_cn());
+//                    time.setText(entity.getQuerytime().substring(0,10));
+
                 }
 
             }

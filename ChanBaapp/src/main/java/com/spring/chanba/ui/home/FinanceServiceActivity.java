@@ -165,7 +165,7 @@ public class FinanceServiceActivity extends BaseActivity implements View.OnClick
                     }
                 }
                 List<?> list = Arrays.asList(strArray);
-                banner.setImages(list).setImageLoader(new GlideRectangleLoader()).start();
+//                banner.setImages(list).setImageLoader(new GlideRectangleLoader()).start();
             } else {
                 dismisProgressDialog();
             }

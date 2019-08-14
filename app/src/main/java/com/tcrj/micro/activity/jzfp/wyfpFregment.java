@@ -76,9 +76,7 @@ public class wyfpFregment extends BaseFragment implements View.OnClickListener {
         JSONObject jsonObject = new JSONObject();
 
         try {
-
             jsonObject.put("token", token);
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -115,10 +113,10 @@ public class wyfpFregment extends BaseFragment implements View.OnClickListener {
                             }
 
 
-                        }else {
+                        }else{
                             ACache.get(getContext()).clear();
                             Intent intent = new Intent();
-                            intent.putExtra("openid",-2);
+//                            intent.putExtra("openid",-2);
                             intent.setClass(mContext, LoginActivity.class);
                             mContext.startActivity(intent);
                         }
@@ -146,14 +144,14 @@ public class wyfpFregment extends BaseFragment implements View.OnClickListener {
                 token = ACache.get(mContext).getAsString("token");
                 logintype = ACache.get(mContext).getAsString("logintype");
                 //判断登录人员类型
-                if(!"4".equals(logintype)){
-                    Intent intent = new Intent();
-                    intent.putExtra("openid",-2);
-                    intent.setClass(mContext, LoginActivity.class);
-                    mContext.startActivity(intent);
-                }else {
+//                if(!"4".equals(logintype)){
+//                    Intent intent = new Intent();
+//                    intent.putExtra("openid",-2);
+//                    intent.setClass(mContext, LoginActivity.class);
+//                    mContext.startActivity(intent);
+//                }else {
                     checkToken(token,"0");
-                }
+//                }
 
 
                 break;

@@ -6,7 +6,6 @@ package com.tcrj.micro.entity;
 
 public class RecruitInfo {
 
-
     /**
      * isSuitable : 是否合适
      * industryName : 行业名称

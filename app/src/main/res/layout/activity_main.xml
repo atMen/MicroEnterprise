@@ -1,103 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     android:clickable="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
 
     <FrameLayout
         android:id="@+id/frameContent"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="match_parent"
+        />
 
 
-    <View
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1px"-->
+        <!--android:background="@color/app_tab_gary" />-->
+
+    <FrameLayout
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/app_tab_gary" />
+        android:layout_height="80dp">
 
-    <RadioGroup
-        android:id="@+id/radio_group"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/tab_news"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:background="@color/white"
-            android:button="@null"
-            android:checked="true"
-            android:drawablePadding="5dip"
-            android:drawableTop="@drawable/news_tab"
+        <RadioGroup
+            android:layout_gravity="bottom"
+            android:id="@+id/radio_group"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/tab_news"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@color/white"
+                android:button="@null"
+                android:checked="true"
+                android:drawablePadding="5dip"
+                android:drawableTop="@drawable/news_tab"
+                android:gravity="center"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip"
+                android:singleLine="true"
+                android:text="首页"
+                android:textColor="@drawable/text_tab_color"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/tab_support"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@color/white"
+                android:button="@null"
+                android:drawablePadding="5dip"
+                android:drawableTop="@drawable/support_tab"
+                android:gravity="center"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@drawable/text_tab_color"
+                android:textSize="14sp" />
+
+
+            <RadioButton
+                android:visibility="gone"
+                android:id="@+id/tab_enterprise"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@color/white"
+                android:button="@null"
+                android:drawablePadding="5dip"
+                android:drawableTop="@drawable/enterprise_tab"
+                android:gravity="center"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip"
+                android:singleLine="true"
+                android:text="企业库"
+                android:textColor="@drawable/text_tab_color"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/tab_mine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@color/white"
+                android:button="@null"
+                android:drawablePadding="5dip"
+                android:drawableTop="@drawable/mine_tab"
+                android:gravity="center"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip"
+                android:singleLine="true"
+                android:text="我的"
+                android:textColor="@drawable/text_tab_color"
+                android:textSize="14sp" />
+
+        </RadioGroup>
+
+        <TextView
+            android:textSize="11sp"
+            android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:paddingBottom="10dip"
-            android:paddingTop="10dip"
-            android:singleLine="true"
-            android:text="首页"
-            android:textColor="@drawable/text_tab_color"
-            android:textSize="14sp" />
-
-        <RadioButton
-            android:id="@+id/tab_support"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:background="@color/white"
-            android:button="@null"
-            android:drawablePadding="5dip"
-            android:drawableTop="@drawable/support_tab"
-            android:gravity="center"
-            android:paddingBottom="10dip"
-            android:paddingTop="10dip"
-            android:singleLine="true"
-            android:text="小微库"
-            android:textColor="@drawable/text_tab_color"
-            android:textSize="14sp" />
+            android:drawableTop="@drawable/xwk"
+            android:text="小微企业认定"
+            />
+    </FrameLayout>
 
 
-        <RadioButton
-            android:visibility="gone"
-            android:id="@+id/tab_enterprise"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:background="@color/white"
-            android:button="@null"
-            android:drawablePadding="5dip"
-            android:drawableTop="@drawable/enterprise_tab"
-            android:gravity="center"
-            android:paddingBottom="10dip"
-            android:paddingTop="10dip"
-            android:singleLine="true"
-            android:text="企业库"
-            android:textColor="@drawable/text_tab_color"
-            android:textSize="14sp" />
-
-        <RadioButton
-            android:id="@+id/tab_mine"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:background="@color/white"
-            android:button="@null"
-            android:drawablePadding="5dip"
-            android:drawableTop="@drawable/mine_tab"
-            android:gravity="center"
-            android:paddingBottom="10dip"
-            android:paddingTop="10dip"
-            android:singleLine="true"
-            android:text="我的"
-            android:textColor="@drawable/text_tab_color"
-            android:textSize="14sp" />
-
-    </RadioGroup>
-
-</LinearLayout>
+</RelativeLayout>

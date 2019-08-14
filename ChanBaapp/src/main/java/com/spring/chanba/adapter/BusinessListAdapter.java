@@ -69,7 +69,7 @@ public class BusinessListAdapter extends BaseAdapter {
         ImageView imgServicePicture = ViewHolder.get(view, R.id.img_service_picture);
         view.setId(position);
         if (!Utils.isStringEmpty(entity.getPicPath())) {
-            Glide.with(mContext).load(entity.getPicPath()).into(imgServicePicture);
+//            Glide.with(mContext).load(entity.getPicPath()).into(imgServicePicture);
         }
         tvServiceContent.setText(entity.getTitle());
         tvServiceRelasetime.setText(entity.getAddTime());

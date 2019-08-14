@@ -26,6 +26,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static android.view.View.OnClickListener;
 import static android.widget.AdapterView.OnItemClickListener;
@@ -47,6 +48,8 @@ public class NewLeftListActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_left_list);
+
+
         initView();
         getData();
     }
@@ -86,6 +89,7 @@ public class NewLeftListActivity extends BaseActivity {
         listview.setOnItemClickListener(new OnItemClick());
         backBtn.setOnClickListener(new OnClick());
         btnsearch.setOnClickListener(new OnClick());
+
     }
 
 
@@ -145,7 +149,7 @@ public class NewLeftListActivity extends BaseActivity {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("pagesize", 10);
         params.put("pageindex", pageIndex );
-//        params.put("siteId", "JfAJJr");
+//      params.put("siteId", "JfAJJr");
         if(cityid != null){
             params.put("id", cityid);
         }else {
@@ -254,6 +258,7 @@ public class NewLeftListActivity extends BaseActivity {
                     break;
                 case R.id.btnsearch:
                     Intent intent = new Intent();
+                    intent.putExtra("id", id);
                     intent.setClass(NewLeftListActivity.this, LeftFindActivity.class);
                     startActivity(intent);
                     break;

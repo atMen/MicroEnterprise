@@ -45,7 +45,18 @@ public class ShowImageUtils {
                 .into(imgeview);
     }
 
-
+    public static void showjrcpImageView(Context context, String url,
+                                     ImageView imgeview) {
+        RequestOptions options = new RequestOptions()
+//                .error(R.drawable.jrcpbg)
+                .centerCrop()
+                ;
+        Glide.with(context)
+                .load(url)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .apply(options)
+                .into(imgeview);
+    }
 
 
 

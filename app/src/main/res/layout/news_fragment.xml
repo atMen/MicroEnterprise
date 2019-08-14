@@ -10,7 +10,7 @@
 
     <include layout="@layout/title" />
 
-    <com.newui.scrollview.BounceScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -504,9 +504,19 @@
                 android:divider="@null" />
 
 
+            <TextView
+                android:id="@+id/hotmore"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="查看更多"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginBottom="80dp"
+                />
 
         </LinearLayout>
-    </com.newui.scrollview.BounceScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 
 </LinearLayout>

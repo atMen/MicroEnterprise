@@ -3,10 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include layout="@layout/title"/>
 
     <RelativeLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="150dp">
 
         <ImageView
             android:id="@+id/icon"
@@ -16,17 +18,19 @@
             />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_dl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="登录"
             android:gravity="center_horizontal"
             android:layout_marginTop="25dp"
-            android:textSize="@dimen/font_size_18"
+            android:textSize="22sp"
             android:textColor="@color/white"
             />
 
         <ImageView
+            android:visibility="gone"
             android:layout_marginTop="30dp"
             android:layout_below="@+id/tv_dl"
             android:layout_centerInParent="true"

@@ -72,7 +72,6 @@ public class TalentLoanActivity extends BaseActivity implements View.OnClickList
             map.put("memberId", bean.getId());
             presenter = new TalentLoanPresenter(this);
             presenter.getData(map);
-
         }
     }
 

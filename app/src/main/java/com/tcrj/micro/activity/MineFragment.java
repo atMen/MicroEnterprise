@@ -33,6 +33,7 @@ import com.tcrj.micro.activity.mine.AboutActivity;
 import com.tcrj.micro.activity.zxzp.grzpActivity;
 import com.tcrj.micro.activity.zxzp.qyzpActivity;
 import com.tcrj.micro.application.MyApplication;
+import com.tcrj.micro.checkUpdata.SweetAlertDialog;
 import com.tcrj.micro.entity.CheckInfo;
 import com.tcrj.micro.entity.MessageEvent;
 import com.tcrj.micro.until.ACache;
@@ -398,34 +399,66 @@ public class MineFragment extends Fragment {
 
     }
 
-    private void showNormalDialog(){
+//    private void showNormalDialog(){
+//
+//        final AlertDialog.Builder normalDialog =
+//                new AlertDialog.Builder(getContext());
+//
+//        normalDialog.setTitle("退出登录");
+//        normalDialog.setMessage("确定退出登录?");
+//        normalDialog.setPositiveButton("确定",
+//                new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        //...To-do
+//                        ACache.get(getContext()).clear();
+//                        username.setText("点击登录");
+//                        finish_ly.setVisibility(View.GONE);
+//                        qyzp_ll.setVisibility(View.GONE);
+//                    }
+//                });
+//        normalDialog.setNegativeButton("关闭",
+//                new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                        dialog.dismiss();
+//                    }
+//                });
+//        // 显示
+//        normalDialog.show();
+//    }
 
-        final AlertDialog.Builder normalDialog =
-                new AlertDialog.Builder(getContext());
 
-        normalDialog.setTitle("退出登录");
-        normalDialog.setMessage("确定退出登录?");
-        normalDialog.setPositiveButton("确定",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //...To-do
-                        ACache.get(getContext()).clear();
-                        username.setText("点击登录");
-                        finish_ly.setVisibility(View.GONE);
-                        qyzp_ll.setVisibility(View.GONE);
-                    }
-                });
-        normalDialog.setNegativeButton("关闭",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+    private void showNormalDialog() {
 
-                        dialog.dismiss();
-                    }
-                });
-        // 显示
-        normalDialog.show();
+        final SweetAlertDialog sad = new SweetAlertDialog(getActivity());
+        sad.setTitleText("注销登录");
+        sad.setContentText("您确定要进行注销操作吗？");
+        sad.setConfirmText("确定");
+        sad.setCancelText("取消");
+        sad.setCanceledOnTouchOutside(true);
+        sad.setCancelable(true);
+        sad.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sad.dismiss();
+
+
+            }
+        });
+        sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                ACache.get(getContext()).clear();
+                username.setText("点击登录");
+                finish_ly.setVisibility(View.GONE);
+                qyzp_ll.setVisibility(View.GONE);
+                sad.dismiss();
+
+            }
+        });
+        sad.show();
     }
 
 }

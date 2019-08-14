@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,17 +44,20 @@ public class EnterpriseFindActivity extends BaseActivity {
     public static EnterpriseListAdapter adapter;
     private ClearEditText filter_edit;
     private int pageIndex = 1;
+    private TextView ssbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enterprise_find);
         initView();
-        //getData();
+        getData();
     }
 
     @Override
     public void initView() {
+
+        ssbtn = findViewById(R.id.ssbtn);
         backBtn = (ImageView) findViewById(R.id.btnback);
         search_logo = (TextView) findViewById(R.id.search_logo);
         filter_edit = (ClearEditText) findViewById(R.id.filter_edit);
@@ -79,7 +83,8 @@ public class EnterpriseFindActivity extends BaseActivity {
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new OnItemClick());
         backBtn.setOnClickListener(new OnClick());
-        filter_edit.setOnEditorActionListener(new OnEditor());
+        ssbtn.setOnClickListener(new OnClick());
+//        filter_edit.setOnEditorActionListener(new OnEditor());
     }
 
 
@@ -89,8 +94,8 @@ public class EnterpriseFindActivity extends BaseActivity {
         showProgressDialog();
         VolleyUtil volleyUtil = new VolleyUtil(this, handler);
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("pagesize", 10);
-        params.put("pageindex", pageIndex);
+        params.put("pagesize", "10");
+        params.put("pageindex", pageIndex+"");
         params.put("siteId", "JfAJJr");
         params.put("entparam", filter_edit.getText().toString());
 
@@ -114,7 +119,6 @@ public class EnterpriseFindActivity extends BaseActivity {
                     listview.setPullLoadEnable(false);
                 }
                 adapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -124,7 +128,6 @@ public class EnterpriseFindActivity extends BaseActivity {
             }
         };
         volleyUtil.getJsonDataFromServer(Constant.findXwqyList, params, callback2);
-
     }
 
     // 刷新
@@ -132,8 +135,8 @@ public class EnterpriseFindActivity extends BaseActivity {
         showProgressDialog();
         VolleyUtil volleyUtil = new VolleyUtil(this, handler);
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("pagesize", 10);
-        params.put("pageindex", pageIndex );
+        params.put("pagesize", "10");
+        params.put("pageindex", pageIndex+"");
         params.put("siteId", "JfAJJr");
         params.put("entparam", filter_edit.getText().toString());
 
@@ -168,7 +171,6 @@ public class EnterpriseFindActivity extends BaseActivity {
             }
         };
         volleyUtil.getJsonDataFromServer(Constant.findXwqyList, params, callback2);
-
     }
 
     // 加载
@@ -176,8 +178,8 @@ public class EnterpriseFindActivity extends BaseActivity {
         showProgressDialog();
         VolleyUtil volleyUtil = new VolleyUtil(this, handler);
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("pagesize", 10);
-        params.put("pageindex", pageIndex );
+        params.put("pagesize", "10");
+        params.put("pageindex", pageIndex+"");
         params.put("siteId", "JfAJJr");
         params.put("entparam", filter_edit.getText().toString());
 
@@ -210,6 +212,7 @@ public class EnterpriseFindActivity extends BaseActivity {
             }
         };
         volleyUtil.getJsonDataFromServer(Constant.findXwqyList, params, callback2);
+//      volleyUtil.getJsonDataFromServer("http://192.168.20.51:8888/drosin_cms/xwqy/baseRest/findXwqyList", params, callback2);
 
     }
 
@@ -247,6 +250,13 @@ public class EnterpriseFindActivity extends BaseActivity {
             switch (v.getId()){
                 case R.id.btnback:
                     finish();
+                    break;
+
+                case R.id.ssbtn:
+                    filter_edit.requestFocus();
+                    search_logo.setVisibility(View.GONE);
+                    listview.setVisibility(View.VISIBLE);
+                    getData();
                     break;
 
             }

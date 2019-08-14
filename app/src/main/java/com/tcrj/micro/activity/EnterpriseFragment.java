@@ -75,7 +75,7 @@ public class EnterpriseFragment extends Fragment {
         btnsearch = (ImageView) fragmetView.findViewById(R.id.btnsearch);
 
         btnsearch.setVisibility(View.VISIBLE);
-        tvtitle.setText("小微企业库");
+        tvtitle.setText("小微企业认定");
         listview = (XListView) fragmetView.findViewById(R.id.listview);
         listview.setPullLoadEnable(true);
         listview.setXListViewListener(new XListView.IXListViewListener() {

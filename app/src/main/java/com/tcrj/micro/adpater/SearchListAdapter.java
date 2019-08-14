@@ -60,7 +60,7 @@ public class SearchListAdapter extends BaseAdapter {
         TextView textView2 = (TextView) view.findViewById(R.id.date);
 
         textView1.setText(Html.fromHtml(entity.getTitle()));
-        textView2.setText("时间:"+DateUtil.formatToDateString(entity.getTime()));
+        textView2.setText("时间:"+DateUtil.formatToDateString(entity.getShowTime()));
         return view;
     }
 }

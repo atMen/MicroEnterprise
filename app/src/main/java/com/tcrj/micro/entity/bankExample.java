@@ -1,10 +1,12 @@
 package com.tcrj.micro.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by leict on 2019/4/28.
  */
 
-public class bankExample {
+public class bankExample implements Serializable{
 
     /**
      * apply : 1
@@ -41,6 +43,16 @@ public class bankExample {
     private String state;
     private String subtitle;
     private String title;
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    private String introduction;
 
     public String getName() {
         return name;

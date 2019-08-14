@@ -1,11 +1,15 @@
 package com.tcrj.micro.adpater;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
+import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.tcrj.micro.ApiConstants;
 import com.tcrj.micro.R;
 import com.tcrj.micro.entity.bankalInfo;
+import com.tcrj.micro.until.ShowImageUtils;
 
 import java.util.List;
 
@@ -17,18 +21,22 @@ import java.util.List;
  */
 public class jrcpAdapter extends BaseQuickAdapter<bankalInfo.ContentBean, BaseViewHolder> {
 
-    private int mContext;
+    private Context mContext;
+    private int type;
 
-    public jrcpAdapter(@Nullable List<bankalInfo.ContentBean> data, int type) {
+    public jrcpAdapter(@Nullable List<bankalInfo.ContentBean> data, int type, Context context) {
         super(R.layout.jrcp_list_item, data);
-        this.mContext = type;
+        this.type = type;
+        this.mContext = context;
     }
 
     @Override
     protected void convert(final BaseViewHolder helper, bankalInfo.ContentBean item) {
 
-
-        helper.setText(R.id.title, mContext == 0? item.getTitle() : item.getName());
+        ImageView imageView = helper.getView(R.id.jrcp_bg);
+        ShowImageUtils.showjrcpImageView(mContext,
+                ApiConstants.BASEIMAGE+item.getProductimg(),imageView);
+        helper.setText(R.id.title, type == 0? item.getTitle() : item.getName());
         helper.setText(R.id.date, item.getIntroduction());
 
     }

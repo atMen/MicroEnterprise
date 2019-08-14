@@ -261,7 +261,7 @@ public class YqfpActivity extends BaseActivity implements  View.OnClickListener,
     @Override
     public void onClick(View v) {
 
-        finish();
+
 
         switch (v.getId()){
 
@@ -333,8 +333,6 @@ public class YqfpActivity extends BaseActivity implements  View.OnClickListener,
                         }else if("204".equals(errorCode)){
                             toLogin();
                         }
-
-
                     }
                 });
 

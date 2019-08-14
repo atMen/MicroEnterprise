@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
+import com.tcrj.micro.activity.jrtz.gsjjFragment;
 import com.tcrj.micro.activity.jrtz.jralFragment;
 import com.tcrj.micro.activity.jrtz.jrcpFragment;
 import com.tcrj.micro.activity.jzfp.tzbbFregment;
@@ -17,15 +18,17 @@ import com.tcrj.micro.activity.jzfp.wyfpFregment;
 
 public class jrtzFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private String[] mTitles = new String[]{"金融案例","金融产品"};
+    private String[] mTitles = new String[]{"企业简介","金融案例","金融产品"};
 
-    public jrtzFragmentPagerAdapter(FragmentManager fm ) {
+    public jrtzFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {
+            return new gsjjFragment();
+        }else if(position == 1){
             return new jralFragment();
         }
 

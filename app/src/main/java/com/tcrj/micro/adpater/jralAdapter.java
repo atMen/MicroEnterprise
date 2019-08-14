@@ -3,13 +3,16 @@ package com.tcrj.micro.adpater;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.tcrj.micro.ApiConstants;
 import com.tcrj.micro.R;
 import com.tcrj.micro.entity.bankalInfo;
 import com.tcrj.micro.entity.fpDataInfo;
 import com.tcrj.micro.entity.qyzpListInfo;
+import com.tcrj.micro.until.ShowImageUtils;
 
 import java.util.List;
 
@@ -21,18 +24,23 @@ import java.util.List;
  */
 public class jralAdapter extends BaseQuickAdapter<bankalInfo.ContentBean, BaseViewHolder> {
 
-    private int mContext;
 
-    public jralAdapter(@Nullable List<bankalInfo.ContentBean> data, int type) {
-        super(R.layout.left_list_item, data);
-        this.mContext = type;
+    private Context mContext;
+    private int type;
+
+    public jralAdapter(@Nullable List<bankalInfo.ContentBean> data, int type, Context context) {
+        super(R.layout.jral_list_item, data);
+        this.type = type;
+        this.mContext = context;
     }
 
     @Override
     protected void convert(final BaseViewHolder helper, bankalInfo.ContentBean item) {
 
-
-        helper.setText(R.id.title, mContext == 0? item.getTitle() : item.getName());
+        ImageView imageView = helper.getView(R.id.jral_bg);
+        ShowImageUtils.showjrcpImageView(mContext,
+                ApiConstants.BASEIMAGE+item.getImg(),imageView);
+        helper.setText(R.id.title, type == 0? item.getTitle() : item.getName());
         helper.setText(R.id.date, item.getIntroduction());
 
     }

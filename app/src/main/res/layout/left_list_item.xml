@@ -2,48 +2,61 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-
+    android:orientation="vertical"
+    android:background="@drawable/common_list_item_background"
+    >
     <LinearLayout
-        android:layout_margin="5dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/common_list_item_background"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:paddingBottom="12dip"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip"
-        android:paddingTop="12dip">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingBottom="12dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="12dip">
 
 
 
 
             <com.tcrj.micro.view.MyTextViewXH
-                android:layout_marginLeft="5dp"
+
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
+                android:lines="2"
                 android:textColor="@color/app_main_text"
-                android:text="名称"
-                android:textSize="15sp" />
+                android:text="题标题标题标题标题标题标题标题标题题标题标题标题标题标题标题标题标题"
+                android:textSize="16sp" />
 
 
 
-        <com.tcrj.micro.view.MyTextViewQH
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:textColor="@color/app_light_gary"
-            android:text="xxxxxx"
-            android:maxLines="2"
-            android:textSize="14sp" />
+            <com.tcrj.micro.view.MyTextViewQH
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dip"
+                android:textColor="@color/app_light_gary"
+                android:text="长安银科"
+                android:maxLines="1"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/gary_line"
+        />
 </LinearLayout>

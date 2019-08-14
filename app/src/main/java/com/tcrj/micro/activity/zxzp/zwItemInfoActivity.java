@@ -140,7 +140,6 @@ public class zwItemInfoActivity extends BaseActivity implements View.OnClickList
             btn_td.setVisibility(View.GONE);
         }
 
-
         btn_td.setOnClickListener(this);
         btnback.setOnClickListener(this);
         txtTitle.setText("职位详情");
@@ -221,21 +220,40 @@ public class zwItemInfoActivity extends BaseActivity implements View.OnClickList
         QyDataInfo.JobBean job = response.getJob();
 
         //职位
-        tv_zw.setText(job.getJobName());
-        tv_gsname.setText(job.getEnterpriseName());
-        tv_xz.setText("职位月薪："+job.getSalarRange());
-        tv_dz.setText("工作地点："+job.getJobCityName()+"-"+job.getJobCountyName());
-        tv_gzjy.setText("工作经验："+job.getJobTimeRequire());
-        tv_zdxl.setText("最低学历："+job.getEducationBackgroundRequire());
-        tv_zprs.setText("招聘人数："+job.getRecruitNum());
-        tv_zwlb.setText("职位类别："+job.getTargetIndustry());
+        if(job != null){
+            tv_zw.setText(job.getJobName());
+            tv_gsname.setText(job.getEnterpriseName());
+            tv_xz.setText("职位月薪："+job.getSalarRange());
+            tv_dz.setText("工作地点："+job.getJobCityName()+"-"+job.getJobCountyName());
+            tv_gzjy.setText("工作经验："+job.getJobTimeRequire());
+            tv_zdxl.setText("最低学历："+job.getEducationBackgroundRequire());
+            tv_zprs.setText("招聘人数："+job.getRecruitNum());
+            tv_zwlb.setText("职位类别："+job.getTargetIndustry());
 
-        String createTime = job.getCreateTime();
-        if(createTime != null && !"".equals(createTime)){
-            tv_fbrq.setText("发布日期："+job.getCreateTime().substring(0,10));
-        }else {
-            tv_fbrq.setText("发布日期：");
+            String createTime = job.getCreateTime();
+            if(createTime != null && !"".equals(createTime)){
+                tv_fbrq.setText("发布日期："+job.getCreateTime().substring(0,10));
+            }else {
+                tv_fbrq.setText("发布日期：");
+            }
+
+            htmlTextView.setHtml(response.getJob().getRequireDeatil(),
+                    new HtmlHttpImageGetter(htmlTextView));
         }
+
+        if(enterprise != null){
+            //        企业
+            qyname.setText(enterprise.getEnterpriseName());
+            gsgm.setText(enterprise.getEnterpriseScale()+"人");
+            gsxz.setText(enterprise.getEnterpriseType());
+            gshy.setText(enterprise.getEnterpriseIndustryName());
+            gszy.setText(enterprise.getEnterpriseSite());
+            gsdz.setText(enterprise.getAddress());
+
+            htmlGsInfo.setHtml(response.getEnterprise().getEnterpriseDescribe(),
+                    new HtmlHttpImageGetter(htmlGsInfo));
+        }
+
 
         /**
          * address : 西安市高新区锦业一路与丈八四路十字嘉昱大厦A座13F (邮编：710065)
@@ -250,19 +268,9 @@ public class zwItemInfoActivity extends BaseActivity implements View.OnClickList
          * logo : /uploadfile//2019-03-20/20190320093402091.png
          * optime : 2019-03-20 09:34:04
          */
-//        企业
-        qyname.setText(enterprise.getEnterpriseName());
-        gsgm.setText(enterprise.getEnterpriseScale()+"人");
-        gsxz.setText(enterprise.getEnterpriseType());
-        gshy.setText(enterprise.getEnterpriseIndustry());
-        gszy.setText(enterprise.getEnterpriseSite());
-        gsdz.setText(enterprise.getAddress());
 
-        htmlGsInfo.setHtml(response.getEnterprise().getEnterpriseDescribe(),
-                new HtmlHttpImageGetter(htmlGsInfo));
 
-        htmlTextView.setHtml(response.getJob().getRequireDeatil(),
-                new HtmlHttpImageGetter(htmlTextView));
+
     }
 
     @Override
@@ -404,7 +412,14 @@ public class zwItemInfoActivity extends BaseActivity implements View.OnClickList
             jsonObject.put("jobId", id);
             jsonObject.put("resumeId", resumeId);
 
-            jsonObject.put("enterpriseId", response.getEnterprise().getEnterpriseId()); //企业ID
+            if(response.getEnterprise() != null){
+                jsonObject.put("enterpriseId", response.getEnterprise().getEnterpriseId()); //企业ID
+            }else {
+                dismisProgressDialog();
+                Toast.makeText(this, "没有企业信息，无法投递", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             jsonObject.put("type", "TDXX_ZHAOPIN_PUSH");
 
 
@@ -425,10 +440,11 @@ public class zwItemInfoActivity extends BaseActivity implements View.OnClickList
                     public void onSuccess(int statusCode, fpStringInfo response) {
                         dismisProgressDialog();
 
+                        Toast.makeText(zwItemInfoActivity.this, response.getMessage(), Toast.LENGTH_SHORT).show();
                         String fpjlListInfos = response.getErrorcode();
 
                         if("9999".equals(fpjlListInfos)){
-                            Toast.makeText(zwItemInfoActivity.this, "投递成功", Toast.LENGTH_SHORT).show();
+
                         }else if("204".equals(fpjlListInfos)){
                             toClass(zwItemInfoActivity.this, LoginActivity.class,null);
                         }

@@ -100,7 +100,7 @@
             android:id="@+id/tv_zw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=".NET开发工程师"
+            android:text="xx"
             android:textColor="@color/black"
             android:textSize="20sp"
             />
@@ -110,7 +110,7 @@
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="陕西蓝马广告实业有限公司"
+            android:text="XX"
             android:textSize="16sp"
             />
 
@@ -132,7 +132,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="0.7"
                 android:layout_height="wrap_content"
-                android:text="职位月薪：10-12K"
+                android:text="职位月薪："
                 />
 
             <TextView
@@ -164,7 +164,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="最低学历：本科"
+                android:text="最低学历："
                 />
 
         </LinearLayout>
@@ -180,7 +180,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="0.7"
                 android:layout_height="wrap_content"
-                android:text="招聘人数：10人"
+                android:text="招聘人数："
                 />
 
             <TextView
@@ -188,13 +188,13 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="职位类别：西安"
+                android:text="职位类别："
                 />
 
 
         </LinearLayout>
 
-            <LinearLayout
+        <LinearLayout
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -205,7 +205,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="发布日期：2019-04-01"
+                    android:text="发布日期："
                     />
 
 
@@ -242,7 +242,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="陕西蓝马广告实业有限公司"
+                android:text="xx"
                 android:textSize="18sp"
                 android:textColor="@color/black"
                 />
@@ -272,7 +272,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50人"
+                    android:text="xx人"
                     />
 
 

@@ -121,7 +121,6 @@ public class JPushReceiver extends BroadcastReceiver {
                      */
                     case "ZWFB_ZHAOPIN_PUSH":
 
-
                         pushIntent.setClass(context, zwItemInfoActivity.class);
                         pushIntent.putExtra("ID", pushMessage.getId());
 
@@ -131,11 +130,9 @@ public class JPushReceiver extends BroadcastReceiver {
                      * 面试邀请消息推送
                      */
                     case "MSYQ_ZHAOPIN_PUSH":
-
                         pushIntent.setClass(context, zwItemInfoActivity.class);
                         pushIntent.putExtra("ID", pushMessage.getId());
                         pushIntent.putExtra("type","1");
-
                         break;
 
                     /**
@@ -170,13 +167,20 @@ public class JPushReceiver extends BroadcastReceiver {
 
                         break;
 
-
                     /**
                      * 政策推送
                      */
                     case "CATEGORY_INFO_PUSH":
                         pushIntent.setClass(context, LeftDetailActivity.class);
                         pushIntent.putExtra("id", pushMessage.getId());
+                        break;
+
+                    /**
+                     * 通知推送
+                     */
+                    case "XWQY_COUNT_PUSH":
+                        pushIntent.setClass(context, PushMessageActivity.class);
+                        pushIntent.putExtra("messageContent", pushMessage.getMessageContent());
                         break;
 
                     default:
@@ -260,7 +264,6 @@ public class JPushReceiver extends BroadcastReceiver {
                         loginIntent.putExtra("id", pushMessage.getId());
                         loginIntent.putExtra("type","0");
                         break;
-
                     /**
                      * 金融产品
                      */
@@ -269,9 +272,14 @@ public class JPushReceiver extends BroadcastReceiver {
                         loginIntent.setClass(context, jralInfoActivity.class);
                         loginIntent.putExtra("id", pushMessage.getId());
                         loginIntent.putExtra("type","1");
-
                         break;
-
+                    /**
+                     * 通知推送
+                     */
+                    case "XWQY_COUNT_PUSH":
+                        loginIntent.setClass(context, PushMessageActivity.class);
+                        loginIntent.putExtra("messageContent", pushMessage.getMessageContent());
+                        break;
                     default:
                         break;
 

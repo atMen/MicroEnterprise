@@ -1,10 +1,12 @@
 package com.tcrj.micro.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by leict on 2019/3/29.
  */
 
-public class LoginInfo {
+public class LoginInfo implements Serializable{
 
     /**
      * token : 638680dc732d0d390c1fee4694186bcf
@@ -30,7 +32,7 @@ public class LoginInfo {
         this.user = user;
     }
 
-    public static class UserBean {
+    public static class UserBean implements Serializable{
         /**
          * address :
          * cname : 陕西蓝马广告实业有限公司

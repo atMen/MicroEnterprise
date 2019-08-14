@@ -259,12 +259,12 @@ public class wdfpFragment extends BaseFragment implements  wdfpAdapter.OnPlayCli
 
 
         //判断登录人员类型
-        if(!"4".equals(logintype)){
-
-            intent.putExtra("openid",-2);
-            intent.setClass(mContext, LoginActivity.class);
-            mContext.startActivity(intent);
-        }else {
+//        if(!"4".equals(logintype)){
+//
+//            intent.putExtra("openid",-2);
+//            intent.setClass(mContext, LoginActivity.class);
+//            mContext.startActivity(ntenti);
+//        }else {
 
 
             if(token != null){
@@ -272,12 +272,12 @@ public class wdfpFragment extends BaseFragment implements  wdfpAdapter.OnPlayCli
                 checkToken(token,position,id);
 
             }else {
-                intent.putExtra("openid",-2);
+//                intent.putExtra("openid",-2);
                 intent.setClass(mContext, LoginActivity.class);
                 mContext.startActivity(intent);
             }
 
-        }
+//        }
     }
 
     private void checkToken(final String token, final int position, final String id) {
@@ -323,8 +323,7 @@ public class wdfpFragment extends BaseFragment implements  wdfpAdapter.OnPlayCli
 
                         }else {
                             ACache.get(getContext()).clear();
-
-                            intent.putExtra("openid",-2);
+//                            intent.putExtra("openid",-2);
                             intent.setClass(mContext, LoginActivity.class);
                             mContext.startActivity(intent);
                         }

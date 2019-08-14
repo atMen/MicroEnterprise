@@ -142,6 +142,17 @@ public class bankalInfo {
         private String subtitle;
         private String title;
 
+
+        public String getProductimg() {
+            return productimg;
+        }
+
+        public void setProductimg(String productimg) {
+            this.productimg = productimg;
+        }
+
+        private String productimg;
+
         public String getIntroduction() {
             return introduction;
         }

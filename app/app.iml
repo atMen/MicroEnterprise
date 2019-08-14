@@ -141,8 +141,8 @@
     <orderEntry type="library" exported="" name="bolts-android-1.1.4" level="project" />
     <orderEntry type="library" exported="" name="myokhttp-1.1.4" level="project" />
     <orderEntry type="library" exported="" name="rxjava-2.0.5" level="project" />
-    <orderEntry type="library" exported="" name="html-textview-3.6" level="project" />
     <orderEntry type="library" exported="" name="transition-26.0.2" level="project" />
+    <orderEntry type="library" exported="" name="html-textview-3.6" level="project" />
     <orderEntry type="library" exported="" name="okhttp-3.10.0" level="project" />
     <orderEntry type="library" exported="" name="sdk-2.8.1" level="project" />
     <orderEntry type="library" exported="" name="support-compat-26.0.2" level="project" />
@@ -171,11 +171,11 @@
     <orderEntry type="library" exported="" name="support-vector-drawable-23.2.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.2.1" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-23.2.1" level="project" />
-    <orderEntry type="library" exported="" name="wechat-sdk-android-without-mta-5.3.1" level="project" />
     <orderEntry type="library" exported="" name="glide-4.0.0" level="project" />
     <orderEntry type="library" exported="" name="jsoup-1.11.3" level="project" />
     <orderEntry type="library" exported="" name="annotations-4.0.0" level="project" />
     <orderEntry type="library" exported="" name="retrofit-2.4.0" level="project" />
+    <orderEntry type="library" exported="" name="wechat-sdk-android-without-mta-5.4.3" level="project" />
     <orderEntry type="library" exported="" name="gifdecoder-4.0.0" level="project" />
     <orderEntry type="library" exported="" name="arouter-annotation-1.0.4" level="project" />
     <orderEntry type="library" exported="" name="converter-gson-2.4.0" level="project" />

@@ -60,6 +60,7 @@ public class TdjlActivity extends BaseActivity implements BaseQuickAdapter.OnIte
     private List<tdjlInfo.ContentBean> beanList;
 
     private String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -183,14 +184,11 @@ public class TdjlActivity extends BaseActivity implements BaseQuickAdapter.OnIte
                                 loadData(response,false);
                             }
                         }else if("204".equals(data.getErrorcode())){
-
                             finish();
                             toClass(TdjlActivity.this, LoginActivity.class,null);
-
                         }
                     }
                 });
-
     }
 
 
@@ -294,6 +292,7 @@ public class TdjlActivity extends BaseActivity implements BaseQuickAdapter.OnIte
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("id",item.getId());
+        bundle.putSerializable("jobid",item.getJobId());
         toClass(this,TdjlInfoActivity.class,bundle);
 
     }

@@ -38,7 +38,10 @@ public class DkAdapter extends BaseQuickAdapter<qyInfo.ContentBean, BaseViewHold
         ImageView ivtrue = helper.getView(R.id.iv_true);
         ImageView ivfalse = helper.getView(R.id.iv_false);
         String mobile = item.getMobile();
-        mobile = mobile.replace(mobile.substring(3,7), "****");
+        if(!"".equals(mobile)){
+            mobile = mobile.replace(mobile.substring(3,7), "****");
+        }
+
         name.setText(item.getCname());
         time.setText("手机: "+mobile);
 

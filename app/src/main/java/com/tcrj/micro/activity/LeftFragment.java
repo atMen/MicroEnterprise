@@ -99,6 +99,7 @@ public class LeftFragment extends Fragment {
             Intent intent = new Intent(getActivity(), NewLeftListActivity.class);
             CityEntity entity = list.get(position);
             intent.putExtra("cityId", entity.getId());
+            intent.putExtra("id", entity.getId());
             intent.putExtra("title", entity.getName());
             startActivity(intent);
         }
@@ -113,12 +114,12 @@ public class LeftFragment extends Fragment {
             switch (v.getId()){
                 case R.id.gddt:
                     intent.putExtra("id", "qQZbUf");
-                    intent.putExtra("title", "各地动态");
+                    intent.putExtra("title", "要闻动态");
                     startActivity(intent);
                     break;
                 case R.id.fcxx:
                     intent.putExtra("id", "NzqQNn");
-                    intent.putExtra("title", "扶持信息");
+                    intent.putExtra("title", "通知公告");
                     startActivity(intent);
                     break;
 
@@ -132,7 +133,7 @@ public class LeftFragment extends Fragment {
                 //地方政府
                 case R.id.mtv_dfzf:
                     intent.putExtra("id", "3ymYJr");
-                    intent.putExtra("title", "地方政府");
+                    intent.putExtra("title", "地方政策法规");
                     startActivity(intent);
                     break;
 

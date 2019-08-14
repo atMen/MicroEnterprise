@@ -6,11 +6,20 @@ public class Constant {
 
 
 
+//	public static String URLROOT = "http://192.168.20.151:8080";
+//
+//	public static String OLDURLROOT = "http://192.168.20.151:8080";
+
+//		public static String BASEURL = "http://192.168.20.151:8080";
+
+	//微信分享
+	public static String appID = "wxd2b1a9430ac5ee78";
+
+	public static String BASEURL = "http://123.139.46.180:8021";
+
 	public static String URLROOT = "http://123.139.46.180:8020/drosin_cms";
 
 	public static String OLDURLROOT = "http://111.20.61.194:8080/xwqy";
-
-	public static String BASEURL = "http://123.139.46.180:8021";
 
 	//获取信息列表
 	public static String findInfoList = URLROOT + "/baseRest/findInfoList";
@@ -66,5 +75,6 @@ public class Constant {
 
 	//验证手机号
 	public static String czpwd = BASEURL+"/sxipept/personnel/resetUserPwd";
+
 
 }

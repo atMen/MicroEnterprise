@@ -69,7 +69,7 @@ public class BusinessServiceAdapter extends BaseAdapter {
         if (!Utils.isStringEmpty(entity.getTitle())) {
             tvBuinessTitle.setText(entity.getTitle());
         }
-        Glide.with(mContext).load(entity.getPicPath()).into(imgBuinessLogo);
+//        Glide.with(mContext).load(entity.getPicPath()).into(imgBuinessLogo);
         return view;
     }
 }

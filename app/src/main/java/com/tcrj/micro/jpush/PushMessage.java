@@ -12,6 +12,15 @@ public class PushMessage extends BaseModel {
     public String messageType = null;
     // 连接
     public String messageUrl = null;
+
+    public String getMessageContent() {
+        return messageContent;
+    }
+
+    public void setMessageContent(String messageContent) {
+        this.messageContent = messageContent;
+    }
+
     // 详情内容
     public String messageContent = null;
 

@@ -91,7 +91,7 @@ public class jralFragment extends BaseFragment implements BaseQuickAdapter.OnIte
         });
         beanList = new ArrayList<>();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        mRecyclerView.setAdapter(detailAdapter = new jralAdapter(beanList, 0));
+        mRecyclerView.setAdapter(detailAdapter = new jralAdapter(beanList, 0,mContext));
         detailAdapter.setPreLoadNumber(1);
         detailAdapter.setLoadMoreView(new CustomLoadMoreView());
         detailAdapter.setEnableLoadMore(true);

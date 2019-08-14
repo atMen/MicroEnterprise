@@ -2,11 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <include layout="@layout/title" />
     <TextView
+        android:id="@+id/messagecontent"
+        android:layout_margin="10dp"
+        android:textSize="16sp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="推送消息"
+        android:text="截止2019年8月2日，全省个体、私营企业345.88万户，其中：大型企业618户，中型企业2373户，小微企业345.58万户,符合条件标记小微企业219.81万户，占比63.56%。"
         />
 
 </LinearLayout>

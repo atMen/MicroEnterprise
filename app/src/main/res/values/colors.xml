@@ -29,5 +29,8 @@
     <color name="login_textcolor">#999999</color>
     <color name="word_6616">#FC6616</color>
     <color name="color_f6">#f6f6f6</color>
+    <color name="float_transparent">#00000000</color>
+    <color name="crm_word">#3c3c3c</color>
+    <color name="crm_bg">#f7f7f7</color>
 
 </resources>

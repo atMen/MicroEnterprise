@@ -9,7 +9,10 @@ import android.util.Log;
 import android.view.WindowManager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.tcrj.micro.constant.Constant;
 import com.tcrj.micro.entity.UserEntity;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.tsy.sdk.myokhttp.MyOkHttp;
 
 import org.xutils.x;
@@ -30,6 +33,7 @@ public class MyApplication extends Application {
     public static Typeface FZLTZH;
     public static Typeface FZLTXH;
     private MyOkHttp mMyOkhttp;
+    private IWXAPI wxapi;
 
     @Override
     public void onCreate() {
@@ -39,13 +43,17 @@ public class MyApplication extends Application {
         mInstance = this;
         initDate();
         initOkhttp();
-
         initJPush();
-
+        regToWeiXin();
         ARouter.openLog();//开启日志
         ARouter.openDebug();//开启debug模式
         ARouter.init(mInstance);//初始化
 
+    }
+
+    public void regToWeiXin() {
+        wxapi = WXAPIFactory.createWXAPI(this, Constant.appID);
+        wxapi.registerApp(Constant.appID);
     }
 
     //初始化极光

@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
@@ -55,7 +56,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     LinearLayout ll_rg;
     private int type = 1;
     private int openid = 0;
-
+    TextView txtTitle;
+    ImageView btnback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,13 +66,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         openid = getIntent().getIntExtra("openid", -1);
         initView();
         getData();
+
     }
 
-
-
-
     public void initView() {
-
+        txtTitle = findViewById(R.id.txtTitle);
+        btnback = findViewById(R.id.btnback);
         ll_rg = findViewById(R.id.ll_rg);
         tv_dl = findViewById(R.id.tv_dl);
         edt_Password = findViewById(R.id.edt_Password);
@@ -84,10 +85,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //我要扶贫进入之后，限制进行企业登录
         if(openid == -2){
             type = 4;
-            tv_dl.setText("工商局内部登录");
+            txtTitle.setText("工商局内部登录");
             ll_rg.setVisibility(View.GONE);
         }
 
+        txtTitle.setText("登录");
+        btnback.setOnClickListener(this);
 
         tv_zc.setOnClickListener(this);
         btnlogin.setOnClickListener(this);
@@ -100,10 +103,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+
+
     @Override
     public void onClick(View v) {
 
         switch (v.getId()){
+
+            case R.id.btnback:
+                finish();
+                break;
 
             case R.id.btn_login:
 
@@ -130,6 +139,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.tv_cz:
                 Intent intent = new Intent(this, CzPwdActivity.class);
+                intent.putExtra("logintype",type);
                 startActivity(intent);
                 break;
             default:
@@ -168,6 +178,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             registrationID = JPushInterface.getRegistrationID(this);
         }
 
+//        100d8559090f896886e
         Log.e("TAG","登录-registrationID:"+registrationID);
 
         showProgressDialog();
@@ -194,13 +205,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                         LoginInfo loginInfo = new Gson().fromJson(data, LoginInfo.class);
 
+
                         String token = loginInfo.getToken();
                         String username = loginInfo.getUser().getCname();
 
 
                         Log.e("TAG","token"+token);
 
-                        open(token,username);
+                        open(token,username,loginInfo);
+                        //保存用户信息
 
 
                     } else {
@@ -224,9 +237,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private static final int EVENTYPE = 001;
 
-    private void open(String token, String username) {
-
+    private void open(String token, String username, LoginInfo loginInfo) {
+        ACache.get(this).clear();
         //保存token
+        ACache.get(this).put("LoginInfo",loginInfo);
         ACache.get(this).put("token",token);
         ACache.get(this).put("username",username);
         ACache.get(this).put("logintype",type+"");

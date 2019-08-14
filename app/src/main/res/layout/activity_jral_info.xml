@@ -37,16 +37,35 @@
             />
 
 
-        <org.sufficientlysecure.htmltextview.HtmlTextView
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:textSize="15sp"
-            android:layout_marginTop="15dp"
-            android:id="@+id/html_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textAppearance="@android:style/TextAppearance.Small" />
+        <!--<org.sufficientlysecure.htmltextview.HtmlTextView-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:textSize="15sp"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:id="@+id/html_text"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:textAppearance="@android:style/TextAppearance.Small" />-->
 
+        <WebView
+            android:id="@+id/webView"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dip" />
+
+
+        <Button
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/btn_sq"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/bg_btn_background"
+            android:text="申请"
+            android:textSize="18sp"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 

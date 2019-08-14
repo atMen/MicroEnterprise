@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -85,6 +86,8 @@ public class NewsFragment extends Fragment {
     private LinearLayout jrtz;
     private MyTextViewXH qyk;
     private LinearLayout jzfp;
+    private TextView tvmore;
+
 
     private ImageView btnback;
     private LinearLayout llhyrd;
@@ -104,8 +107,11 @@ public class NewsFragment extends Fragment {
 
     }
 
+
+
     public void initView() {
 
+        tvmore = fragmetView.findViewById(R.id.hotmore);
         btnback = fragmetView.findViewById(R.id.btnback);
         btnback.setVisibility(View.GONE);
         title_tv = (TextView) fragmetView.findViewById(R.id.txtTitle);
@@ -125,14 +131,16 @@ public class NewsFragment extends Fragment {
         tvzcjd = (TextView) fragmetView.findViewById(R.id.tv_zcjd);
         hyrd = (View) fragmetView.findViewById(R.id.hyrd);
         zcjd = (View) fragmetView.findViewById(R.id.zcjd);
-        llhyrd.setOnClickListener(new OnClick());
-        llzcjd.setOnClickListener(new OnClick());
+
+
+
+
 
         zxpx = (MyTextViewXH) fragmetView.findViewById(R.id.zxpx);
         jrtz = (LinearLayout) fragmetView.findViewById(R.id.jrtz);
         qyk = (MyTextViewXH) fragmetView.findViewById(R.id.qyk);
 
-        title_tv.setText("首页");
+        title_tv.setText("陕西省个体私营经济发展网");
         left_img.setVisibility(View.VISIBLE);
         initTagViewPager();
         viewPager.setVisibility(View.VISIBLE);
@@ -179,7 +187,31 @@ public class NewsFragment extends Fragment {
         qyk.setOnClickListener(new OnClick());
         jzfp.setOnClickListener(new OnClick());
 
+        tvmore.setOnClickListener(new OnClick());
+        llhyrd.setOnClickListener(new OnClick());
+        llzcjd.setOnClickListener(new OnClick());
 
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+
+            Log.e("TAG","onHiddenChanged");
+
+        } else {
+
+            hyrd.setVisibility(View.VISIBLE);
+            tvhyrd.setTextColor(getResources().getColor(R.color.app_blue));
+
+            zcjd.setVisibility(View.GONE);
+            tvzcjd.setTextColor(getResources().getColor(R.color.black));
+
+
+            getDate();
+
+        }
     }
 
     public void getDate() {
@@ -200,6 +232,7 @@ public class NewsFragment extends Fragment {
                 //dismisProgressDialog();
                 Log.d("aa", jsonObject.toString());
                 if (JsonParse.getMsgByKey(jsonObject, "state").equals("1")) {
+                    bannerlist.clear();
                     blist = JsonParse.getInfoList(jsonObject);
                 } else {
                     blist = new ArrayList<InfoEntity>();
@@ -216,7 +249,8 @@ public class NewsFragment extends Fragment {
                 //要闻列表
                 VolleyUtil volleyUtil = new VolleyUtil(getActivity(), handler);
                 Map<String, Object> params = new HashMap<String, Object>();
-                params.put("", "");
+                params.put("pageindex", "1");
+                params.put("pagesize", "5");
 
                 VolleyUtil.VolleyJsonCallback callback2 = new VolleyUtil.VolleyJsonCallback() {
 
@@ -313,6 +347,8 @@ public class NewsFragment extends Fragment {
 
                     zcjd.setVisibility(View.GONE);
                     tvzcjd.setTextColor(getResources().getColor(R.color.black));
+                    url = Constant.HotInfoList;
+                    title = "行业热点";
                     getJushListInfo(Constant.HotInfoList);
                     break;
 
@@ -322,7 +358,8 @@ public class NewsFragment extends Fragment {
 
                     zcjd.setVisibility(View.VISIBLE);
                     tvzcjd.setTextColor(getResources().getColor(R.color.app_blue));
-
+                    url = Constant.NewInfoList;
+                    title = "政策推送";
                     getJushListInfo(Constant.NewInfoList);
                     break;
 
@@ -397,12 +434,22 @@ public class NewsFragment extends Fragment {
 
                     break;
 
+                case R.id.hotmore:
+
+                    intent.putExtra("url", url);
+                    intent.putExtra("title", title);
+                    intent.setClass(getActivity(), HotListActivity.class);
+                    startActivity(intent);
+                    break;
+
                 default:
                     break;
             }
         }
     }
 
+    private String url = Constant.HotInfoList;
+    private String title = "行业热点";
 
     private void getJushListInfo(String url){
 
@@ -410,8 +457,8 @@ public class NewsFragment extends Fragment {
         //要闻列表
         VolleyUtil volleyUtil = new VolleyUtil(getActivity(), handler);
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("", "");
-
+        params.put("pageindex", "1");
+        params.put("pagesize", "5");
 
         VolleyUtil.VolleyJsonCallback callback2 = new VolleyUtil.VolleyJsonCallback() {
 
@@ -433,7 +480,6 @@ public class NewsFragment extends Fragment {
 
             @Override
             public void onFailed(String result) {
-                dismisProgressDialog();
                 handler.sendEmptyMessage(11);
             }
         };
@@ -441,7 +487,6 @@ public class NewsFragment extends Fragment {
         volleyUtil.getJsonDataFromServer(url, params, callback2);
 
     }
-
 
 
     class OnItemClick implements AdapterView.OnItemClickListener {
