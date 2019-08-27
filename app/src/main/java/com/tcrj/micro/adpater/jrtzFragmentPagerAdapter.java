@@ -46,12 +46,10 @@ public class jrtzFragmentPagerAdapter extends FragmentPagerAdapter {
         return mTitles[position];
     }
 
-
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
 
     }
-
 
 }
 
