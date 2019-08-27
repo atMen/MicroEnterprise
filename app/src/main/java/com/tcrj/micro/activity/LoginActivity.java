@@ -244,6 +244,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         ACache.get(this).put("token",token);
         ACache.get(this).put("username",username);
         ACache.get(this).put("logintype",type+"");
+        ACache.get(this).put("mobile",loginInfo.getUser().getMobile());
 
         EventBus.getDefault().post(new MessageEvent(username,EVENTYPE));
 

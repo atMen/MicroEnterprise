@@ -1,16 +1,12 @@
-package com.tcrj.micro.activity.jrtz;
+package com.tcrj.micro.activity.jzfp;
 
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -18,15 +14,11 @@ import com.google.gson.JsonParser;
 import com.tcrj.micro.ApiConstants;
 import com.tcrj.micro.R;
 import com.tcrj.micro.activity.base.BaseFragment;
-import com.tcrj.micro.adpater.jrcpAdapter;
+import com.tcrj.micro.activity.left.LeftDetailActivity;
 import com.tcrj.micro.application.MyApplication;
 import com.tcrj.micro.entity.backqyinfo;
-import com.tcrj.micro.entity.bankExample;
-import com.tcrj.micro.entity.bankalInfo;
-import com.tcrj.micro.entity.bankdetails;
 import com.tcrj.micro.entity.fpStringInfo;
 import com.tcrj.micro.until.ACache;
-import com.tcrj.micro.view.CustomLoadMoreView;
 import com.tsy.sdk.myokhttp.MyOkHttp;
 import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
 
@@ -40,30 +32,41 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.srain.cube.views.ptr.PtrDefaultHandler;
-import in.srain.cube.views.ptr.PtrFrameLayout;
-import in.srain.cube.views.ptr.PtrHandler;
-
 /**
  * Created by leict on 2018/6/28.
  */
 
-public class gsjjFragment extends BaseFragment  {
+public class jdglFragment extends BaseFragment implements View.OnClickListener {
 
     private MyOkHttp mMyOkhttp;
     private String bankid;
     private WebView mWebView = null;
     private TextView qyname;
 
+    private TextView textView1;
+    private TextView textView2;
+    private TextView textView3;
+    private TextView textView4;
+    private TextView textView5;
+    private TextView textView6;
+
     @Override
     protected int setLayout() {
-        return R.layout.gsjj_fregment;
+        return R.layout.jdgl_fregment;
     }
 
     @Override
     protected void setView() {
         mMyOkhttp = MyApplication.getInstance().getMyOkHttp();
         bankid = ACache.get(getContext()).getAsString("bankid");
+
+
+        textView1 = mRootView.findViewById(R.id.textView1);
+        textView2 = mRootView.findViewById(R.id.textView2);
+        textView3 = mRootView.findViewById(R.id.textView3);
+        textView4 = mRootView.findViewById(R.id.textView4);
+        textView5 = mRootView.findViewById(R.id.textView5);
+        textView6 = mRootView.findViewById(R.id.textView6);
 
         qyname = mRootView.findViewById(R.id.qyname);
         mWebView = (WebView) mRootView.findViewById(R.id.webView);
@@ -75,9 +78,18 @@ public class gsjjFragment extends BaseFragment  {
 
         mWebView.getSettings().setLoadWithOverviewMode(true);
         mWebView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+
+
+        textView1.setOnClickListener(this);
+        textView2.setOnClickListener(this);
+        textView3.setOnClickListener(this);
+        textView4.setOnClickListener(this);
+        textView5.setOnClickListener(this);
+        textView6.setOnClickListener(this);
+
     }
 
-    private void setData(bankdetails response) {
+    private void setData(backqyinfo response) {
         qyname.setText(response.getName());
 
         String newContent = getNewContent(response.getQyjj());
@@ -102,7 +114,7 @@ public class gsjjFragment extends BaseFragment  {
 
     @Override
     protected void setData() {
-        getBankinfo();
+//        getBankinfo();
     }
 
     //获取产品所属金融企业信息
@@ -137,7 +149,7 @@ public class gsjjFragment extends BaseFragment  {
                         String errorCode = dataBean.getErrorcode();
                         if("9999".equals(errorCode)){
 
-                            bankdetails response = new Gson().fromJson(dataBean.getData(), bankdetails.class);
+                            backqyinfo response = new Gson().fromJson(dataBean.getData(), backqyinfo.class);
 
                             setData(response);
                         }
@@ -146,7 +158,7 @@ public class gsjjFragment extends BaseFragment  {
 
     }
 
-    private List<bankdetails> parseNoHeaderJArray(String strByJson) {
+    private List<backqyinfo> parseNoHeaderJArray(String strByJson) {
 
         //Json的解析类对象
         JsonParser parser = new JsonParser();
@@ -154,15 +166,54 @@ public class gsjjFragment extends BaseFragment  {
         JsonArray jsonArray = parser.parse(strByJson).getAsJsonArray();
 
         Gson gson = new Gson();
-        List<bankdetails> userBeanList = new ArrayList<>();
+        List<backqyinfo> userBeanList = new ArrayList<>();
 
         //加强for循环遍历JsonArray
         for (JsonElement user : jsonArray) {
             //使用GSON，直接转成Bean对象
-            bankdetails userBean = gson.fromJson(user, bankdetails.class);
+            backqyinfo userBean = gson.fromJson(user, backqyinfo.class);
             userBeanList.add(userBean);
         }
         return userBeanList;
     }
 
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent();
+        switch (v.getId()){
+
+            case R.id.textView1:
+
+                intent.setClass(mContext,ldjgActivity.class);
+                break;
+
+            case R.id.textView2:
+
+                intent.setClass(mContext,gzzdActivity.class);
+                break;
+            case R.id.textView3:
+
+                ACache.get(mContext).put("jzfptype","2");
+                intent.setClass(mContext,jzfpActivity.class);
+                break;
+            case R.id.textView4:
+                ACache.get(mContext).put("jzfptype","3");
+                intent.setClass(mContext,jzfpActivity.class);
+                break;
+            case R.id.textView5:
+                ACache.get(mContext).put("jzfptype","1");
+                intent.setClass(mContext,jzfpActivity.class);
+                break;
+            case R.id.textView6:
+
+                intent.setClass(mContext,fpgzActivity.class);
+                break;
+
+
+            default:
+                break;
+        }
+
+        startActivity(intent);
+    }
 }

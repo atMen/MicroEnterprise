@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:gravity="bottom|center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/ll_pyq"
+                    android:paddingBottom="30dp"
+                    android:paddingTop="30dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/pyq"
+                        />
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="微信朋友圈"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_hy"
+                    android:paddingBottom="30dp"
+                    android:paddingTop="30dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/hy"
+                        />
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="微信好友"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:background="#efefef"
+                android:layout_height="1dp"
+                android:layout_width="match_parent">
+
+            </View>
+            <TextView
+                android:gravity="center"
+                android:id="@+id/tv_cancle"
+                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:text="取消"
+                android:textSize="20sp"
+                >
+            </TextView>
+        </LinearLayout>
+
+</LinearLayout>

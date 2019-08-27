@@ -57,6 +57,7 @@ public class wdfpFragment extends BaseFragment implements  wdfpAdapter.OnPlayCli
     private int pageNum = 1;
     private boolean canPull = true;
     private String jpushId;
+    private String jzfptype;
 
     @Override
     protected int setLayout() {
@@ -67,6 +68,8 @@ public class wdfpFragment extends BaseFragment implements  wdfpAdapter.OnPlayCli
     protected void setView() {
         EventBus.getDefault().register(this);
 
+
+        jzfptype = ACache.get(mContext).getAsString("jzfptype");
         jpushId = ACache.get(getContext()).getAsString("jpushId");
 
         mMyOkhttp = MyApplication.getInstance().getMyOkHttp();
@@ -124,7 +127,7 @@ public class wdfpFragment extends BaseFragment implements  wdfpAdapter.OnPlayCli
         JSONObject jsonObject = new JSONObject();
 
         try {
-
+            jsonObject.put("type", jzfptype);
             jsonObject.put("p", num+"");
             jsonObject.put("size", "20");
 

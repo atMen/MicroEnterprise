@@ -94,12 +94,12 @@ public class HotListActivity extends BaseActivity {
 
     @Override
     public void getData() {
+
         showProgressDialog();
         VolleyUtil volleyUtil = new VolleyUtil(this, handler);
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("pagesize", "10");
         params.put("pageindex", pageIndex+"");
-
 
         VolleyUtil.VolleyJsonCallback callback2 = new VolleyUtil.VolleyJsonCallback() {
 
@@ -121,7 +121,6 @@ public class HotListActivity extends BaseActivity {
                     listview.setPullLoadEnable(false);
                 }
                 adapter.notifyDataSetChanged();
-
             }
 
             @Override

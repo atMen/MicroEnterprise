@@ -70,6 +70,7 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
     private int pageNum = 1;
     private boolean canPull = true;
     private String token;
+    private String jzfptype;
 
     @Override
     protected int setLayout() {
@@ -81,7 +82,7 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
         EventBus.getDefault().register(this);
         mMyOkhttp = MyApplication.getInstance().getMyOkHttp();
         token = ACache.get(mContext).getAsString("token");
-
+        jzfptype = ACache.get(mContext).getAsString("jzfptype");
         mRecyclerView = mRootView.findViewById(R.id.recycler_view);
         mPtrFrameLayout = mRootView.findViewById(R.id.mPtrFrameLayout);
         mPtrFrameLayout.disableWhenHorizontalMove(true);
@@ -130,6 +131,7 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
         try {
 
             //TODO:注意修改此处token
+            jsonObject.put("type", jzfptype);
             jsonObject.put("token", token);
 
         } catch (JSONException e) {
@@ -144,7 +146,6 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
                     public void onFailure(int statusCode, String error_msg) {
 
                         Toast.makeText(mContext, error_msg, Toast.LENGTH_SHORT).show();
-
                         dismisProgressDialog();
                         loadData(null,true);
 
@@ -154,18 +155,13 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
                     public void onSuccess(int statusCode, fpStringInfo response) {
 
                         dismisProgressDialog();
-
                         String fpjlListInfos = response.getData();
-
                         List<fpjlListInfo.ContentBean> zcgsInfos = parseNoHeaderJArray(fpjlListInfos);
 
                         loadData(zcgsInfos,false);
                     }
                 });
-
     }
-
-
 
     //下拉刷新
     private void loadData(List<fpjlListInfo.ContentBean> response,boolean isError) {
@@ -175,13 +171,7 @@ public class fpdxFregment extends BaseFragment implements fpdxAdapter.OnPlayClic
                 mPtrFrameLayout.refreshComplete();
             }
             detailAdapter.setNewData(response);
-            if(isError){
-
-            }else{
-
-            }
             canPull = false;
-
         } else {
 
             canPull = true;

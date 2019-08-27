@@ -25,8 +25,9 @@ public class WxShareUtils {
 
     private static final int THUMB_SIZE = 120;
 
+    //分享链接
     public static void shareWeb(Context context, String appId, String webUrl,
-                                String title, String content, int id) {
+                                String title, String content, int id, boolean isShareFriend) {
         // 通过appId得到IWXAPI这个对象
         IWXAPI wxapi = WXAPIFactory.createWXAPI(context, appId);
         // 检查手机或者模拟器是否安装了微信
@@ -55,17 +56,18 @@ public class WxShareUtils {
         // 构造一个Req
         SendMessageToWX.Req req = new SendMessageToWX.Req();
         // transaction用于唯一标识一个请求（可自定义）
-        req.transaction = "webpage";
+        req.transaction = buildTransaction("img");
         // 上文的WXMediaMessage对象
         req.message = msg;
         // SendMessageToWX.Req.WXSceneSession是分享到好友会话
         // SendMessageToWX.Req.WXSceneTimeline是分享到朋友圈
-        req.scene = SendMessageToWX.Req.WXSceneSession;
+        req.scene = isShareFriend ? SendMessageToWX.Req.WXSceneSession : SendMessageToWX.Req.WXSceneTimeline;
 
         // 向微信发送请求
         wxapi.sendReq(req);
     }
 
+    //分享图片
     public static void share2Wx(Context context, boolean isShareFriend, String appId) {
         // 通过appId得到IWXAPI这个对象
         IWXAPI api = WXAPIFactory.createWXAPI(context, appId);

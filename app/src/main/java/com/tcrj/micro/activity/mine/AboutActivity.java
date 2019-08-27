@@ -1,12 +1,19 @@
 package com.tcrj.micro.activity.mine;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.VolleyUtil;
@@ -93,7 +100,6 @@ public class AboutActivity extends BaseActivity {
 
     }
 
-
     class OnClick implements OnClickListener {
 
         @Override
@@ -107,10 +113,70 @@ public class AboutActivity extends BaseActivity {
                     break;
 
                 case R.id.tv_more:
-                    WxShareUtils.shareWeb(AboutActivity.this,Constant.appID,pgyUrl,"小微库","点击进入小微库app下载页面",R.mipmap.lunch_icon);
+
+                    showDialog();
+//                    WxShareUtils.
+//                            shareWeb(AboutActivity.this,Constant.appID,pgyUrl,"小微库"
+//                                    ,"点击进入小微库app下载页面",R.drawable.logo,true);
 //                  WxShareUtils.share2Wx(AboutActivity.this,true,Constant.appID);
                     break;
+
+                default:
+                    break;
             }
+        }
+
+        Dialog dialog;
+        private void showDialog() {
+            dialog = new Dialog(AboutActivity.this,R.style.dialog);
+            View view_dialog = LayoutInflater.from(AboutActivity.this).inflate(
+                    R.layout.dialog_layout, null);
+            dialog.setContentView(view_dialog);
+
+            LinearLayout hy = (LinearLayout) view_dialog.findViewById(R.id.ll_hy);
+            LinearLayout pyq = (LinearLayout) view_dialog.findViewById(R.id.ll_pyq);
+            TextView tv_cancle = (TextView) view_dialog.findViewById(R.id.tv_cancle);
+            tv_cancle.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+                    dialog.dismiss();
+                }
+            });
+
+            //分享到微信好友
+            hy.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+                    WxShareUtils.
+                            shareWeb(AboutActivity.this,Constant.appID,pgyUrl,"小微库"
+                                    ,"点击进入小微库app下载页面",R.drawable.logo,true);
+                    dialog.dismiss();
+                }
+            });
+
+            //分享到微信朋友圈
+            pyq.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+                    WxShareUtils.
+                            shareWeb(AboutActivity.this,Constant.appID,pgyUrl,"小微库"
+                                    ,"点击进入小微库app下载页面",R.drawable.logo,false);
+                    dialog.dismiss();
+                }
+            });
+        /*
+         * 获取圣诞框的窗口对象及参数对象以修改对话框的布局设置, 可以直接调用getWindow(),表示获得这个Activity的Window
+         * 对象,这样这可以以同样的方式改变这个Activity的属性.
+         */
+            Window dialogWindow = dialog.getWindow();
+            //设置位置
+            dialogWindow.setGravity(Gravity.BOTTOM);
+            //设置dialog的宽高属性
+            dialogWindow.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.show();
         }
     }
 

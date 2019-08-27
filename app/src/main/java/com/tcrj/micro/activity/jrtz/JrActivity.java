@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.tcrj.micro.ApiConstants;
 import com.tcrj.micro.JsonParse.JsonParse;
 import com.tcrj.micro.R;
 import com.tcrj.micro.activity.NetJSCallJavaActivity;
+import com.tcrj.micro.activity.NewsFragment;
 import com.tcrj.micro.activity.left.LeftDetailActivity;
 import com.tcrj.micro.activity.left.NewLeftListActivity;
 import com.tcrj.micro.activity.news.FgdjDetailActivity;
@@ -57,6 +59,20 @@ public class JrActivity extends BaseActivity {
     private RecyclerView mRecyclerView2;
     private ImageView iv_jr;
 
+    private LinearLayout llzscq;
+    private LinearLayout llhyrd;
+    private LinearLayout llzcjd;
+    private TextView tvzscq;
+    private TextView tvhyrd;
+    private TextView tvzcjd;
+    private View zscq;
+    private View hyrd;
+    private View zcjd;
+    private LinearLayout ll_one;
+    private LinearLayout ll_two;
+    private LinearLayout ll_three;
+
+
 
     private static ArrayList<bankInfo> list;
     private int pageIndex = 1;
@@ -79,6 +95,19 @@ public class JrActivity extends BaseActivity {
     @Override
     public void initView() {
 
+        ll_one = (LinearLayout) findViewById(R.id.ll_one);
+        ll_two = (LinearLayout) findViewById(R.id.ll_two);
+        ll_three = (LinearLayout) findViewById(R.id.ll_three);
+        llzscq = (LinearLayout) findViewById(R.id.ll_zscq);
+        llhyrd = (LinearLayout) findViewById(R.id.ll_hyrd);
+        llzcjd = (LinearLayout) findViewById(R.id.ll_zcjd);
+        tvzscq = (TextView) findViewById(R.id.tv_zscq);
+        tvhyrd = (TextView) findViewById(R.id.tv_hyrd);
+        tvzcjd = (TextView) findViewById(R.id.tv_zcjd);
+        zscq = (View) findViewById(R.id.zscq);
+        hyrd = (View) findViewById(R.id.hyrd);
+        zcjd = (View) findViewById(R.id.zcjd);
+
         iv_jr = findViewById(R.id.iv_jr);
         tvtitle = (TextView) findViewById(R.id.txtTitle);
         backBtn = (ImageView) findViewById(R.id.btnback);
@@ -86,7 +115,6 @@ public class JrActivity extends BaseActivity {
         tvtitle.setText("金融投资");
         mRecyclerView = (RecyclerView) findViewById(R.id.list1);
         mRecyclerView2 = (RecyclerView) findViewById(R.id.list2);
-
 
         list = new ArrayList<bankInfo>();
 
@@ -97,8 +125,6 @@ public class JrActivity extends BaseActivity {
         mRecyclerView2.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView2.setNestedScrollingEnabled(false);
         mRecyclerView2.setAdapter(detailAdapter2 = new jrtzcwAdapter(list));
-
-
 
         detailAdapter.setEnableLoadMore(false);
         detailAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
@@ -124,17 +150,17 @@ public class JrActivity extends BaseActivity {
             }
         });
 
-
         iv_jr.setOnClickListener(new OnClick());
         backBtn.setOnClickListener(new OnClick());
-
+        llhyrd.setOnClickListener(new OnClick());
+        llzcjd.setOnClickListener(new OnClick());
+        llzscq.setOnClickListener(new OnClick());
     }
 
     @Override
     public void getData() {
         showProgressDialog();
         getListInfo1();
-
     }
 
     private void getListInfo1(){
@@ -226,8 +252,6 @@ public class JrActivity extends BaseActivity {
                 });
     }
 
-
-
     class OnClick implements OnClickListener {
 
         @Override
@@ -242,6 +266,56 @@ public class JrActivity extends BaseActivity {
 
                 case R.id.iv_jr:
                     toClass(JrActivity.this,NetJSCallJavaActivity.class,null);
+                    break;
+
+                case R.id.ll_hyrd:
+                    hyrd.setVisibility(View.VISIBLE);
+                    tvhyrd.setTextColor(getResources().getColor(R.color.app_blue));
+
+                    zscq.setVisibility(View.GONE);
+                    tvzcjd.setTextColor(getResources().getColor(R.color.black));
+
+                    zcjd.setVisibility(View.GONE);
+                    tvzcjd.setTextColor(getResources().getColor(R.color.black));
+
+                    ll_one.setVisibility(View.VISIBLE);
+                    ll_two.setVisibility(View.GONE);
+                    ll_three.setVisibility(View.GONE);
+
+                    break;
+
+                case R.id.ll_zcjd:
+
+                    hyrd.setVisibility(View.GONE);
+                    tvhyrd.setTextColor(getResources().getColor(R.color.black));
+
+                    zcjd.setVisibility(View.VISIBLE);
+                    tvzcjd.setTextColor(getResources().getColor(R.color.app_blue));
+
+                    zscq.setVisibility(View.GONE);
+                    tvzscq.setTextColor(getResources().getColor(R.color.black));
+
+                    ll_one.setVisibility(View.GONE);
+                    ll_two.setVisibility(View.VISIBLE);
+                    ll_three.setVisibility(View.GONE);
+
+                    break;
+
+                case R.id.ll_zscq:
+
+                    hyrd.setVisibility(View.GONE);
+                    tvhyrd.setTextColor(getResources().getColor(R.color.black));
+
+                    zcjd.setVisibility(View.GONE);
+                    tvzcjd.setTextColor(getResources().getColor(R.color.black));
+
+                    zscq.setVisibility(View.VISIBLE);
+                    tvzscq.setTextColor(getResources().getColor(R.color.app_blue));
+
+                    ll_one.setVisibility(View.GONE);
+                    ll_two.setVisibility(View.GONE);
+                    ll_three.setVisibility(View.VISIBLE);
+
                     break;
 
                 default:

@@ -48,8 +48,15 @@ public class wdfpAdapter extends BaseQuickAdapter<fpDataInfo.ContentBean, BaseVi
         TextView wyfp = helper.getView(R.id.wyfp);
         TextView yqtr = helper.getView(R.id.yqtr);
 
-        name.setText(item.getHomeName());
-        address.setText("地址："+item.getCityName()+"-"+item.getCountyName()+"-"+item.getTownName());
+        String homeName = item.getHomeName();
+        if("".equals(homeName)){
+            name.setText(item.getTownName());
+            address.setText("地址："+item.getCityName()+"-"+item.getCountyName());
+        }else {
+            name.setText(item.getHomeName());
+            address.setText("地址："+item.getCityName()+"-"+item.getCountyName()+"-"+item.getTownName());
+        }
+
         fptj.setText(item.getPoorReason());
 
         wyfp.setOnClickListener(new View.OnClickListener() {

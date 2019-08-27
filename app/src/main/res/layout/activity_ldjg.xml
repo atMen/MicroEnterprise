@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/title" />
+
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="陕西省市场监督管理局脱贫攻坚工作办公室"
+            android:textSize="17sp"
+            />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="陕西省市场监督管理局脱贫攻坚工作"
+            android:textSize="16sp"
+            />
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/gary_line"
+            />
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="\u3000组长："
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="张智华"
+                />
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="党组书记、局长"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="副组长："
+                />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="潘\u3000洁"
+                        />
+
+                    <TextView
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="党组副书记、副局长"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="牛清华"
+                        />
+
+                    <TextView
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="党组成员、副局长"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="潘\u3000洁"
+                        />
+
+                    <TextView
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="党组副书记、副局长"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="赵丽萍"
+                        />
+
+                    <TextView
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="驻局纪检组组长、党组成员"
+                        />
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

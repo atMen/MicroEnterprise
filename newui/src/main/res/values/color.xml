@@ -10,4 +10,5 @@
     <color name="black">#CF000000</color>
     <color name="banner_text">#ebebeb</color>
     <color name="gary_line">#e0e0e0</color>
+    <color name="btnbg">#ECECEC</color>
 </resources>

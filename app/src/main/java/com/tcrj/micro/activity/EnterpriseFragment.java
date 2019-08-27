@@ -98,8 +98,6 @@ public class EnterpriseFragment extends Fragment {
         listview.setOnItemClickListener(new OnItemClick());
         btnsearch.setOnClickListener(new OnClick());
 
-
-
         showProgressDialog();
         pdfView.fromAsset("xwqyk.pdf")
                 .enableAnnotationRendering(true)

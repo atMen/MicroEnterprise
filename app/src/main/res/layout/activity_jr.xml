@@ -8,7 +8,127 @@
 
     <include layout="@layout/title" />
 
+    <!--选项卡-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
 
+        <LinearLayout
+            android:id="@+id/ll_hyrd"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_hyrd"
+                android:textColor="@color/app_blue"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:text="国家市场监督管理总局"
+                />
+            <View
+                android:id="@+id/hyrd"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/app_blue"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_zcjd"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_zcjd"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:gravity="center"
+                android:text="本地金融"
+                android:textSize="16sp" />
+
+            <View
+                android:visibility="gone"
+                android:id="@+id/zcjd"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/app_blue"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_zscq"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_zscq"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:text="知识产权"
+                />
+            <View
+                android:visibility="gone"
+                android:id="@+id/zscq"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/app_blue"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <!--第一项-->
+    <LinearLayout
+        android:id="@+id/ll_one"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/iv_jr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/titleimg"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_three"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="建设中..."
+            />
+    </LinearLayout>
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -18,30 +138,12 @@
         android:focusableInTouchMode="true">
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_two"
             android:descendantFocusability="blocksDescendants"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="国家市场监督管理总局"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                />
-            <ImageView
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:id="@+id/iv_jr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/titleimg"
-                />
 
             <RelativeLayout
                 android:gravity="center_vertical"
@@ -57,7 +159,6 @@
                     android:text="金融"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-
                     />
 
                 <TextView
@@ -70,11 +171,9 @@
                     android:layout_height="match_parent"
                     android:text=""
                     />
-
             </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView
-
                 android:id="@+id/list1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -83,7 +182,6 @@
 
 
             <RelativeLayout
-
                 android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
@@ -101,7 +199,6 @@
                 <TextView
                     android:paddingRight="10dp"
                     android:paddingLeft="10dp"
-
                     android:id="@+id/tv_more2"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"

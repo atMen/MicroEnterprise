@@ -20,8 +20,10 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
+            android:background="@drawable/bg_btn_tj"
+            android:layout_margin="15dp"
             android:layout_centerHorizontal="true"
-            android:scrollbars="vertical"
+            android:scrollbars="none"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </android.support.v7.widget.RecyclerView>

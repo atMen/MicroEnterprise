@@ -421,7 +421,7 @@ public class JrcpSqActivity extends BaseActivity implements View.OnClickListener
             jsonObject.put("bankId", bankInfo.getBankId());
             jsonObject.put("productId", bankInfo.getId());
             jsonObject.put("productName", bankInfo.getName());
-            jsonObject.put("type", "1".equals(user.getType())? "0":"1");
+            jsonObject.put("type", "11401".equals(bankInfo.getType())? "0":"1");
             jsonObject.put("description", bankInfo.getIntroduction());
             jsonObject.put("productDetail", bankInfo.getContent());
             jsonObject.put("picPath", "".equals(bankInfo.getImg())? "" : ApiConstants.BASEIMAGE+bankInfo.getImg());

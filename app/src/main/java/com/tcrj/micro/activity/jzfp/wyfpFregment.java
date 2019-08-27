@@ -46,6 +46,8 @@ public class wyfpFregment extends BaseFragment implements View.OnClickListener {
     private int checktoken = -2;
 
 
+
+
     @Override
     protected int setLayout() {
         return R.layout.wyfp_fregment;
@@ -54,6 +56,7 @@ public class wyfpFregment extends BaseFragment implements View.OnClickListener {
     @Override
     protected void setView() {
         mMyOkhttp = MyApplication.getInstance().getMyOkHttp();
+
 
 
 

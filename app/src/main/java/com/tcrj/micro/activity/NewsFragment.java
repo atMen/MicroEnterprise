@@ -39,6 +39,7 @@ import com.tcrj.micro.PermissionListener;
 import com.tcrj.micro.R;
 import com.tcrj.micro.activity.jrtz.JrActivity;
 import com.tcrj.micro.activity.jrtz.jrtzActivity;
+import com.tcrj.micro.activity.jzfp.fpActivity;
 import com.tcrj.micro.activity.jzfp.jzfpActivity;
 import com.tcrj.micro.activity.news.FgdjActivity;
 import com.tcrj.micro.activity.news.GzqActivity;
@@ -87,7 +88,6 @@ public class NewsFragment extends Fragment {
     private MyTextViewXH qyk;
     private LinearLayout jzfp;
     private TextView tvmore;
-
 
     private ImageView btnback;
     private LinearLayout llhyrd;
@@ -397,7 +397,7 @@ public class NewsFragment extends Fragment {
                     break;
 
                 case R.id.jzfp:
-                    intent.setClass(getActivity(), jzfpActivity.class);
+                    intent.setClass(getActivity(), fpActivity.class);
                     startActivity(intent);
 
                     break;

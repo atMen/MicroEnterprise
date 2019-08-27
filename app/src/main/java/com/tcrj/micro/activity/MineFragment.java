@@ -30,6 +30,7 @@ import com.pgyersdk.update.UpdateManagerListener;
 import com.tcrj.micro.ApiConstants;
 import com.tcrj.micro.R;
 import com.tcrj.micro.activity.mine.AboutActivity;
+import com.tcrj.micro.activity.mine.tsjlActivity;
 import com.tcrj.micro.activity.zxzp.grzpActivity;
 import com.tcrj.micro.activity.zxzp.qyzpActivity;
 import com.tcrj.micro.application.MyApplication;
@@ -66,6 +67,7 @@ public class MineFragment extends Fragment {
     private MyTextViewXH rubbish;
     private MyTextViewXH packagename;
     private MyTextViewQH username;
+    private LinearLayout tj_ly;
 
     private LinearLayout ll_login;
     ExplosionField explosionField ;
@@ -176,6 +178,7 @@ public class MineFragment extends Fragment {
         finish_ly = (LinearLayout) fragmetView.findViewById(R.id.finish_ly);
         grzp_ll = (LinearLayout) fragmetView.findViewById(R.id.grzp_ll);
         qyzp_ll = (LinearLayout) fragmetView.findViewById(R.id.qyzp_ll);
+        tj_ly = (LinearLayout) fragmetView.findViewById(R.id.tj_ly);
 
 
         String name = ACache.get(getContext()).getAsString("username");
@@ -212,6 +215,7 @@ public class MineFragment extends Fragment {
         update_ly.setOnClickListener(new OnClick());
         grzp_ll.setOnClickListener(new OnClick());
         qyzp_ll.setOnClickListener(new OnClick());
+        tj_ly.setOnClickListener(new OnClick());
 
     }
 
@@ -245,19 +249,32 @@ public class MineFragment extends Fragment {
 
                 case R.id.finish_ly:
                     showNormalDialog();
-
                     break;
 
                 case R.id.about_ly:
                     Intent intent = new Intent(getContext(), AboutActivity.class);
                     startActivity(intent);
                     break;
+
+                case R.id.tj_ly:
+
+                    if(ACache.get(getContext()).getAsString("token") == null){
+                        Intent intent1 = new Intent(getContext(), LoginActivity.class);
+                        startActivity(intent1);
+
+                        return;
+                    }
+
+
+                    Intent inte = new Intent(getContext(), tsjlActivity.class);
+                    startActivity(inte);
+                    break;
+
                 case R.id.update_ly:
-//                    UpDateUtil.PgyUpdate(getActivity());
-
+//                  UpDateUtil.PgyUpdate(getActivity());
                     init();
-
-//                    final NormalDialog dialog = new NormalDialog(getActivity());
+//                    final NormalDialog dialog = new NormalDialog(
+// getActivity());
 //                    dialog
 //                            .title("提示")
 //                            .titleTextColor(getActivity().getResources().getColor(R.color.app_blue))
@@ -272,8 +289,6 @@ public class MineFragment extends Fragment {
                     break;
 
                 case R.id.grzp_ll:
-
-
 
                     Intent grzpintent = new Intent(getContext(), qyzpActivity.class);
                     startActivity(grzpintent);

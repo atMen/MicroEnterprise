@@ -109,6 +109,7 @@ public class ApiConstants {
 
   //扶贫人员列表
   public static final String fpry_listApi = URLBASE8080+"sxipept/aidpoor/getAidPoorObjectList";
+//  public static final String fpry_listApi = URLBASE8080+"sxipept/aidpoor/getAidPoorNewRecord";
 
   //扶贫记录列表
   public static final String fpjl_listApi = URLBASE8080+"sxipept/aidpoor/getAidPoorRecordList";
@@ -189,6 +190,10 @@ public class ApiConstants {
 
   //提交用户信息到浐灞app
   public static final String cb_login = CB+"applyProduct";
+
+
+  //个人推送记录
+  public static final String tsjllist_Api = URLBASE8080+"sxipept/jpush/findAllJpushInfo";
 
 
 }
